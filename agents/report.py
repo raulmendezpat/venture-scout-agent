@@ -1,6 +1,7 @@
 """Stage 4: Spanish report as Markdown (committed under reports/) and HTML (email body)."""
 from __future__ import annotations
 
+import re
 import smtplib
 from email.message import EmailMessage
 
@@ -165,7 +166,12 @@ def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: 
         L += ["", "## Notas de la ejecución", ""]
         L += [f"- Error en {e}" for e in stats.get("errors", [])]
         L += [f"- {g}: {n}" for g, n in stats.get("notes", {}).items()]
-    return "\n".join(L) + "\n"
+    return no_dashes("\n".join(L) + "\n")
+
+
+def no_dashes(md: str) -> str:
+    """Model text sometimes uses em or en dashes as punctuation; the founder prefers commas."""
+    return re.sub(r"\s*[\u2014\u2013]\s*", ", ", md)
 
 
 def to_html(md: str) -> str:

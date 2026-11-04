@@ -1,5 +1,7 @@
 # Source groups. Each group is one collector call: Claude runs web searches guided by these queries and
 # domains, reads the results and returns structured items. {year} and {month} are filled at run time.
+# lookback_days overrides run.lookback_days in config.yaml for slower sources (forums, universities,
+# surveys); items already stored are skipped anyway.
 #
 # Facebook groups and LinkedIn: only public pages that the search engine has indexed can be reached.
 # Private groups and the LinkedIn feed need a login and are out of scope (and scraping them breaks
@@ -18,6 +20,7 @@ groups:
 
   brisbane_ecosystem:
     label: Ecosistema de Brisbane y Queensland
+    lookback_days: 21
     focus: Brisbane and Queensland startup ecosystem, incubators, accelerators, founder programs, grants and events.
     domains_hint: [advance.qld.gov.au, choosebrisbane.com.au, theprecinct.com.au, rivercitylabs.net, qldchiefentrepreneur.org.au, business.qld.gov.au, startupstatus.com.au]
     queries:
@@ -28,6 +31,7 @@ groups:
 
   national_programs:
     label: Programas, subvenciones y política nacional
+    lookback_days: 30
     focus: Federal programs, grants and policy that matter to a bootstrapped founder (business.gov.au, R&D Tax Incentive, Industry Growth Program, National AI Centre, AI safety and regulation guidance).
     domains_hint: [business.gov.au, industry.gov.au, csiro.au, ato.gov.au, digital.gov.au, austrade.gov.au]
     queries:
@@ -38,6 +42,7 @@ groups:
 
   universities:
     label: Universidades y sus comunidades de emprendimiento
+    lookback_days: 30
     focus: University entrepreneurship hubs, founder programs open to alumni and the public, research spinouts and student founder communities.
     domains_hint: [uq.edu.au, qut.edu.au, griffith.edu.au, usc.edu.au, unsw.edu.au, monash.edu, anu.edu.au]
     queries:
@@ -49,6 +54,7 @@ groups:
 
   communities:
     label: Foros, grupos y comunidades
+    lookback_days: 45
     focus: Discussions where founders and small business owners in Australia talk about problems, tools, what is working and what is not. Look for repeated pain points.
     domains_hint: [reddit.com, forums.whirlpool.net.au, indiehackers.com, news.ycombinator.com, facebook.com]
     queries:
@@ -61,6 +67,7 @@ groups:
 
   linkedin_authorities:
     label: Autoridades y emprendedores en LinkedIn y blogs
+    lookback_days: 14
     focus: Public posts and articles by recognised Australian founders, investors and AI leaders. Capture who they are and what themes they push.
     domains_hint: [linkedin.com, medium.com, substack.com]
     queries:
@@ -82,6 +89,7 @@ groups:
 
   pain_points:
     label: Problemas que pagan (demanda)
+    lookback_days: 60
     focus: Concrete problems Australian SMEs, councils, not for profits and professional firms say they would pay to solve with AI or automation. Prefer sources with specifics (sector, cost, frequency).
     domains_hint: []
     queries:

@@ -53,7 +53,7 @@ SCHEMA = {
         "items": {"type": "array", "items": ITEM},
         "people": {"type": "array", "items": PERSON},
         "events": {"type": "array", "items": EVENT},
-        "notes": {"type": "string", "description": "Gaps, blocked sources or anything that limited the search"},
+        "notes": {"type": "string", "description": "Gaps, blocked sources or anything that limited the search. One or two short sentences in Spanish, without dashes as punctuation"},
     },
     "required": ["items", "people", "events", "notes"],
 }
@@ -81,7 +81,8 @@ def collect_group(name: str, group: dict, llm: LLM, cfg: dict, today: date) -> d
     run = cfg["run"]
     queries = [_fill(q, today) for q in group.get("queries", [])]
     watch = group.get("watchlist") or []
-    user = (f"Today is {today.isoformat()} (Brisbane). Lookback window: {run['lookback_days']} days.\n"
+    lookback = group.get("lookback_days", run["lookback_days"])
+    user = (f"Today is {today.isoformat()} (Brisbane). Lookback window: {lookback} days.\n"
             f"Source group: {group['label']} ({name}).\nFocus: {group['focus']}\n"
             f"Preferred domains: {', '.join(group.get('domains_hint', [])) or 'any authoritative source'}\n"
             f"Start from these searches and adapt them as you learn:\n- " + "\n- ".join(queries) +
@@ -91,7 +92,7 @@ def collect_group(name: str, group: dict, llm: LLM, cfg: dict, today: date) -> d
             "user_location": {"type": "approximate", "city": "Brisbane", "region": "Queensland", "country": "AU",
                               "timezone": "Australia/Brisbane"}}
     out = llm.structured(model=cfg["models"]["collector"], system=SYSTEM, user=user, schema=SCHEMA,
-                         name="report_findings", max_tokens=8000, server_tools=[tool])
+                         name="report_findings", max_tokens=12000, server_tools=[tool])
     for it in out.get("items", []):
         it["source_group"] = name
     return out

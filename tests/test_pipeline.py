@@ -82,3 +82,56 @@ def test_email_uses_secrets(monkeypatch):
     monkeypatch.setenv("EMAIL_TO", "other@example.com")
     assert report.recipient(cfg) == "other@example.com"
     assert run.main(["--test-email"]) == 0 and sent["to"] == "other@example.com"
+
+
+def _msg(content, stop):
+    import anthropic
+    return anthropic.types.Message.model_validate({
+        "id": "m", "type": "message", "role": "assistant", "model": "claude-haiku-5-5", "content": content,
+        "stop_reason": stop, "stop_sequence": None,
+        "usage": {"input_tokens": 10, "output_tokens": 10, "cache_creation_input_tokens": 0, "cache_read_input_tokens": 0,
+                  "server_tool_use": {"web_search_requests": 1, "web_fetch_requests": 0}}})
+
+
+SEARCH = {"type": "web_search_tool_result", "tool_use_id": "srvtoolu_1", "content": [
+    {"type": "web_search_result", "url": "https://example.org/a", "title": "A", "page_age": "2 days ago",
+     "encrypted_content": "x"}]}
+SCHEMA = {"type": "object", "properties": {"items": {"type": "array"}}, "required": ["items"]}
+
+
+def _client(responses, calls):
+    class M:
+        def create(self, **kw):
+            calls.append(kw)
+            return responses.pop(0) if responses else _msg([{"type": "text", "text": "still thinking"}], "end_turn")
+
+    class C:
+        messages = M()
+    return C()
+
+
+def test_truncated_answer_is_retried_with_more_tokens():
+    from agents.common import LLM
+    calls = []
+    cut = _msg([{"type": "tool_use", "id": "t1", "name": "report", "input": {"items": [1]}}], "max_tokens")
+    ok = _msg([{"type": "tool_use", "id": "t2", "name": "report", "input": {"items": [1, 2]}}], "tool_use")
+    llm = LLM(client=_client([cut, ok], calls))
+    out = llm.structured(model="claude-haiku-5-5", system="s", user="u", schema=SCHEMA, name="report",
+                         max_tokens=1000, server_tools=[{"type": "web_search_20250305", "name": "web_search"}])
+    assert out == {"items": [1, 2]} and calls[1]["max_tokens"] == 2000
+    assert calls[1]["messages"][-1]["content"][0]["type"] == "tool_result"
+
+
+def test_salvage_when_model_never_answers():
+    from agents.common import LLM
+    calls = []
+    first = _msg([{"type": "server_tool_use", "id": "srvtoolu_1", "name": "web_search", "input": {"query": "q"}},
+                  SEARCH, {"type": "text", "text": "Found A."}], "end_turn")
+    responses = [first] + [_msg([{"type": "text", "text": "more"}], "end_turn") for _ in range(7)]
+    responses.append(_msg([{"type": "tool_use", "id": "t9", "name": "report", "input": {"items": ["A"]}}], "tool_use"))
+    llm = LLM(client=_client(responses, calls))
+    out = llm.structured(model="claude-haiku-5-5", system="s", user="u", schema=SCHEMA, name="report",
+                         server_tools=[{"type": "web_search_20250305", "name": "web_search"}])
+    assert out == {"items": ["A"]}
+    last = calls[-1]
+    assert all(t.get("name") != "web_search" for t in last["tools"]) and "https://example.org/a" in last["messages"][0]["content"]

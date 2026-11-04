@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 from pathlib import Path
 from typing import Any, Callable
@@ -9,6 +10,7 @@ from typing import Any, Callable
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
+log = logging.getLogger("venture-scout")
 
 
 def load_yaml(rel: str) -> dict:
@@ -92,7 +94,8 @@ class LLM:
         messages = [{"role": "user", "content": user}]
         forced, auto = {"type": "tool", "name": name}, {"type": "auto"}
         choice = forced if (not server_tools and model not in self._auto_only) else auto
-        for _ in range(10):  # server tools (web search) may pause; continue a few times
+        seen: list = []   # every assistant block, for the salvage call
+        for attempt in range(8):  # server tools (web search) may pause; continue a few times
             try:
                 resp = self.client.messages.create(model=model, max_tokens=max_tokens, system=system,
                                                    tools=tools, tool_choice=choice, messages=messages)
@@ -104,26 +107,56 @@ class LLM:
                     continue
                 raise
             self._track(model, resp)
+            seen.extend(resp.content)
             missing: list[str] = []
-            for block in resp.content:
-                if getattr(block, "type", "") == "tool_use" and block.name == name:
-                    result = dict(block.input)
-                    missing = [k for k in schema.get("required", []) if k not in result]
-                    if not missing:
-                        return result
+            own = [b for b in resp.content if getattr(b, "type", "") == "tool_use" and b.name == name]
+            for block in own:
+                result = dict(block.input)
+                missing = [k for k in schema.get("required", []) if k not in result]
+                if not missing and resp.stop_reason != "max_tokens":
+                    return result
+            log.warning("%s attempt %d: stop=%s blocks=%s missing=%s", name, attempt + 1, resp.stop_reason,
+                        [getattr(b, "type", "?") for b in resp.content], missing)
             messages.append({"role": "assistant", "content": resp.content})
             if resp.stop_reason == "pause_turn":
                 continue
-            if missing:
-                # The tool call must be answered before the next user turn.
-                tool_id = next(b.id for b in resp.content if getattr(b, "type", "") == "tool_use" and b.name == name)
+            truncated = resp.stop_reason == "max_tokens"
+            if truncated:
+                max_tokens = min(max_tokens * 2, 32000)
+            ask = (f"Your answer was cut off by the length limit. Call {name} again, complete, with fewer and "
+                   f"shorter entries." if truncated else
+                   f"Incomplete: missing required fields {missing}. Call {name} again with ALL fields." if missing
+                   else f"Now call the {name} tool with your final answer. Do not search again.")
+            if own:   # a tool call must be answered before the next user turn
                 messages.append({"role": "user", "content": [
-                    {"type": "tool_result", "tool_use_id": tool_id, "is_error": True,
-                     "content": f"Incomplete: missing required fields {missing}. Call {name} again with ALL fields."}]})
+                    {"type": "tool_result", "tool_use_id": own[-1].id, "is_error": True, "content": ask}]})
             else:
-                messages.append({"role": "user", "content": f"Now call the {name} tool with your final answer."})
+                messages.append({"role": "user", "content": ask})
             choice = forced if model not in self._auto_only else auto
+        if server_tools:
+            return self._salvage(model=model, system=system, user=user, schema=schema, name=name, blocks=seen)
         raise RuntimeError(f"Model did not return {name}")
+
+    def _salvage(self, *, model: str, system: str, user: str, schema: dict, name: str, blocks: list) -> dict:
+        """Last resort after web search rounds that never produced the result: a fresh call without server
+        tools, given the search hits (title, url, age) and any text the model wrote along the way."""
+        hits, notes = [], []
+        for b in blocks:
+            kind = getattr(b, "type", "")
+            if kind == "web_search_tool_result" and isinstance(getattr(b, "content", None), list):
+                hits += [{"title": getattr(r, "title", ""), "url": getattr(r, "url", ""),
+                          "age": getattr(r, "page_age", "") or ""} for r in b.content]
+            elif kind == "text" and getattr(b, "text", "").strip():
+                notes.append(b.text.strip())
+        uniq = list({h["url"]: h for h in hits if h["url"]}.values())
+        log.warning("%s: salvaging from %d search results", name, len(uniq))
+        if not uniq:
+            raise RuntimeError(f"Model did not return {name}")
+        prompt = (f"{user}\n\nThe web searches are already done. Build the answer only from these results and "
+                  f"notes; do not invent anything that is not in them.\n\nSEARCH RESULTS\n{dumps(uniq[:80])}\n\n"
+                  f"NOTES WRITTEN DURING THE SEARCH\n" + "\n\n".join(notes)[-12000:])
+        return self.structured(model=model, system=system, user=prompt, schema=schema, name=name,
+                               max_tokens=16000)
 
 
 def dumps(obj: Any) -> str:
