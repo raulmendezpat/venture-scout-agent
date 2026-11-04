@@ -58,3 +58,27 @@ def test_mock_email_written(tmp_path, monkeypatch):
     emls = sorted(run.ROOT.glob("out/2026-11-05_*/report.eml"))
     msg = email.message_from_bytes(emls[-1].read_bytes())
     assert "Venture Scout" in msg["Subject"] and "Recepcionista" in msg["Subject"]
+
+
+def test_email_uses_secrets(monkeypatch):
+    from agents import report
+    sent = {}
+
+    class FakeSMTP:
+        def __init__(self, host, port, timeout=None): sent["host"] = (host, port)
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def login(self, u, p): sent["login"] = (u, p)
+        def send_message(self, m): sent["to"], sent["from"] = m["To"], m["From"]
+
+    monkeypatch.setattr(report.smtplib, "SMTP_SSL", FakeSMTP)
+    monkeypatch.setenv("GMAIL_USER", "me@gmail.com")
+    monkeypatch.setenv("GMAIL_APP_PASSWORD", "abcd efgh ijkl mnop")
+    monkeypatch.delenv("EMAIL_TO", raising=False)
+    cfg = load_config()
+    assert report.recipient(cfg) == "me@gmail.com"
+    report.send("s", "# hola", report.recipient(cfg))
+    assert sent["login"] == ("me@gmail.com", "abcdefghijklmnop") and sent["to"] == "me@gmail.com"
+    monkeypatch.setenv("EMAIL_TO", "other@example.com")
+    assert report.recipient(cfg) == "other@example.com"
+    assert run.main(["--test-email"]) == 0 and sent["to"] == "other@example.com"

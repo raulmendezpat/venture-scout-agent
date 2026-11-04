@@ -29,10 +29,17 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--groups", default="", help="comma separated source groups (default: all)")
     ap.add_argument("--db", default="")
     ap.add_argument("--today", default="", help="override the run date (YYYY-MM-DD), for tests")
+    ap.add_argument("--test-email", action="store_true", help="only send a short test email and exit")
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
     cfg, sources, founder = load_config(), load_sources(), load_founder()
+    if args.test_email:
+        to = report.recipient(cfg)
+        report.send(f"{cfg['email']['subject_prefix']} Correo de prueba",
+                    "# Venture Scout\n\nEl envío por Gmail funciona. Los reportes llegarán a esta dirección.\n", to)
+        log.info("Test email sent to %s", to)
+        return 0
     now = datetime.now(ZoneInfo(cfg["run"]["timezone"]))
     if args.today:
         now = datetime.fromisoformat(args.today).replace(tzinfo=now.tzinfo)
@@ -110,7 +117,7 @@ def main(argv: list[str] | None = None) -> int:
     (reports_dir / f"{today}.md").write_text(md, encoding="utf-8")
     (reports_dir / "latest.md").write_text(md, encoding="utf-8")
     report.send(report.subject_line(cfg["email"]["subject_prefix"], today, ideas, bool(strategy)), md,
-                cfg["email"]["to"], outbox)
+                report.recipient(cfg), outbox)
     store.save_run(run_id, today, len(found["items"]), len(new_items), cost["aud"], errors)
 
     if not args.dry_run:   # processed hand-pasted posts move out of the inbox

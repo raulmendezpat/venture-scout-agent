@@ -20,6 +20,10 @@ on:
         description: "Only these source groups (comma separated, empty = all)"
         type: string
         default: ""
+      test_email:
+        description: "Only send a test email (checks the Gmail secrets, no Claude calls)"
+        type: boolean
+        default: false
 
 concurrency: venture-scout
 
@@ -42,16 +46,27 @@ jobs:
       - run: python -m pytest -q
 
       - name: Run the agents
+        id: agents
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}   # optional; without it the report goes to GMAIL_USER
         run: |
+          if [ "${{ inputs.test_email }}" = "true" ]; then python run.py --test-email; exit $?; fi
           ARGS=""
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="--dry-run"; fi
           if [ "${{ inputs.weekly }}" = "true" ]; then ARGS="$ARGS --weekly"; fi
           if [ -n "${{ inputs.groups }}" ]; then ARGS="$ARGS --groups ${{ inputs.groups }}"; fi
           python run.py $ARGS
+
+      - name: Email a failure notice
+        if: ${{ failure() && steps.agents.conclusion == 'failure' }}
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -m agents.report failure "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
       - name: Keep the run output for 14 days
         if: always()
@@ -63,7 +78,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Save history and report (not on dry runs)
-        if: ${{ !cancelled() && inputs.dry_run != true }}
+        if: ${{ !cancelled() && inputs.dry_run != true && inputs.test_email != true }}
         run: |
           git config user.name "venture-scout-agent"
           git config user.email "venture-scout-agent@users.noreply.github.com"

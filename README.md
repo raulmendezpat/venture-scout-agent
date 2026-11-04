@@ -35,6 +35,10 @@ Secretos del repositorio (**Settings > Secrets and variables > Actions**), los m
 | `ANTHROPIC_API_KEY` | Claude API (incluye la herramienta de búsqueda web, que debe estar habilitada en la organización de la Console) |
 | `GMAIL_USER` | Cuenta que envía el correo |
 | `GMAIL_APP_PASSWORD` | App password de Gmail |
+| `EMAIL_TO` (opcional) | Destinatario del reporte; si no existe, el reporte llega a la misma cuenta `GMAIL_USER` |
+
+Para probar solo el correo: **Run workflow** con **test_email** marcado. Si una ejecución programada falla, llega un
+aviso al mismo destinatario con el enlace al registro.
 
 Archivos que puedes editar sin tocar código:
 

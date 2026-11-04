@@ -109,20 +109,28 @@ def to_html(md: str) -> str:
     return f"<html><head><meta charset='utf-8'><style>{css}</style></head><body>{body}</body></html>"
 
 
+def recipient(cfg: dict) -> str:
+    """Where the report goes: EMAIL_TO secret if set, else the GMAIL_USER account itself, else config."""
+    return (env("EMAIL_TO", required=False) or env("GMAIL_USER", required=False)
+            or cfg.get("email", {}).get("to") or "")
+
+
 def send(subject: str, md: str, to: str, outbox=None) -> None:
+    """Send the report through Gmail SMTP with the GMAIL_USER and GMAIL_APP_PASSWORD secrets.
+    With outbox set (dry run or mock) the message is written to outbox/report.eml instead."""
     msg = EmailMessage()
-    msg["Subject"], msg["To"] = subject, to
+    msg["Subject"] = subject
     msg.set_content(md)
     msg.add_alternative(to_html(md), subtype="html")
     if outbox is not None:
         outbox.mkdir(parents=True, exist_ok=True)
-        msg["From"] = "venture-scout@localhost"
+        msg["From"], msg["To"] = "venture-scout@localhost", to or "dry-run@localhost"
         (outbox / "report.eml").write_bytes(bytes(msg))
         return
-    user = env("GMAIL_USER")
-    msg["From"] = user
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
-        s.login(user, env("GMAIL_APP_PASSWORD"))
+    user, password = env("GMAIL_USER"), env("GMAIL_APP_PASSWORD")
+    msg["From"], msg["To"] = f"Venture Scout <{user}>", to or user
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=60) as s:
+        s.login(user, password.replace(" ", ""))   # Gmail shows app passwords in groups of four
         s.send_message(msg)
 
 
@@ -131,3 +139,12 @@ def subject_line(prefix: str, today: str, ideas: dict, weekly: bool) -> str:
     lead = f"Top: {top['title']} ({top['composite']})" if top else "Sin ideas que pasen filtros"
     return f"{prefix}{' Semanal' if weekly else ''} {today} | {lead}"
 
+
+
+if __name__ == "__main__":   # failure notice from CI: python -m agents.report failure <run url>
+    import sys
+    from .common import load_config
+    cfg = load_config()
+    link = sys.argv[2] if len(sys.argv) > 2 else ""
+    send(f"{cfg['email']['subject_prefix']} La ejecución falló",
+         f"# Venture Scout\n\nLa ejecución programada falló. Revisa el registro: {link}\n", recipient(cfg))

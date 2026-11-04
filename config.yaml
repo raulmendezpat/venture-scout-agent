@@ -43,5 +43,5 @@ pricing:
     claude-opus-5-5: {input: 4.0, output: 20.0}
 
 email:
-  to: raulmendezpat@gmail.com
+  # Recipient: the EMAIL_TO secret if it exists, otherwise the GMAIL_USER account. Sent with GMAIL_APP_PASSWORD.
   subject_prefix: "[Venture Scout]"
