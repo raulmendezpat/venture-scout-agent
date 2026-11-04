@@ -113,7 +113,9 @@ def main(argv: list[str] | None = None) -> int:
     # 5. Report: Markdown committed to the repo, HTML email
     cost = llm.cost(cfg["pricing"])
     stats = {"groups": len(only or sources["groups"]), "seen": len(found["items"]), "new": len(new_items),
-             "cost_aud": cost["aud"], "errors": errors, "notes": found["notes"]}
+             "cost_aud": cost["aud"], "errors": errors, "notes": found["notes"],
+             "cost": cost, "pricing": cfg["pricing"], "models": cfg["models"],
+             "cost_totals": store.cost_totals(today, run_id)}
     md = report.build_markdown(today, ideas, people, tr, ledger, strategy, stats)
     reports_dir = (out_dir if args.mock else ROOT) / "reports"
     reports_dir.mkdir(parents=True, exist_ok=True)

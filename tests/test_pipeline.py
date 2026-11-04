@@ -167,3 +167,21 @@ def test_migrates_old_database(tmp_path):
 def test_linkedin_url_variants_match():
     assert analyst.norm_url("https://au.linkedin.com/in/jane-doe/?trk=x") == analyst.norm_url("https://www.linkedin.com/in/jane-doe")
     assert analyst.norm_url("http://www.example.org/a/") == "example.org/a"
+
+
+def test_cost_table_with_totals(tmp_path):
+    from agents import report
+    s = Store(str(tmp_path / "c.db"))
+    s.save_run("2026-10-30_0500", "2026-10-30", 1, 1, 1.0, [])
+    s.save_run("2026-11-02_0500", "2026-11-02", 1, 1, 2.0, [])
+    cfg = load_config()
+    cost = {"usd": 1.0, "aud": 1.42, "per_model": {
+        "claude-haiku-5-5": {"calls": 9, "input": 1000, "output": 200, "cache_write": 0, "cache_read": 0,
+                             "web_searches": 40, "usd": 0.6},
+        "claude-sonnet-5-5": {"calls": 2, "input": 5000, "output": 900, "cache_write": 0, "cache_read": 0,
+                              "web_searches": 0, "usd": 0.4}}}
+    L = "\n".join(report.cost_section(cost, cfg["pricing"], cfg["models"], s.cost_totals("2026-11-04", "x")))
+    assert "| claude-haiku-5-5 | collector | 9 | 1,000 | 200 | 40 | 0.60 |" in L
+    assert "**Total ejecución** | | **11** | | | **40** | **1.00** | **1.42**" in L
+    assert "Acumulado del mes (2 ejecuciones)" in L and "| 3.42 |" in L
+    assert "Acumulado desde 2026-10-30 (3 ejecuciones)" in L and "| 4.42 |" in L

@@ -113,6 +113,14 @@ class Store:
                                (min_mentions, limit))
         return [dict(r) for r in rows]
 
+    def cost_totals(self, today: str, run_id: str = "") -> dict:
+        """AUD spent by earlier runs: this calendar month and since the first run."""
+        month = today[:7]
+        r = self.db.execute("SELECT COALESCE(SUM(CASE WHEN substr(run_date,1,7)=? THEN cost_aud END),0), "
+                            "COALESCE(SUM(cost_aud),0), SUM(CASE WHEN substr(run_date,1,7)=? THEN 1 ELSE 0 END), "
+                            "COUNT(*), MIN(run_date) FROM runs WHERE run_id!=? AND run_date<=?", (month, month, run_id, today)).fetchone()
+        return {"month_aud": r[0], "all_aud": r[1], "month_runs": r[2] or 0, "all_runs": r[3], "since": r[4]}
+
     def run_count(self) -> int:
         return self.db.execute("SELECT COUNT(*) FROM runs").fetchone()[0]
 

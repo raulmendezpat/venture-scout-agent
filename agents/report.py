@@ -137,6 +137,36 @@ def network_section(net: dict) -> list[str]:
     return L
 
 
+def cost_section(cost: dict, pricing: dict, models: dict, totals: dict | None) -> list[str]:
+    """Cost of this run per model, with month and all-time totals (USD and AUD)."""
+    rate = pricing.get("usd_to_aud", 1.0)
+    stages = {}
+    for stage, model in models.items():
+        stages.setdefault(model, []).append(stage)
+    L = ["## Costo de la ejecución", "",
+         "| Modelo | Etapas | Llamadas | Tokens entrada | Tokens salida | Búsquedas web | USD | AUD |",
+         "|---|---|---|---|---|---|---|---|"]
+    per = cost.get("per_model", {})
+    for model, t in sorted(per.items(), key=lambda kv: -kv[1]["usd"]):
+        L.append(f"| {model} | {', '.join(stages.get(model, []))} | {t['calls']} | {t['input'] + t['cache_write'] + t['cache_read']:,} | "
+                 f"{t['output']:,} | {t['web_searches']} | {t['usd']:.2f} | {t['usd'] * rate:.2f} |")
+    calls = sum(t["calls"] for t in per.values())
+    searches = sum(t["web_searches"] for t in per.values())
+    L.append(f"| **Total ejecución** | | **{calls}** | | | **{searches}** | **{cost['usd']:.2f}** | **{cost['aud']:.2f}** |")
+    if totals is not None:
+        month_aud = totals["month_aud"] + cost["aud"]
+        all_aud = totals["all_aud"] + cost["aud"]
+        n = lambda k: f"{k} ejecución" if k == 1 else f"{k} ejecuciones"
+        L.append(f"| Acumulado del mes ({n(totals['month_runs'] + 1)}) | | | | | | {month_aud / rate:.2f} | "
+                 f"{month_aud:.2f} |")
+        L.append(f"| Acumulado desde {totals['since'] or 'hoy'} ({n(totals['all_runs'] + 1)}) | | | | | | "
+                 f"{all_aud / rate:.2f} | {all_aud:.2f} |")
+    L += ["", f"Estimación con los precios de `config.yaml` (USD por millón de tokens, búsqueda web USD "
+              f"{pricing.get('web_search_usd_per_1000', 10)} por 1,000) y cambio USD 1 = AUD {rate}. "
+              "El cobro exacto está en la Console de Anthropic.", ""]
+    return L
+
+
 def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: list[dict], strategy: dict | None,
                    stats: dict) -> str:
     L = [f"# Venture Scout, {today}", ""]
@@ -208,6 +238,8 @@ def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: 
         L += ["", "## Notas de la ejecución", ""]
         L += [f"- Error en {e}" for e in stats.get("errors", [])]
         L += [f"- {g}: {n}" for g, n in stats.get("notes", {}).items()]
+    if stats.get("cost"):
+        L += [""] + cost_section(stats["cost"], stats["pricing"], stats["models"], stats.get("cost_totals"))
     return no_dashes("\n".join(L) + "\n")
 
 
