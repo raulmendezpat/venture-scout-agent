@@ -162,3 +162,8 @@ def test_migrates_old_database(tmp_path):
     s.add_event({"name": "e", "date": "2099-01-01", "format": "online", "url": "u"}, "2026-11-05")
     s.upsert_person({"name": "n", "org": "o", "linkedin_url": "https://www.linkedin.com/in/n"}, "2026-11-05")
     assert s.upcoming_events("2026-11-05", 100000)[0]["format"] == "online"
+
+
+def test_linkedin_url_variants_match():
+    assert analyst.norm_url("https://au.linkedin.com/in/jane-doe/?trk=x") == analyst.norm_url("https://www.linkedin.com/in/jane-doe")
+    assert analyst.norm_url("http://www.example.org/a/") == "example.org/a"

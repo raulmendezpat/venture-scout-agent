@@ -1,8 +1,13 @@
 """Stage 3: analysis agents. Idea analyst (every run), people matcher (every run), strategist (weekly)."""
 from __future__ import annotations
 
+import logging
+import re
+
 from .common import LLM, dumps
 from .store import key_of
+
+log = logging.getLogger("venture-scout")
 
 STYLE = ("Write all text for the founder in Spanish (neutral Latin American). Be concrete and evidence based. "
          "Do not use dashes (—, – or a hyphen between clauses) as punctuation; use commas, colons, semicolons, "
@@ -167,13 +172,21 @@ groups, events and items provided, recommend:
 Use only names, groups, events and URLs present in the input; never invent a URL. {STYLE}"""
 
 
+def norm_url(u: str) -> str:
+    """Compare URLs loosely: no scheme, www or LinkedIn country subdomain, query, fragment or trailing slash."""
+    u = re.sub(r"[?#].*$", "", (u or "").strip().lower())
+    u = re.sub(r"^https?://", "", u)
+    u = re.sub(r"^(www\.|[a-z]{2}\.)(linkedin\.com)", r"\2", u)
+    return re.sub(r"^www\.", "", u).rstrip("/")
+
+
 def _urls(*collections) -> set[str]:
     out = set()
     for col in collections:
         for x in col:
             for k in ("url", "linkedin_url"):
                 if x.get(k):
-                    out.add(x[k].rstrip("/"))
+                    out.add(norm_url(x[k]))
     return out
 
 
@@ -189,7 +202,8 @@ def match_people(llm: LLM, cfg: dict, founder: dict, people: list[dict], events:
     out = llm.structured(model=cfg["models"]["people"], system=PEOPLE_SYSTEM, user=user, schema=PEOPLE_SCHEMA,
                          name="rank_people", max_tokens=14000)
     known = _urls(people, events, groups, items)
-    ok = lambda u: bool(u) and u.rstrip("/") in known
+    ok = lambda u: bool(u) and norm_url(u) in known
+    proposed = {k: len(out[k]) for k in ("people", "groups", "events", "follow")}
     names = {p.get("name", "").lower() for p in people}
     order = {"alta": 0, "media": 1, "baja": 2}
     out["people"] = sorted((p for p in out["people"] if p["name"].lower() in names), key=lambda p: -p["alignment"])
@@ -198,6 +212,7 @@ def match_people(llm: LLM, cfg: dict, founder: dict, people: list[dict], events:
                            key=lambda e: e["date"])
     out["follow"] = [f for f in out["follow"] if "linkedin.com/" in f["linkedin_url"] and ok(f["linkedin_url"])
                      and f["name"].lower() in names]
+    log.info("network: kept %s of proposed %s", {k: len(out[k]) for k in proposed}, proposed)
     return out
 
 
