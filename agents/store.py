@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS people (key TEXT PRIMARY KEY, name TEXT, role TEXT, o
     why TEXT, first_seen TEXT, last_seen TEXT, mentions INTEGER DEFAULT 0);
 CREATE TABLE IF NOT EXISTS events (key TEXT PRIMARY KEY, name TEXT, event_date TEXT, location TEXT, url TEXT,
     why TEXT, first_seen TEXT);
+CREATE TABLE IF NOT EXISTS groups (key TEXT PRIMARY KEY, name TEXT, platform TEXT, url TEXT, focus TEXT,
+    activity TEXT, access TEXT, first_seen TEXT, last_seen TEXT, mentions INTEGER DEFAULT 0);
 CREATE TABLE IF NOT EXISTS ideas (key TEXT PRIMARY KEY, title TEXT, domain TEXT, first_seen TEXT, last_seen TEXT);
 CREATE TABLE IF NOT EXISTS idea_scores (idea_key TEXT, run_id TEXT, run_date TEXT, composite REAL, passes INTEGER,
     data TEXT, PRIMARY KEY (idea_key, run_id));
@@ -44,6 +46,18 @@ class Store:
         self.db = sqlite3.connect(path)
         self.db.row_factory = sqlite3.Row
         self.db.executescript(SCHEMA)
+        self._migrate()
+
+    def _migrate(self) -> None:
+        """Add columns introduced after the first runs, keeping the committed history."""
+        added = {"people": {"linkedin_url": "TEXT"},
+                 "events": {"format": "TEXT", "cost": "TEXT", "organiser": "TEXT"}}
+        for table, cols in added.items():
+            have = {r[1] for r in self.db.execute(f"PRAGMA table_info({table})")}
+            for col, typ in cols.items():
+                if col not in have:
+                    self.db.execute(f"ALTER TABLE {table} ADD COLUMN {col} {typ}")
+        self.db.commit()
 
     # items ---------------------------------------------------------------------------------------
     def add_item(self, item: dict, run_id: str, today: str) -> bool:
@@ -108,12 +122,14 @@ class Store:
         row = self.db.execute("SELECT mentions FROM people WHERE key=?", (k,)).fetchone()
         if row:
             self.db.execute("UPDATE people SET last_seen=?, mentions=mentions+1, role=COALESCE(NULLIF(?,''),role), "
-                            "url=COALESCE(NULLIF(?,''),url), why=? WHERE key=?",
-                            (today, p.get("role", ""), p.get("url", ""), p.get("why", ""), k))
+                            "url=COALESCE(NULLIF(?,''),url), linkedin_url=COALESCE(NULLIF(?,''),linkedin_url), why=? "
+                            "WHERE key=?",
+                            (today, p.get("role", ""), p.get("url", ""), p.get("linkedin_url", ""), p.get("why", ""), k))
         else:
-            self.db.execute("INSERT INTO people VALUES (?,?,?,?,?,?,?,?,?,1)",
+            self.db.execute("INSERT INTO people (key, name, role, org, url, themes, why, first_seen, last_seen, mentions, "
+                            "linkedin_url) VALUES (?,?,?,?,?,?,?,?,?,1,?)",
                             (k, p.get("name", ""), p.get("role", ""), p.get("org", ""), p.get("url", ""),
-                             json.dumps(p.get("themes", [])), p.get("why", ""), today, today))
+                             json.dumps(p.get("themes", [])), p.get("why", ""), today, today, p.get("linkedin_url", "")))
 
     def people(self, limit: int = 60) -> list[dict]:
         rows = self.db.execute("SELECT * FROM people ORDER BY last_seen DESC, mentions DESC LIMIT ?", (limit,))
@@ -123,10 +139,26 @@ class Store:
         k = key_of(e.get("name", ""), e.get("date", ""))
         if self.db.execute("SELECT 1 FROM events WHERE key=?", (k,)).fetchone():
             return False
-        self.db.execute("INSERT INTO events VALUES (?,?,?,?,?,?,?)",
+        self.db.execute("INSERT INTO events (key, name, event_date, location, url, why, first_seen, format, cost, "
+                        "organiser) VALUES (?,?,?,?,?,?,?,?,?,?)",
                         (k, e.get("name", ""), e.get("date", ""), e.get("location", ""), e.get("url", ""),
-                         e.get("why", ""), today))
+                         e.get("why", ""), today, e.get("format", ""), e.get("cost", ""), e.get("organiser", "")))
         return True
+
+    def upsert_group(self, g: dict, today: str) -> None:
+        k = key_of(g.get("platform", ""), g.get("name", ""))
+        if self.db.execute("SELECT 1 FROM groups WHERE key=?", (k,)).fetchone():
+            self.db.execute("UPDATE groups SET last_seen=?, mentions=mentions+1, url=COALESCE(NULLIF(?,''),url), "
+                            "activity=COALESCE(NULLIF(?,''),activity) WHERE key=?",
+                            (today, g.get("url", ""), g.get("activity", ""), k))
+        else:
+            self.db.execute("INSERT INTO groups VALUES (?,?,?,?,?,?,?,?,?,1)",
+                            (k, g.get("name", ""), g.get("platform", ""), g.get("url", ""), g.get("focus", ""),
+                             g.get("activity", ""), g.get("access", "unknown"), today, today))
+
+    def groups(self, limit: int = 40) -> list[dict]:
+        rows = self.db.execute("SELECT * FROM groups ORDER BY mentions DESC, last_seen DESC LIMIT ?", (limit,))
+        return [dict(r) for r in rows]
 
     def upcoming_events(self, today: str, days: int = 45) -> list[dict]:
         end = (date.fromisoformat(today) + timedelta(days=days)).isoformat()

@@ -63,8 +63,8 @@ def main(argv: list[str] | None = None) -> int:
     if not args.mock:
         try:
             extra, inbox_files = collector.collect_inbox(llm, cfg, now.date())
-            for k in ("items", "people", "events"):
-                found[k].extend(extra[k])
+            for k in ("items", "people", "events", "groups"):
+                found[k].extend(extra.get(k) or [])
         except Exception as exc:
             errors.append(f"inbox: {exc}")
 
@@ -78,6 +78,9 @@ def main(argv: list[str] | None = None) -> int:
     for e in found["events"]:
         if e.get("date", "") >= today:
             store.add_event(e, today)
+    for g in found["groups"]:
+        if g.get("url"):
+            store.upsert_group(g, today)
     store.commit()
     log.info("Items: %d found, %d new", len(found["items"]), len(new_items))
 
@@ -93,11 +96,12 @@ def main(argv: list[str] | None = None) -> int:
     store.commit()
     ledger = store.idea_ledger()
     try:
-        people = analyst.match_people(llm, cfg, founder, store.people(), store.upcoming_events(today), evidence)
+        people = analyst.match_people(llm, cfg, founder, store.people(), store.upcoming_events(today),
+                                      store.groups(), evidence, today)
     except Exception as exc:
         log.exception("People matcher failed")
         errors.append(f"people: {exc}")
-        people = {"people": [], "communities": [], "events": []}
+        people = {"people": [], "groups": [], "events": [], "follow": []}
     strategy = None
     if weekly:
         try:

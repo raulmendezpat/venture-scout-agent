@@ -122,39 +122,82 @@ def analyse_ideas(llm: LLM, cfg: dict, founder: dict, items: list[dict], trends:
     return out
 
 
+PRIORITY = {"type": "string", "enum": ["alta", "media", "baja"]}
 PEOPLE_SCHEMA = {
     "type": "object",
     "properties": {
-        "people": {"type": "array", "items": {"type": "object", "properties": {
-            "name": {"type": "string"}, "role": {"type": "string"}, "org": {"type": "string"},
-            "url": {"type": "string"}, "alignment": SCORE,
-            "why": {"type": "string", "description": "Why he should know this person"},
-            "how_to_approach": {"type": "string", "description": "A specific, non spammy first step (comment on X, attend Y, ask about Z)"}},
+        "people": {"type": "array", "description": "People worth meeting in person or contacting", "items": {
+            "type": "object", "properties": {
+                "name": {"type": "string"}, "role": {"type": "string"}, "org": {"type": "string"},
+                "url": {"type": "string"}, "alignment": SCORE,
+                "why": {"type": "string", "description": "Why he should know this person"},
+                "how_to_approach": {"type": "string", "description": "A specific, non spammy first step (comment on X, attend Y, ask about Z)"}},
             "required": ["name", "role", "org", "url", "alignment", "why", "how_to_approach"]}},
-        "communities": {"type": "array", "items": {"type": "object", "properties": {
-            "name": {"type": "string"}, "url": {"type": "string"}, "why": {"type": "string"}},
-            "required": ["name", "url", "why"]}},
-        "events": {"type": "array", "items": {"type": "object", "properties": {
-            "name": {"type": "string"}, "date": {"type": "string"}, "location": {"type": "string"},
-            "url": {"type": "string"}, "why": {"type": "string"}}, "required": ["name", "date", "location", "url", "why"]}},
+        "groups": {"type": "array", "description": "Groups and communities to join, best first", "items": {
+            "type": "object", "properties": {
+                "name": {"type": "string"}, "platform": {"type": "string"}, "url": {"type": "string"},
+                "priority": PRIORITY, "why": {"type": "string", "description": "What he gains: customers, co-founders, mentors, learning"},
+                "how_to_engage": {"type": "string", "description": "How to join and the first useful contribution to make"}},
+            "required": ["name", "platform", "url", "priority", "why", "how_to_engage"]}},
+        "events": {"type": "array", "description": "Upcoming activities, soonest first", "items": {
+            "type": "object", "properties": {
+                "name": {"type": "string"}, "date": {"type": "string"},
+                "format": {"type": "string", "enum": ["in_person", "online", "hybrid"]},
+                "location": {"type": "string"}, "cost": {"type": "string"}, "url": {"type": "string"},
+                "priority": PRIORITY, "why": {"type": "string"}},
+            "required": ["name", "date", "format", "location", "cost", "url", "priority", "why"]}},
+        "follow": {"type": "array", "description": "People to follow on LinkedIn (authorities, active founders, investors)", "items": {
+            "type": "object", "properties": {
+                "name": {"type": "string"}, "headline": {"type": "string"},
+                "linkedin_url": {"type": "string", "description": "linkedin.com/in/ URL from the input only"},
+                "posts_about": {"type": "string"}, "why": {"type": "string"}},
+            "required": ["name", "headline", "linkedin_url", "posts_about", "why"]}},
     },
-    "required": ["people", "communities", "events"],
+    "required": ["people", "groups", "events", "follow"],
 }
-PEOPLE_SYSTEM = f"""You help a founder in Brisbane build a network for an AI and agents venture. From the people,
-events and items provided, pick who is most worth knowing (aligned founders, possible co-founders, mentors, investors
-who back bootstrapped AI services, program leads, early customers) and the events and communities that give the best
-chance of meeting them. Use only people, events and URLs present in the input. {STYLE}"""
+PEOPLE_SYSTEM = f"""You help a founder in Brisbane (he lives in Morayfield, Moreton Bay) build a network for an AI and
+agents venture while he keeps a full time job, so his time is limited to evenings and weekends. From the people,
+groups, events and items provided, recommend:
+- groups and communities to join, prioritised by the chance of meeting early customers, co-founders and mentors;
+- upcoming entrepreneurship activities in Brisbane (in person, with a preference for evenings or weekends and for
+  places reachable from Moreton Bay) and online ones in a time zone that works from Brisbane;
+- who to follow on LinkedIn: Australian AI leaders, active founders and investors whose posts would keep him informed
+  or open doors. Only people whose linkedin.com/in/ URL is in the input;
+- people worth contacting or meeting, with a non spammy first step.
+Use only names, groups, events and URLs present in the input; never invent a URL. {STYLE}"""
 
 
-def match_people(llm: LLM, cfg: dict, founder: dict, people: list[dict], events: list[dict], items: list[dict]) -> dict:
-    user = (f"FOUNDER PROFILE\n{dumps(founder)}\n\nPEOPLE SEEN (this run and history)\n{dumps(people)}\n\n"
-            f"UPCOMING EVENTS\n{dumps(events)}\n\nCOMMUNITY ITEMS\n"
-            f"{dumps([i for i in digest(items) if i.get('source_group') in ('communities', 'universities', 'brisbane_ecosystem', 'linkedin_authorities', 'inbox')])}\n\n"
-            "Return at most 12 people, 6 communities and 8 events.")
+def _urls(*collections) -> set[str]:
+    out = set()
+    for col in collections:
+        for x in col:
+            for k in ("url", "linkedin_url"):
+                if x.get(k):
+                    out.add(x[k].rstrip("/"))
+    return out
+
+
+def match_people(llm: LLM, cfg: dict, founder: dict, people: list[dict], events: list[dict], groups: list[dict],
+                 items: list[dict], today: str = "") -> dict:
+    community = [i for i in digest(items) if i.get("source_group") in
+                 ("communities", "universities", "brisbane_ecosystem", "linkedin_authorities", "groups_to_join",
+                  "events", "inbox")]
+    user = (f"TODAY {today}\n\nFOUNDER PROFILE\n{dumps(founder)}\n\nPEOPLE SEEN (this run and history)\n"
+            f"{dumps(people)}\n\nGROUPS SEEN (this run and history)\n{dumps(groups)}\n\n"
+            f"UPCOMING EVENTS\n{dumps(events)}\n\nCOMMUNITY ITEMS\n{dumps(community)}\n\n"
+            "Return at most 10 people, 8 groups, 12 events and 10 people to follow on LinkedIn.")
     out = llm.structured(model=cfg["models"]["people"], system=PEOPLE_SYSTEM, user=user, schema=PEOPLE_SCHEMA,
-                         name="rank_people", max_tokens=12000)
+                         name="rank_people", max_tokens=14000)
+    known = _urls(people, events, groups, items)
+    ok = lambda u: bool(u) and u.rstrip("/") in known
     names = {p.get("name", "").lower() for p in people}
+    order = {"alta": 0, "media": 1, "baja": 2}
     out["people"] = sorted((p for p in out["people"] if p["name"].lower() in names), key=lambda p: -p["alignment"])
+    out["groups"] = sorted((g for g in out["groups"] if ok(g["url"])), key=lambda g: order.get(g["priority"], 3))
+    out["events"] = sorted((e for e in out["events"] if ok(e["url"]) and (not today or e["date"] >= today)),
+                           key=lambda e: e["date"])
+    out["follow"] = [f for f in out["follow"] if "linkedin.com/" in f["linkedin_url"] and ok(f["linkedin_url"])
+                     and f["name"].lower() in names]
     return out
 
 

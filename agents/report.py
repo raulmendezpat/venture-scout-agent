@@ -87,6 +87,56 @@ def history_section(h: dict) -> list[str]:
     return L
 
 
+PLATFORM_ES = {"linkedin": "LinkedIn", "facebook": "Facebook", "meetup": "Meetup", "slack": "Slack",
+               "discord": "Discord", "whatsapp": "WhatsApp", "university": "Universidad",
+               "accelerator": "Aceleradora", "association": "Asociación", "other": "Otro"}
+FORMAT_ES = {"in_person": "Presencial", "online": "En línea", "hybrid": "Híbrido"}
+
+
+def network_section(net: dict) -> list[str]:
+    L = ["## Red de contactos", ""]
+    L += ["### Grupos a los que unirte", ""]
+    if net.get("groups"):
+        L += ["| Prioridad | Grupo | Plataforma | Qué ganas | Cómo participar |", "|---|---|---|---|---|"]
+        L += [f"| {g['priority']} | [{_cell(g['name'])}]({g['url']}) | {PLATFORM_ES.get(g['platform'], _cell(g['platform']))} | "
+              f"{_cell(g['why'])} | {_cell(g['how_to_engage'])} |" for g in net["groups"]] + [""]
+    else:
+        L += ["No se encontraron grupos con enlace verificable en esta ejecución.", ""]
+
+    L += ["### Actividades próximas", ""]
+    events = net.get("events") or []
+    in_person = [e for e in events if e["format"] in ("in_person", "hybrid")]
+    online = [e for e in events if e["format"] == "online"]
+    for title, rows in (("Presenciales en Brisbane y alrededores", in_person), ("En línea", online)):
+        L += [f"**{title}**", ""]
+        if not rows:
+            L += ["Ninguna con fecha y enlace verificables en esta ejecución.", ""]
+            continue
+        L += ["| Fecha | Actividad | Formato | Lugar | Costo | Prioridad | Por qué ir |", "|---|---|---|---|---|---|---|"]
+        L += [f"| {e['date']} | [{_cell(e['name'])}]({e['url']}) | {FORMAT_ES.get(e['format'], e['format'])} | "
+              f"{_cell(e['location'])} | {_cell(e['cost'] or 'sin dato')} | {e['priority']} | {_cell(e['why'])} |"
+              for e in rows] + [""]
+
+    L += ["### A quién seguir en LinkedIn", ""]
+    if net.get("follow"):
+        L += ["| Persona | Perfil | Publica sobre | Por qué seguirla |", "|---|---|---|---|"]
+        L += [f"| [{_cell(f['name'])}]({f['linkedin_url']}) | {_cell(f['headline'])} | {_cell(f['posts_about'])} | "
+              f"{_cell(f['why'])} |" for f in net["follow"]] + [""]
+    else:
+        L += ["No se encontraron perfiles de LinkedIn con enlace verificable en esta ejecución.", ""]
+
+    L += ["### Personas para contactar", ""]
+    if net.get("people"):
+        for p in net["people"]:
+            name = f"[{p['name']}]({p['url']})" if p.get("url") else p["name"]
+            L.append(f"- **{name}**, {p['role']} ({p['org']}), afinidad {p['alignment']}. {p['why']} "
+                     f"*Cómo acercarte:* {p['how_to_approach']}")
+        L += [""]
+    else:
+        L += ["Sin recomendaciones en esta ejecución.", ""]
+    return L
+
+
 def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: list[dict], strategy: dict | None,
                    stats: dict) -> str:
     L = [f"# Venture Scout, {today}", ""]
@@ -127,6 +177,8 @@ def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: 
         if i["evidence_urls"]:
             L += ["**Evidencia:** " + ", ".join(f"[{k}]({u})" for k, u in enumerate(i["evidence_urls"], 1)), ""]
 
+    L += network_section(people)
+
     other = [i for i in ideas["ideas"] if not i["passes"]]
     if other:
         L += ["## Ideas que no pasan los filtros", "", "| Idea | Puntaje | Motivo |", "|---|---|---|"]
@@ -146,16 +198,6 @@ def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: 
     L += [f"| {_cell(t['theme'])} | {t['mentions']} | {t['sentiment']} |" for t in trends["themes"][:12]] + [""]
 
     L += history_section(trends.get("history", {}))
-
-    L += ["## Personas para conocer", ""]
-    for p in people["people"]:
-        name = f"[{p['name']}]({p['url']})" if p.get("url") else p["name"]
-        L.append(f"- **{name}**, {p['role']} ({p['org']}), afinidad {p['alignment']}. {p['why']} "
-                 f"*Cómo acercarte:* {p['how_to_approach']}")
-    L += ["", "## Eventos próximos", ""]
-    L += [f"- **{e['date']}**, [{e['name']}]({e['url']}), {e['location']}. {e['why']}" for e in people["events"]]
-    L += ["", "## Comunidades", ""]
-    L += [f"- [{c['name']}]({c['url']}): {c['why']}" for c in people["communities"]]
 
     if ledger:
         L += ["", "## Historial de ideas", "", "Puntaje compuesto por ejecución (últimas 8).", "",

@@ -23,9 +23,16 @@ def fake_llm(*, name: str, system: str, user: str, schema: dict) -> dict:
         g = group.group(1) if group else "inbox"
         return {"items": _items(g),
                 "people": [{"name": "Alex Example", "role": "Founder", "org": "Example AI", "url": "https://example.org/alex",
-                            "themes": ["ai agents"], "why": "Runs a Brisbane AI founders meetup"}],
-                "events": [{"name": "Brisbane AI Founders Night", "date": "2099-01-15", "location": "Brisbane",
-                            "url": "https://example.org/event", "why": "Monthly founder meetup"}],
+                            "linkedin_url": "https://www.linkedin.com/in/alex-example", "themes": ["ai agents"],
+                            "why": "Runs a Brisbane AI founders meetup"}],
+                "events": [{"name": "Brisbane AI Founders Night", "date": "2026-11-15", "format": "in_person",
+                            "location": "Fortitude Valley", "cost": "free", "organiser": "Example",
+                            "url": "https://example.org/event", "why": "Monthly founder meetup"},
+                           {"name": "Online agents workshop", "date": "2026-11-20", "format": "online",
+                            "location": "online", "cost": "AUD 20", "organiser": "Example",
+                            "url": "https://example.org/webinar", "why": "Hands on"}],
+                "groups": [{"name": "Brisbane AI Builders", "platform": "meetup", "url": "https://example.org/group",
+                            "focus": "AI builders", "activity": "Monthly", "access": "open"}],
                 "notes": ""}
     if name == "rank_ideas":
         url = re.search(r"https://example\.org/[a-z_]+/0", user)
@@ -45,13 +52,23 @@ def fake_llm(*, name: str, system: str, user: str, schema: dict) -> dict:
                           idea("Plataforma SaaS de cumplimiento", 40000, 25, 12, 70),
                           idea("Asesoría de resiliencia para consejos municipales", 500, 8, 4, 85, "high")]}
     if name == "rank_people":
+        ev = lambda n, d, f, u: {"name": n, "date": d, "format": f, "location": "Brisbane", "cost": "", "url": u,
+                                 "priority": "alta", "why": "Conocer gente."}
         return {"people": [{"name": "Alex Example", "role": "Founder", "org": "Example AI", "url": "https://example.org/alex",
                             "alignment": 82, "why": "Afinidad.", "how_to_approach": "Ir al meetup."},
                            {"name": "Invented Person", "role": "x", "org": "x", "url": "", "alignment": 99, "why": "",
                             "how_to_approach": ""}],
-                "communities": [{"name": "Comunidad", "url": "https://example.org/c", "why": "Por qué."}],
-                "events": [{"name": "Brisbane AI Founders Night", "date": "2099-01-15", "location": "Brisbane",
-                            "url": "https://example.org/event", "why": "Conocer gente."}]}
+                "groups": [{"name": "Brisbane AI Builders", "platform": "meetup", "url": "https://example.org/group",
+                            "priority": "alta", "why": "Clientes.", "how_to_engage": "Unirse."},
+                           {"name": "Invented Group", "platform": "facebook", "url": "https://invented.example/g",
+                            "priority": "alta", "why": "x", "how_to_engage": "x"}],
+                "events": [ev("Online agents workshop", "2026-11-20", "online", "https://example.org/webinar"),
+                           ev("Brisbane AI Founders Night", "2026-11-15", "in_person", "https://example.org/event"),
+                           ev("Past event", "2000-01-01", "in_person", "https://example.org/event")],
+                "follow": [{"name": "Alex Example", "headline": "Founder", "linkedin_url": "https://www.linkedin.com/in/alex-example",
+                            "posts_about": "Agentes", "why": "Autoridad."},
+                           {"name": "Alex Example", "headline": "Founder", "linkedin_url": "https://www.linkedin.com/in/invented",
+                            "posts_about": "x", "why": "x"}]}
     if name == "weekly_strategy":
         return {"headline": "Probar la recepcionista IA.",
                 "top_bets": [{"idea": "Recepcionista IA para clínicas", "why": "Señal fuerte.", "kill_criteria": "0 de 10 clínicas."}],

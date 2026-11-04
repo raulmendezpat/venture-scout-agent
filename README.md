@@ -8,12 +8,12 @@ parcial y con muy poco capital. También señalan personas, comunidades y evento
 
 | Etapa | Agente | Modelo | Qué hace |
 |---|---|---|---|
-| 1 | Collectors (uno por grupo de `sources.yaml`) | Haiku + búsqueda web | Noticias, ecosistema de Brisbane, programas y subvenciones, universidades, foros y grupos públicos, LinkedIn y blogs, eventos, problemas de pymes. Devuelve elementos con resumen, etiquetas, temas y sentimiento (de -1 a 1) |
+| 1 | Collectors (uno por grupo de `sources.yaml`) | Haiku + búsqueda web | Noticias, ecosistema de Brisbane, programas y subvenciones, universidades, foros y grupos públicos, LinkedIn y blogs, eventos, grupos para unirse, problemas de pymes. Devuelve elementos con resumen, etiquetas, temas y sentimiento (de -1 a 1) |
 | 2 | Inbox manual | Haiku | Publicaciones que pegues en `inbox/` desde grupos privados |
 | 3 | Store y tendencias | Código (sin IA) | SQLite en `data/venture.db`: deduplica por URL, cuenta etiquetas y frases, compara la ventana actual (14 días) con la anterior y calcula el sentimiento promedio por tema |
 | 4 | Idea analyst | Sonnet | Re-evalúa las ideas del historial y agrega nuevas, con puntajes de señal de mercado, fit contigo, tiempo parcial y sentimiento, capital inicial, horas y meses a primer ingreso, riesgo de conflicto con QFD y una prueba de validación |
 | 5 | Scoring y filtros | Código | Puntaje compuesto con los pesos de `config.yaml` y filtros duros (capital ≤ AUD 5,000, ≤ 15 h/semana, ≤ 6 meses a ingreso, fit ≥ 60) |
-| 6 | People matcher | Sonnet | Personas con afinidad, cómo acercarte sin ser invasivo, comunidades y eventos próximos |
+| 6 | Red de contactos | Sonnet | Grupos a los que unirte (con prioridad y cómo participar), actividades próximas separadas en presenciales en Brisbane y en línea (fecha, lugar, costo), a quién seguir en LinkedIn y personas para contactar. Solo con enlaces verificados en lo recolectado |
 | 7 | Strategist (domingos y día 1) | Opus | Dos o tres apuestas, plan de 30 días y criterios para descartar |
 | 8 | Análisis histórico | Código | Sobre todo el historial: ocurrencias acumuladas, términos persistentes (presentes semana tras semana), términos que ganan o pierden participación, series de 8 semanas, sentimiento por tema en el tiempo y personas recurrentes. Se entrega también al analista y al estratega |
 | 9 | Reporte | Código | Correo HTML en español y `reports/AAAA-MM-DD.md` (más `reports/latest.md`) en el repositorio |

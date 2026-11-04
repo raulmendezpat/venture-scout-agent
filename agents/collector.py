@@ -34,6 +34,7 @@ PERSON = {
     "properties": {
         "name": {"type": "string"}, "role": {"type": "string"}, "org": {"type": "string"},
         "url": {"type": "string", "description": "Public profile or post URL seen in results, else empty"},
+        "linkedin_url": {"type": "string", "description": "Their linkedin.com/in/ profile URL only if it appears in the results, else empty"},
         "themes": {"type": "array", "items": {"type": "string"}},
         "why": {"type": "string", "description": "Why this person is an authority or relevant, from the evidence"},
     },
@@ -43,9 +44,26 @@ EVENT = {
     "type": "object",
     "properties": {
         "name": {"type": "string"}, "date": {"type": "string", "description": "YYYY-MM-DD"},
-        "location": {"type": "string"}, "url": {"type": "string"}, "why": {"type": "string"},
+        "format": {"type": "string", "enum": ["in_person", "online", "hybrid"]},
+        "location": {"type": "string", "description": "Venue and suburb, or 'online'"},
+        "cost": {"type": "string", "description": "Price as shown (e.g. 'free', 'AUD 25'), else empty"},
+        "organiser": {"type": "string"},
+        "url": {"type": "string"}, "why": {"type": "string"},
     },
-    "required": ["name", "date", "location", "url"],
+    "required": ["name", "date", "format", "location", "url"],
+}
+GROUP = {
+    "type": "object",
+    "properties": {
+        "name": {"type": "string"},
+        "platform": {"type": "string", "enum": ["linkedin", "facebook", "meetup", "slack", "discord", "whatsapp",
+                                                 "university", "accelerator", "association", "other"]},
+        "url": {"type": "string", "description": "Exact URL from the results"},
+        "focus": {"type": "string", "description": "What the group is about and who is in it"},
+        "activity": {"type": "string", "description": "Signs of activity (recent posts, regular meetups, size), else empty"},
+        "access": {"type": "string", "enum": ["open", "request", "paid", "unknown"]},
+    },
+    "required": ["name", "platform", "url", "focus", "access"],
 }
 SCHEMA = {
     "type": "object",
@@ -53,9 +71,11 @@ SCHEMA = {
         "items": {"type": "array", "items": ITEM},
         "people": {"type": "array", "items": PERSON},
         "events": {"type": "array", "items": EVENT},
+        "groups": {"type": "array", "items": GROUP,
+                   "description": "Groups and communities a founder could join (empty list if none seen)"},
         "notes": {"type": "string", "description": "Gaps, blocked sources or anything that limited the search. One or two short sentences in Spanish, without dashes as punctuation"},
     },
-    "required": ["items", "people", "events", "notes"],
+    "required": ["items", "people", "events", "groups", "notes"],
 }
 
 SYSTEM = """You are a research collector for a bootstrapped founder in Brisbane, Australia, who is looking for an
@@ -70,6 +90,10 @@ Rules:
 - People: only real, named people whose public role is visible in the results (founders, investors, program
   leads, researchers, community organisers). Do not guess contact details.
 - Events: only events with a date on or after today that a person in Brisbane can attend (in person or online).
+  Record whether they are in person, online or hybrid, and the price when it is shown.
+- Groups: communities a founder can join (LinkedIn and Facebook groups, Meetup groups, Slack or Discord
+  communities, university and accelerator founder networks, industry associations). Only groups whose page or
+  link appears in the results; prefer active ones.
 - Prefer primary and authoritative sources (government, universities, the organisation itself) over aggregators."""
 
 
@@ -103,7 +127,7 @@ def collect_inbox(llm: LLM, cfg: dict, today: date, inbox: Path | None = None) -
     inbox = inbox or ROOT / "inbox"
     files = sorted(p for p in inbox.glob("*") if p.suffix in (".txt", ".md") and p.name != "README.md")
     if not files:
-        return {"items": [], "people": [], "events": [], "notes": ""}, []
+        return {"items": [], "people": [], "events": [], "groups": [], "notes": ""}, []
     text = "\n\n".join(f"=== {p.name} ===\n{p.read_text(encoding='utf-8')[:6000]}" for p in files)
     user = (f"Today is {today.isoformat()}. These are posts the founder copied by hand from groups he belongs to. "
             "Extract items (use url 'inbox:<file name>' when no link is given), people and events.\n\n" + text)
@@ -115,7 +139,7 @@ def collect_inbox(llm: LLM, cfg: dict, today: date, inbox: Path | None = None) -
 
 
 def collect_all(llm: LLM, cfg: dict, sources: dict, today: date, only: list[str] | None = None) -> tuple[dict, list[str]]:
-    merged = {"items": [], "people": [], "events": [], "notes": {}}
+    merged = {"items": [], "people": [], "events": [], "groups": [], "notes": {}}
     errors: list[str] = []
     for name, group in sources["groups"].items():
         if only and name not in only:
@@ -126,10 +150,10 @@ def collect_all(llm: LLM, cfg: dict, sources: dict, today: date, only: list[str]
             log.exception("Collector %s failed", name)
             errors.append(f"{name}: {exc}")
             continue
-        log.info("%s: %d items, %d people, %d events", name, len(res["items"]), len(res["people"]),
-                 len(res["events"]))
-        for k in ("items", "people", "events"):
-            merged[k].extend(res.get(k, []))
+        log.info("%s: %d items, %d people, %d events, %d groups", name, len(res["items"]), len(res["people"]),
+                 len(res["events"]), len(res.get("groups", [])))
+        for k in ("items", "people", "events", "groups"):
+            merged[k].extend(res.get(k) or [])
         if res.get("notes"):
             merged["notes"][name] = res["notes"]
     return merged, errors

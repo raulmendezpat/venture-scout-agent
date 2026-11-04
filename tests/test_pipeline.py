@@ -11,12 +11,12 @@ def test_mock_run_end_to_end(tmp_path):
     db = tmp_path / "v.db"
     assert run.main(["--mock", "--weekly", "--db", str(db), "--today", "2026-11-05"]) == 0
     s = Store(str(db))
-    assert s.db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 4 * 8
+    assert s.db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 4 * 9
     ledger = s.idea_ledger()
     assert {l["title"] for l in ledger} >= {"Recepcionista IA para clínicas"}
     # second run two days later: items dedupe, ideas keep one history row per run
     assert run.main(["--mock", "--db", str(db), "--today", "2026-11-07"]) == 0
-    assert s.db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 4 * 8
+    assert s.db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 4 * 9
     assert s.db.execute("SELECT COUNT(*) FROM idea_scores").fetchone()[0] == 6
 
 
@@ -135,3 +135,30 @@ def test_salvage_when_model_never_answers():
     assert out == {"items": ["A"]}
     last = calls[-1]
     assert all(t.get("name") != "web_search" for t in last["tools"]) and "https://example.org/a" in last["messages"][0]["content"]
+
+
+def test_network_section_only_verified(tmp_path):
+    db = tmp_path / "v.db"
+    run.main(["--mock", "--db", str(db), "--today", "2026-11-05"])
+    md = sorted(run.ROOT.glob("out/2026-11-05_*/reports/2026-11-05.md"))[-1].read_text(encoding="utf-8")
+    net = md[md.index("## Red de contactos"):md.index("## Ideas que no pasan")]
+    assert "Brisbane AI Builders" in net and "Invented Group" not in net
+    assert "Presenciales en Brisbane" in net and "Brisbane AI Founders Night" in net
+    assert "Online agents workshop" in net.split("**En línea**")[1] and "Past event" not in net
+    assert "linkedin.com/in/alex-example" in net and "linkedin.com/in/invented" not in net
+    assert "Invented Person" not in net
+
+
+def test_migrates_old_database(tmp_path):
+    import sqlite3
+    db = tmp_path / "old.db"
+    c = sqlite3.connect(db)
+    c.executescript("CREATE TABLE people (key TEXT PRIMARY KEY, name TEXT, role TEXT, org TEXT, url TEXT, themes TEXT, "
+                    "why TEXT, first_seen TEXT, last_seen TEXT, mentions INTEGER DEFAULT 0);"
+                    "CREATE TABLE events (key TEXT PRIMARY KEY, name TEXT, event_date TEXT, location TEXT, url TEXT, "
+                    "why TEXT, first_seen TEXT);")
+    c.commit(); c.close()
+    s = Store(str(db))
+    s.add_event({"name": "e", "date": "2099-01-01", "format": "online", "url": "u"}, "2026-11-05")
+    s.upsert_person({"name": "n", "org": "o", "linkedin_url": "https://www.linkedin.com/in/n"}, "2026-11-05")
+    assert s.upcoming_events("2026-11-05", 100000)[0]["format"] == "online"

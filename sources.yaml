@@ -68,17 +68,19 @@ groups:
   linkedin_authorities:
     label: Autoridades y emprendedores en LinkedIn y blogs
     lookback_days: 14
-    focus: Public posts and articles by recognised Australian founders, investors and AI leaders. Capture who they are and what themes they push.
+    focus: Public posts and articles by recognised Australian founders, investors and AI leaders, especially in Brisbane and Queensland. Capture who they are, their linkedin.com/in/ profile URL when it appears in the results, and what themes they post about.
     domains_hint: [linkedin.com, medium.com, substack.com]
     queries:
       - site:linkedin.com/posts Australia AI agents founder {year}
       - site:linkedin.com/pulse Australian startup AI {year}
       - Australian AI founder blog agents small business {year}
       - site:substack.com Australian startups AI
+      - site:linkedin.com/in Brisbane AI founder
+      - site:linkedin.com/in Queensland AI startup investor
     watchlist: []   # add names you want followed every run, for example "Jane Citizen (Blackbird)"
 
   events:
-    label: Eventos para conocer gente (Brisbane y online)
+    label: Actividades de emprendimiento (Brisbane presencial y en línea)
     focus: Upcoming events in the next 30 days in Brisbane, the Moreton Bay region or online (AU time zone) about AI, agents, startups and founders. Need date, venue and link.
     domains_hint: [meetup.com, eventbrite.com.au, lu.ma, humanitix.com, theprecinct.com.au]
     queries:
@@ -86,6 +88,22 @@ groups:
       - Brisbane startup event {month} {year}
       - lu.ma Brisbane AI
       - Moreton Bay business networking {month} {year}
+      - online founder workshop Australia AEST {month} {year}
+      - site:eventbrite.com.au Brisbane entrepreneurs
+
+  groups_to_join:
+    label: Grupos y comunidades para unirse
+    lookback_days: 365
+    focus: Active groups and communities a Brisbane founder in AI and agents could join; LinkedIn groups, public Facebook groups, Meetup groups, Slack or Discord communities, university founder networks open to alumni or the public, accelerators, and associations (for example AI or tech industry bodies). Prefer active groups with recent posts or regular meetups.
+    domains_hint: [meetup.com, linkedin.com, facebook.com, discord.com, slack.com, theprecinct.com.au]
+    queries:
+      - site:meetup.com Brisbane artificial intelligence group
+      - site:meetup.com Brisbane startup founders
+      - site:linkedin.com/groups Australia artificial intelligence founders
+      - site:facebook.com/groups Brisbane small business owners
+      - Brisbane startup community Slack OR Discord
+      - Australian AI founders community join {year}
+      - Queensland tech industry association membership AI
 
   pain_points:
     label: Problemas que pagan (demanda)

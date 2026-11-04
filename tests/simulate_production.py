@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import random
 import shutil
 import sys
@@ -105,11 +106,18 @@ def fake_output(name: str, user: str, state: dict, rng: random.Random) -> dict:
         state["urls"].extend(items[-2:])
         p = rng.choice(PEOPLE)
         ev_date = (date.fromisoformat(today) + timedelta(days=rng.randint(3, 25))).isoformat()
+        slug = p[0].lower().replace(" ", "-")
+        fmt = rng.choice(["in_person", "online", "hybrid"])
         return {"items": items[:15],
                 "people": [{"name": p[0], "role": p[1], "org": p[2], "url": "https://example.org/p",
+                            "linkedin_url": f"https://www.linkedin.com/in/{slug}",
                             "themes": ["ai agents"], "why": "Active in Brisbane AI founders"}],
-                "events": [{"name": f"Brisbane AI meetup {ev_date}", "date": ev_date, "location": "Brisbane",
-                            "url": "https://example.org/e", "why": "Founders"}],
+                "events": [{"name": f"Brisbane AI meetup {ev_date}", "date": ev_date, "format": fmt,
+                            "location": "online" if fmt == "online" else "Fortitude Valley", "cost": "free",
+                            "organiser": "Example", "url": f"https://example.org/e/{ev_date}", "why": "Founders"}],
+                "groups": [{"name": f"Brisbane AI group {rng.randint(1, 4)}", "platform": "meetup",
+                            "url": f"https://example.org/g/{rng.randint(1, 4)}", "focus": "AI builders",
+                            "activity": "monthly", "access": "open"}],
                 "notes": ""}
     if name == "rank_ideas":
         urls = [u for u in user.split('"url": "')[1:]][:2]
@@ -128,11 +136,18 @@ def fake_output(name: str, user: str, state: dict, rng: random.Random) -> dict:
         return {"market_summary": "Resumen de la semana.",
                 "domain_scores": [{"domain": "AI agents for SMEs", "score": 75, "reason": "Demanda"}], "ideas": ideas}
     if name == "rank_people":
+        ev_urls = sorted(set(re.findall(r"https://example\.org/e/[0-9-]+", user)))
+        g_urls = sorted(set(re.findall(r"https://example\.org/g/[0-9]", user)))
         return {"people": [{"name": p[0], "role": p[1], "org": p[2], "url": "https://example.org/p", "alignment": 70,
                             "why": "Afinidad.", "how_to_approach": "Ir al meetup."} for p in PEOPLE],
-                "communities": [{"name": "Comunidad", "url": "https://example.org/c", "why": "Por qué."}],
-                "events": [{"name": "Meetup", "date": today, "location": "Brisbane", "url": "https://example.org/e",
-                            "why": "Conocer gente."}]}
+                "groups": [{"name": f"Grupo {u[-1]}", "platform": "meetup", "url": u, "priority": "alta",
+                            "why": "Clientes.", "how_to_engage": "Unirse."} for u in g_urls],
+                "events": [{"name": f"Meetup {u[-10:]}", "date": u[-10:], "format": rng.choice(["in_person", "online"]),
+                            "location": "Brisbane", "cost": "free", "url": u, "priority": "media",
+                            "why": "Conocer gente."} for u in ev_urls[:12]],
+                "follow": [{"name": p[0], "headline": p[1],
+                            "linkedin_url": f"https://www.linkedin.com/in/{p[0].lower().replace(' ', '-')}",
+                            "posts_about": "IA", "why": "Autoridad."} for p in PEOPLE]}
     if name == "weekly_strategy":
         return {"headline": "Probar la idea con más señal persistente.",
                 "top_bets": [{"idea": "Ai Receptionist For Clinics", "why": "Sube cada semana.", "kill_criteria": "0 de 10."}],
@@ -207,10 +222,10 @@ def main(weeks: int = 8) -> int:
         "workdir": str(work),
     }
     print(json.dumps(summary, indent=2, ensure_ascii=False))
-    print("\n----- last report: historical section -----")
-    i = last.find("## Análisis histórico")
-    print(last[i:last.find("## Personas para conocer")] if i >= 0 else "(missing)")
-    ok = not failures and not checks.errors and "## Análisis histórico" in last
+    print("\n----- last report: network section -----")
+    i = last.find("## Red de contactos")
+    print(last[i:last.find("## Ideas que no pasan")] if i >= 0 else "(missing)")
+    ok = not failures and not checks.errors and "## Análisis histórico" in last and "## Red de contactos" in last
     return 0 if ok else 1
 
 
