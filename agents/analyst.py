@@ -152,7 +152,7 @@ def match_people(llm: LLM, cfg: dict, founder: dict, people: list[dict], events:
             f"{dumps([i for i in digest(items) if i.get('source_group') in ('communities', 'universities', 'brisbane_ecosystem', 'linkedin_authorities', 'inbox')])}\n\n"
             "Return at most 12 people, 6 communities and 8 events.")
     out = llm.structured(model=cfg["models"]["people"], system=PEOPLE_SYSTEM, user=user, schema=PEOPLE_SCHEMA,
-                         name="rank_people", max_tokens=6000)
+                         name="rank_people", max_tokens=12000)
     names = {p.get("name", "").lower() for p in people}
     out["people"] = sorted((p for p in out["people"] if p["name"].lower() in names), key=lambda p: -p["alignment"])
     return out
@@ -180,4 +180,4 @@ ideas that are fading and any risk with his employment. {STYLE}"""
 def weekly_strategy(llm: LLM, cfg: dict, founder: dict, ledger: list[dict], trends: dict) -> dict:
     user = f"FOUNDER PROFILE\n{dumps(founder)}\n\nIDEA LEDGER\n{dumps(ledger)}\n\nTRENDS\n{dumps(trends)}"
     return llm.structured(model=cfg["models"]["strategist"], system=STRATEGY_SYSTEM, user=user,
-                          schema=STRATEGY_SCHEMA, name="weekly_strategy", max_tokens=6000)
+                          schema=STRATEGY_SCHEMA, name="weekly_strategy", max_tokens=10000)
