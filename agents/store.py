@@ -59,8 +59,6 @@ class Store:
              1 if item.get("ai_related") else 0, run_id, today))
         for term in item.get("keywords", []):
             self.db.execute("INSERT INTO item_terms VALUES (?,?,?,?)", (k, norm(term), "tag", today))
-        for term in item.get("_words", []):
-            self.db.execute("INSERT INTO item_terms VALUES (?,?,?,?)", (k, term, "word", today))
         item["key"] = k
         return True
 
@@ -70,10 +68,39 @@ class Store:
         return [dict(r) | {"themes": json.loads(r["themes"] or "[]")} for r in rows]
 
     def term_counts(self, start: str, end: str, kind: str) -> dict[str, int]:
+        """Distinct items per term. Words and phrases are not stored (they would bloat the database that CI
+        commits every run); they are recomputed from each item's title and summary."""
+        if kind == "word":
+            from .trends import words
+            c: dict[str, int] = {}
+            for r in self.db.execute("SELECT title, summary FROM items WHERE first_seen_date>? AND first_seen_date<=?",
+                                     (start, end)):
+                for w in words(f"{r['title']}. {r['summary']}"):
+                    c[w] = c.get(w, 0) + 1
+            return c
         rows = self.db.execute(
             "SELECT term, COUNT(DISTINCT item_key) n FROM item_terms WHERE kind=? AND seen_date>? AND seen_date<=? "
             "GROUP BY term", (kind, start, end)).fetchall()
         return {r["term"]: r["n"] for r in rows}
+
+    def term_rows(self, start: str, end: str, kind: str) -> list[tuple[str, str, str]]:
+        """(term, item_key, seen_date) rows, for per-week history."""
+        return [tuple(r) for r in self.db.execute(
+            "SELECT DISTINCT term, item_key, seen_date FROM item_terms WHERE kind=? AND seen_date>? AND seen_date<=?",
+            (kind, start, end)).fetchall()]
+
+    def first_item_date(self) -> str | None:
+        r = self.db.execute("SELECT MIN(first_seen_date) FROM items").fetchone()
+        return r[0] if r else None
+
+    def recurring_people(self, min_mentions: int = 2, limit: int = 15) -> list[dict]:
+        rows = self.db.execute("SELECT name, role, org, url, mentions, first_seen, last_seen FROM people "
+                               "WHERE mentions>=? ORDER BY mentions DESC, last_seen DESC LIMIT ?",
+                               (min_mentions, limit))
+        return [dict(r) for r in rows]
+
+    def run_count(self) -> int:
+        return self.db.execute("SELECT COUNT(*) FROM runs").fetchone()[0]
 
     # people and events ---------------------------------------------------------------------------
     def upsert_person(self, p: dict, today: str) -> None:
@@ -123,7 +150,10 @@ class Store:
     def idea_ledger(self, limit: int = 30) -> list[dict]:
         """Latest score of each known idea with its score history (oldest first)."""
         out = []
-        for r in self.db.execute("SELECT * FROM ideas ORDER BY last_seen DESC LIMIT ?", (limit,)).fetchall():
+        rows = self.db.execute(
+            "SELECT i.*, (SELECT composite FROM idea_scores s WHERE s.idea_key=i.key ORDER BY run_date DESC LIMIT 1) last_c "
+            "FROM ideas i ORDER BY last_seen DESC, last_c DESC LIMIT ?", (limit,)).fetchall()
+        for r in rows:
             hist = self.db.execute("SELECT run_date, composite, data FROM idea_scores WHERE idea_key=? "
                                    "ORDER BY run_date", (r["key"],)).fetchall()
             last = json.loads(hist[-1]["data"]) if hist else {}
@@ -135,7 +165,9 @@ class Store:
     def save_run(self, run_id: str, today: str, n_items: int, n_new: int, cost_aud: float, errors: list[str]):
         self.db.execute("INSERT OR REPLACE INTO runs VALUES (?,?,?,?,?,?)",
                         (run_id, today, n_items, n_new, cost_aud, json.dumps(errors)))
+        self.db.execute("DELETE FROM item_terms WHERE kind='word'")   # from databases written before this change
         self.db.commit()
+        self.db.execute("VACUUM")
 
     def commit(self):
         self.db.commit()

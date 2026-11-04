@@ -15,7 +15,8 @@ parcial y con muy poco capital. También señalan personas, comunidades y evento
 | 5 | Scoring y filtros | Código | Puntaje compuesto con los pesos de `config.yaml` y filtros duros (capital ≤ AUD 5,000, ≤ 15 h/semana, ≤ 6 meses a ingreso, fit ≥ 60) |
 | 6 | People matcher | Sonnet | Personas con afinidad, cómo acercarte sin ser invasivo, comunidades y eventos próximos |
 | 7 | Strategist (domingos y día 1) | Opus | Dos o tres apuestas, plan de 30 días y criterios para descartar |
-| 8 | Reporte | Código | Correo HTML en español y `reports/AAAA-MM-DD.md` (más `reports/latest.md`) en el repositorio |
+| 8 | Análisis histórico | Código | Sobre todo el historial: ocurrencias acumuladas, términos persistentes (presentes semana tras semana), términos que ganan o pierden participación, series de 8 semanas, sentimiento por tema en el tiempo y personas recurrentes. Se entrega también al analista y al estratega |
+| 9 | Reporte | Código | Correo HTML en español y `reports/AAAA-MM-DD.md` (más `reports/latest.md`) en el repositorio |
 
 Las URLs de evidencia que el modelo cite y que no vengan de los elementos recolectados se descartan, y las personas
 que no aparezcan en lo recolectado también.
@@ -70,4 +71,9 @@ python -m pytest -q
 python run.py --mock                     # sin red, Claude simulado, salida en out/
 python run.py --dry-run --groups news    # real, pero el correo queda en out/ en lugar de enviarse
 python -m agents.collector events        # ver la salida cruda de un grupo
+python tests/simulate_production.py      # ensayo de producción: 8 semanas de ejecuciones programadas
 ```
+
+El ensayo de producción ejecuta `run.py` por la ruta real (sin `--mock` ni `--dry-run`) sobre una copia del
+repositorio. Solo reemplaza la API de Claude (respuestas con el formato real del SDK, pausas de búsqueda y una falla
+inyectada) y el SMTP de Gmail, y valida modelos, herramienta de búsqueda, `tool_choice` y esquemas JSON.

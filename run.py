@@ -71,7 +71,6 @@ def main(argv: list[str] | None = None) -> int:
     # 2. Store, dedupe and tag
     new_items = []
     for it in found["items"]:
-        it["_words"] = trends.words(f"{it.get('title', '')}. {it.get('summary', '')}")
         if store.add_item(it, run_id, today):
             new_items.append(it)
     for p in found["people"]:

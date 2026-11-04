@@ -14,6 +14,8 @@ run:
   max_items_per_group: 15
   trend_window_days: 14          # current window compared with the previous window of the same length
   min_term_count: 3              # a term must appear this often in the window to count as a trend
+  history_weeks: 8               # weekly series in the historical analysis
+  persistent_min_weeks: 3        # a term seen in at least this many of those weeks counts as persistent
   weekly_review_weekday: 6       # 6 = Sunday (Brisbane)
 
 # Hard filters for ideas. An idea that breaks one is kept in history but not recommended.

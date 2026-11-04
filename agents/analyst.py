@@ -57,7 +57,9 @@ when the evidence supports them. Prefer services that can become products (produ
 of AI strategy, agent engineering, architecture and regulated or public safety experience is rare, and customers who
 can pay without long procurement cycles. Respect his employment constraint: never suggest selling to his employer or
 using its data, systems, IP or contacts, and rate conflict risk for anything near emergency services or Queensland
-Government. Cite only URLs that appear in the provided items. {STYLE}"""
+Government. Use TRENDS.history (whole stored history): weight persistent and gaining terms and themes with improving
+sentiment above one-week spikes, and mark an idea "falling" when its themes are fading. Cite only URLs that appear
+in the provided items. {STYLE}"""
 
 
 def _clip(n: float) -> float:
@@ -170,7 +172,9 @@ STRATEGY_SCHEMA = {
 }
 STRATEGY_SYSTEM = f"""You are a pragmatic startup advisor. Using the idea ledger with its score history and the
 trends, choose the two or three bets the founder should test next and lay out a 30 day part time plan with clear kill
-criteria. Point out ideas that are fading and any risk with his employment. {STYLE}"""
+criteria. Base the choice on the whole history (TRENDS.history: persistent terms, gaining and fading terms, theme
+sentiment over time, recurring people) and on each idea's score history, not on the latest week alone. Point out
+ideas that are fading and any risk with his employment. {STYLE}"""
 
 
 def weekly_strategy(llm: LLM, cfg: dict, founder: dict, ledger: list[dict], trends: dict) -> dict:

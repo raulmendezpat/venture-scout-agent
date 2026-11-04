@@ -17,9 +17,73 @@ def _cell(s) -> str:
 
 
 def _spark(history: list) -> str:
+    """Score history scaled between its own minimum and maximum, then first and last value."""
     bars = "▁▂▃▄▅▆▇█"
     vals = [v for _, v in history][-8:]
-    return "".join(bars[min(7, int(v / 12.5))] for v in vals) if vals else ""
+    if not vals:
+        return ""
+    lo, hi = min(vals), max(vals)
+    line = "".join(bars[3] if hi - lo < 1 else bars[min(7, int(7 * (v - lo) / (hi - lo)))] for v in vals)
+    return f"{line} ({vals[0]} a {vals[-1]})" if len(vals) > 1 else line
+
+
+def _bars(vals: list) -> str:
+    """Sparkline scaled to the series maximum; a dot marks a week with no data."""
+    bars = "▁▂▃▄▅▆▇█"
+    nums = [v for v in vals if v is not None]
+    top = max(nums) if nums else 0
+    if not top:
+        return "".join("·" if v is None else "▁" for v in vals)
+    return "".join("·" if v is None else bars[min(7, int(7 * v / top))] for v in vals)
+
+
+def _sent_bars(vals: list) -> str:
+    """Sentiment from -1 to 1 as a sparkline (▁ very negative, █ very positive)."""
+    bars = "▁▂▃▄▅▆▇█"
+    return "".join("·" if v is None else bars[min(7, int((v + 1) * 4))] for v in vals)
+
+
+def _arrow(slope: float, eps: float = 0.005) -> str:
+    return "sube" if slope > eps else "baja" if slope < -eps else "estable"
+
+
+def history_section(h: dict) -> list[str]:
+    if not h or not h.get("since"):
+        return []
+    w0, w1 = h["weeks"][0], h["weeks"][-1]
+    L = ["## Análisis histórico", "",
+         f"Datos desde {h['since']}, {h['runs']} ejecuciones anteriores. Series semanales de {w0} a {w1} "
+         f"(una barra por semana; · = sin datos). Elementos por semana: {_bars(h['items_per_week'])} "
+         f"({', '.join(map(str, h['items_per_week']))}).", ""]
+    if h["persistent_terms"]:
+        L += ["**Términos persistentes** (aparecen semana tras semana: señal más sólida que un pico)", "",
+              "| Término | Semanas presente | Total | Evolución | Participación |", "|---|---|---|---|---|"]
+        L += [f"| {_cell(r['term'])} | {r['weeks_present']}/{len(h['weeks'])} | {r['total']} | "
+              f"{_bars(r['weekly'])} | {_arrow(r['share_slope'])} |" for r in h["persistent_terms"]] + [""]
+    if h["gaining_terms"] or h["fading_terms"]:
+        L += ["**Ganando y perdiendo participación** (pendiente de su peso semanal)", "",
+              "| Término | Evolución | Total | Dirección |", "|---|---|---|---|"]
+        L += [f"| {_cell(r['term'])} | {_bars(r['weekly'])} | {r['total']} | sube |" for r in h["gaining_terms"][:6]]
+        L += [f"| {_cell(r['term'])} | {_bars(r['weekly'])} | {r['total']} | baja |" for r in h["fading_terms"][:6]]
+        L += [""]
+    L += ["**Ocurrencias acumuladas (todo el historial)**", "",
+          "Etiquetas: " + ", ".join(f"{_cell(t)} ({c})" for t, c in h["cumulative_tags"]), "",
+          "Frases: " + ", ".join(f"{_cell(t)} ({c})" for t, c in h["cumulative_phrases"]), ""]
+    if h["theme_sentiment"]:
+        L += ["**Sentimiento por tema en el tiempo** (de -1 a 1)", "",
+              "| Tema | Menciones | Semanas | Promedio | Evolución | Tendencia |", "|---|---|---|---|---|---|"]
+        L += [f"| {_cell(t['theme'])} | {t['mentions']} | {t['weeks_present']} | {t['avg_sentiment']} | "
+              f"{_sent_bars(t['weekly_sentiment'])} | {_arrow(t['sentiment_slope'], 0.02)} |"
+              for t in h["theme_sentiment"]] + [""]
+    if h["recurring_people"]:
+        L += ["**Personas que aparecen de forma recurrente**", "",
+              "| Persona | Rol | Organización | Apariciones | Primera vez | Última vez |", "|---|---|---|---|---|---|"]
+        for p in h["recurring_people"]:
+            name = f"[{_cell(p['name'])}]({p['url']})" if p.get("url") else _cell(p["name"])
+            L.append(f"| {name} | {_cell(p['role'])} | {_cell(p['org'])} | {p['mentions']} | "
+                     f"{p['first_seen']} | {p['last_seen']} |")
+        L += [""]
+    return L
 
 
 def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: list[dict], strategy: dict | None,
@@ -80,6 +144,8 @@ def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: 
           "| Tema | Menciones | Sentimiento |", "|---|---|---|"]
     L += [f"| {_cell(t['theme'])} | {t['mentions']} | {t['sentiment']} |" for t in trends["themes"][:12]] + [""]
 
+    L += history_section(trends.get("history", {}))
+
     L += ["## Personas para conocer", ""]
     for p in people["people"]:
         name = f"[{p['name']}]({p['url']})" if p.get("url") else p["name"]
@@ -91,7 +157,8 @@ def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: 
     L += [f"- [{c['name']}]({c['url']}): {c['why']}" for c in people["communities"]]
 
     if ledger:
-        L += ["", "## Historial de ideas", "", "| Idea | Vista desde | Evolución | Último |", "|---|---|---|---|"]
+        L += ["", "## Historial de ideas", "", "Puntaje compuesto por ejecución (últimas 8).", "",
+              "| Idea | Vista desde | Evolución | Último |", "|---|---|---|---|"]
         L += [f"| {_cell(l['title'])} | {l['first_seen']} | {_spark(l['history'])} | "
               f"{l['history'][-1][1] if l['history'] else ''} |" for l in ledger[:15]]
     if stats.get("errors") or stats.get("notes"):
