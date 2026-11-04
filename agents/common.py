@@ -97,8 +97,8 @@ class LLM:
         seen: list = []   # every assistant block, for the salvage call
         for attempt in range(8):  # server tools (web search) may pause; continue a few times
             try:
-                resp = self.client.messages.create(model=model, max_tokens=max_tokens, system=system,
-                                                   tools=tools, tool_choice=choice, messages=messages)
+                resp = self._call(model=model, max_tokens=max_tokens, system=system, tools=tools,
+                                  tool_choice=choice, messages=messages)
             except Exception as exc:
                 # Some models (for example with built-in extended thinking) only accept tool_choice auto.
                 if choice is forced and self._rejects_forced_tool(exc):
@@ -136,6 +136,15 @@ class LLM:
         if server_tools:
             return self._salvage(model=model, system=system, user=user, schema=schema, name=name, blocks=seen)
         raise RuntimeError(f"Model did not return {name}")
+
+    def _call(self, **kw):
+        """Stream the request (the SDK requires it for long, high max_tokens calls) and return the final message.
+        Clients without streaming (test doubles) fall back to a plain create."""
+        stream = getattr(self.client.messages, "stream", None)
+        if stream is None:
+            return self.client.messages.create(**kw)
+        with stream(**kw) as s:
+            return s.get_final_message()
 
     def _salvage(self, *, model: str, system: str, user: str, schema: dict, name: str, blocks: list) -> dict:
         """Last resort after web search rounds that never produced the result: a fresh call without server

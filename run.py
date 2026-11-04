@@ -11,7 +11,7 @@ from __future__ import annotations
 import argparse
 import logging
 import shutil
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 from agents import analyst, collector, report, trends
@@ -89,7 +89,10 @@ def main(argv: list[str] | None = None) -> int:
 
     # 4. Ideas, people, weekly strategy
     ledger = store.idea_ledger()
-    evidence = new_items or store.items_between(tr["window"]["current"][0], today)
+    # Evidence: everything first seen in the last few days (covers items stored by a run that failed before
+    # the analysis), plus this run's new items; falls back to the trend window on a quiet run.
+    recent_start = (now.date() - timedelta(days=cfg["run"].get("evidence_days", 3))).isoformat()
+    evidence = store.items_between(recent_start, today) or store.items_between(tr["window"]["current"][0], today)
     ideas = analyst.analyse_ideas(llm, cfg, founder, evidence, tr, ledger)
     for idea in ideas["ideas"]:
         store.save_idea(idea, run_id, today)

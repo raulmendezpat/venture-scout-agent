@@ -185,3 +185,27 @@ def test_cost_table_with_totals(tmp_path):
     assert "**Total ejecución** | | **11** | | | **40** | **1.00** | **1.42**" in L
     assert "Acumulado del mes (2 ejecuciones)" in L and "| 3.42 |" in L
     assert "Acumulado desde 2026-10-30 (3 ejecuciones)" in L and "| 4.42 |" in L
+
+
+def test_calls_are_streamed_when_client_supports_it():
+    from agents.common import LLM
+    seen = {}
+    final = _msg([{"type": "tool_use", "id": "t1", "name": "report", "input": {"items": [1]}}], "tool_use")
+
+    class Stream:
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def get_final_message(self): return final
+
+    class M:
+        def stream(self, **kw):
+            seen.update(kw)
+            return Stream()
+        def create(self, **kw):
+            raise AssertionError("must stream")
+
+    class C:
+        messages = M()
+    out = LLM(client=C()).structured(model="claude-sonnet-5-5", system="s", user="u", schema=SCHEMA, name="report",
+                                     max_tokens=24000)
+    assert out == {"items": [1]} and seen["max_tokens"] == 24000

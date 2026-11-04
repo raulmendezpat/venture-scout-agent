@@ -92,8 +92,8 @@ jobs:
           retention-days: 14
           if-no-files-found: ignore
 
-      - name: Save history and report (not on dry runs)
-        if: ${{ !cancelled() && inputs.dry_run != true && inputs.test_email != true }}
+      - name: Save history and report (only after a successful, non dry run)
+        if: ${{ success() && inputs.dry_run != true && inputs.test_email != true }}
         run: |
           git config user.name "venture-scout-agent"
           git config user.email "venture-scout-agent@users.noreply.github.com"

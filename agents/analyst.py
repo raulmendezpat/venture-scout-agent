@@ -116,7 +116,7 @@ def analyse_ideas(llm: LLM, cfg: dict, founder: dict, items: list[dict], trends:
             f"TRENDS (deterministic counts over the stored history)\n{dumps(trends)}\n\n"
             f"NEW EVIDENCE THIS RUN\n{dumps(digest(items))}")
     out = llm.structured(model=cfg["models"]["analyst"], system=IDEA_SYSTEM, user=user, schema=IDEAS_SCHEMA,
-                         name="rank_ideas", max_tokens=12000)
+                         name="rank_ideas", max_tokens=24000)
     known_ids = {l["id"] for l in ledger}
     for idea in out["ideas"]:
         if idea.get("id") not in known_ids:
@@ -200,7 +200,7 @@ def match_people(llm: LLM, cfg: dict, founder: dict, people: list[dict], events:
             f"UPCOMING EVENTS\n{dumps(events)}\n\nCOMMUNITY ITEMS\n{dumps(community)}\n\n"
             "Return at most 10 people, 8 groups, 12 events and 10 people to follow on LinkedIn.")
     out = llm.structured(model=cfg["models"]["people"], system=PEOPLE_SYSTEM, user=user, schema=PEOPLE_SCHEMA,
-                         name="rank_people", max_tokens=14000)
+                         name="rank_people", max_tokens=20000)
     known = _urls(people, events, groups, items)
     ok = lambda u: bool(u) and norm_url(u) in known
     proposed = {k: len(out[k]) for k in ("people", "groups", "events", "follow")}
@@ -238,4 +238,4 @@ ideas that are fading and any risk with his employment. {STYLE}"""
 def weekly_strategy(llm: LLM, cfg: dict, founder: dict, ledger: list[dict], trends: dict) -> dict:
     user = f"FOUNDER PROFILE\n{dumps(founder)}\n\nIDEA LEDGER\n{dumps(ledger)}\n\nTRENDS\n{dumps(trends)}"
     return llm.structured(model=cfg["models"]["strategist"], system=STRATEGY_SYSTEM, user=user,
-                          schema=STRATEGY_SCHEMA, name="weekly_strategy", max_tokens=10000)
+                          schema=STRATEGY_SCHEMA, name="weekly_strategy", max_tokens=16000)

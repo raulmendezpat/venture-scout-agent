@@ -10,6 +10,7 @@ web_search_tool: web_search_20250305   # Claude API server tool type, same as jo
 run:
   timezone: Australia/Brisbane
   lookback_days: 7               # collectors ignore items older than this
+  evidence_days: 3               # the idea analyst reads items first seen in this many days (runs are 2 to 3 days apart)
   max_searches_per_group: 6      # web searches per source group (cost guard)
   max_items_per_group: 15
   trend_window_days: 14          # current window compared with the previous window of the same length
