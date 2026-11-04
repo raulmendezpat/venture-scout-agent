@@ -45,6 +45,21 @@ jobs:
 
       - run: python -m pytest -q
 
+      - name: Check secrets
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          missing=""
+          for n in GMAIL_USER GMAIL_APP_PASSWORD; do [ -z "${!n}" ] && missing="$missing $n"; done
+          if [ "${{ inputs.test_email }}" != "true" ] && [ -z "$ANTHROPIC_API_KEY" ]; then missing="$missing ANTHROPIC_API_KEY"; fi
+          if [ -n "$missing" ]; then
+            echo "::error title=Missing secrets::Add these in Settings > Secrets and variables > Actions > Secrets (Repository secrets):$missing"
+            exit 1
+          fi
+          echo "Secrets present."
+
       - name: Run the agents
         id: agents
         env:
