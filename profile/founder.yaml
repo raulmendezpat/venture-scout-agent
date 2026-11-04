@@ -1,0 +1,41 @@
+# Founder profile used by the analyst and people agents to judge fit. Keep it factual; edit freely.
+
+name: Raul Mendez
+location: Morayfield (Moreton Bay), Brisbane, QLD
+languages: [Spanish (native), English]
+
+current_role: Lead Solution Architect, Queensland Fire Department (keeps this job; the venture is part time)
+
+strengths:
+  - 25+ years in ICT across Queensland Government, financial services (Citibank Latin America, TransUnion, Australian banks) and consulting
+  - Enterprise and solution architecture, AWS and Azure, integration, identity, data platforms
+  - Data and AI: Master of Data Science (UQ, Dean's Commendation); completing the Graduate Certificate in AI Strategy at UNSW (AI strategy and leadership)
+  - Builds working agentic systems with the Claude API, OpenAI Agents SDK, Python and GitHub Actions (job search agent, multi-agent permit prototype, systematic trading platform)
+  - Regulated domains: Open Banking and CDR, ACCC audit compliance, ACSC Essential Eight, PII risk
+  - Public safety and emergency management systems (incident management, GIS, permits, fleet connectivity)
+  - Led teams of up to 15; executive advisory; Latin America business experience (bridge between Australia and LatAm)
+  - Studying TOGAF 10
+
+constraints:
+  hours_per_week: 10 to 15, evenings and weekends (Brisbane time)
+  capital: near zero; prefers under AUD 5,000 to first paying customer
+  employment: >
+    Must keep the QFD role. Secondary employment and conflicts of interest need to be declared and approved under
+    QFD and Queensland public sector policy. Do not propose selling to QFD, using QFD data, systems, IP or
+    contacts gained through the role, or anything that competes with QFD procurement. Selling to other
+    emergency services or Queensland Government agencies carries conflict risk: flag it, do not exclude it.
+  risk: bootstrapped, no outside investors at the start
+
+domains_to_evaluate:   # the analyst scores each of these every run, plus any new domain the evidence suggests
+  - AI agents and automation for Australian SMEs (professional services, trades, health admin, real estate)
+  - AI governance, risk and compliance advisory for mid-size organisations (AI guardrails, privacy, Essential Eight)
+  - Fintech and regulated data (CDR, Open Banking, credit, compliance automation)
+  - Emergency management and community resilience outside QFD (councils, NFPs, insurers, schools)
+  - Latin America and Australia bridge (Spanish-speaking businesses and students, cross-border services)
+  - Education and training (AI strategy for executives, practical agent building courses)
+  - Architecture as a service (fractional AI or solution architect for startups)
+
+goals:
+  - Find a niche where the combination of AI strategy, agent engineering and domain knowledge is rare
+  - Reach first revenue with services or a small product, then productise
+  - Meet aligned founders, possible co-founders, mentors and early customers in Brisbane and Australia

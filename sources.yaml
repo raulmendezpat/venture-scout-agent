@@ -1,0 +1,91 @@
+# Source groups. Each group is one collector call: Claude runs web searches guided by these queries and
+# domains, reads the results and returns structured items. {year} and {month} are filled at run time.
+#
+# Facebook groups and LinkedIn: only public pages that the search engine has indexed can be reached.
+# Private groups and the LinkedIn feed need a login and are out of scope (and scraping them breaks
+# their terms of use). For private groups you belong to, paste posts into inbox/ (see README).
+
+groups:
+  news:
+    label: Noticias de startups y negocios en Australia
+    focus: Startup and small business news in Australia, especially AI, agents and automation, funding rounds, new programs, policy changes.
+    domains_hint: [startupdaily.net, smartcompany.com.au, afr.com, innovationaus.com, itnews.com.au, abc.net.au, businessnewsaustralia.com, techcrunch.com]
+    queries:
+      - Australian AI startup news {month} {year}
+      - Brisbane startup news {month} {year}
+      - AI agents startup Australia seed funding {year}
+      - small business AI adoption Australia {year}
+
+  brisbane_ecosystem:
+    label: Ecosistema de Brisbane y Queensland
+    focus: Brisbane and Queensland startup ecosystem, incubators, accelerators, founder programs, grants and events.
+    domains_hint: [advance.qld.gov.au, choosebrisbane.com.au, theprecinct.com.au, rivercitylabs.net, qldchiefentrepreneur.org.au, business.qld.gov.au, startupstatus.com.au]
+    queries:
+      - Brisbane startup accelerator program {year}
+      - Advance Queensland founder grant {year}
+      - Queensland Chief Entrepreneur AI {year}
+      - Brisbane AI founders meetup {month} {year}
+
+  national_programs:
+    label: Programas, subvenciones y política nacional
+    focus: Federal programs, grants and policy that matter to a bootstrapped founder (business.gov.au, R&D Tax Incentive, Industry Growth Program, National AI Centre, AI safety and regulation guidance).
+    domains_hint: [business.gov.au, industry.gov.au, csiro.au, ato.gov.au, digital.gov.au, austrade.gov.au]
+    queries:
+      - business.gov.au grants AI small business {year}
+      - National AI Centre guidance SMEs {year}
+      - Australia AI regulation guardrails update {year}
+      - Industry Growth Program AI {year}
+
+  universities:
+    label: Universidades y sus comunidades de emprendimiento
+    focus: University entrepreneurship hubs, founder programs open to alumni and the public, research spinouts and student founder communities.
+    domains_hint: [uq.edu.au, qut.edu.au, griffith.edu.au, usc.edu.au, unsw.edu.au, monash.edu, anu.edu.au]
+    queries:
+      - UQ Ventures ilab program {year}
+      - QUT startup program founders {year}
+      - Griffith University entrepreneurship program {year}
+      - UNSW Founders AI {year}
+      - UniSC innovation centre startups {year}
+
+  communities:
+    label: Foros, grupos y comunidades
+    focus: Discussions where founders and small business owners in Australia talk about problems, tools, what is working and what is not. Look for repeated pain points.
+    domains_hint: [reddit.com, forums.whirlpool.net.au, indiehackers.com, news.ycombinator.com, facebook.com]
+    queries:
+      - site:reddit.com/r/AusFinance OR site:reddit.com/r/smallbusiness Australia AI
+      - site:reddit.com/r/brisbane startup OR business idea
+      - site:reddit.com/r/AustralianStartups {year}
+      - site:facebook.com/groups Brisbane entrepreneurs AI
+      - site:indiehackers.com Australia bootstrapped
+      - site:forums.whirlpool.net.au small business AI
+
+  linkedin_authorities:
+    label: Autoridades y emprendedores en LinkedIn y blogs
+    focus: Public posts and articles by recognised Australian founders, investors and AI leaders. Capture who they are and what themes they push.
+    domains_hint: [linkedin.com, medium.com, substack.com]
+    queries:
+      - site:linkedin.com/posts Australia AI agents founder {year}
+      - site:linkedin.com/pulse Australian startup AI {year}
+      - Australian AI founder blog agents small business {year}
+      - site:substack.com Australian startups AI
+    watchlist: []   # add names you want followed every run, for example "Jane Citizen (Blackbird)"
+
+  events:
+    label: Eventos para conocer gente (Brisbane y online)
+    focus: Upcoming events in the next 30 days in Brisbane, the Moreton Bay region or online (AU time zone) about AI, agents, startups and founders. Need date, venue and link.
+    domains_hint: [meetup.com, eventbrite.com.au, lu.ma, humanitix.com, theprecinct.com.au]
+    queries:
+      - Brisbane AI meetup {month} {year}
+      - Brisbane startup event {month} {year}
+      - lu.ma Brisbane AI
+      - Moreton Bay business networking {month} {year}
+
+  pain_points:
+    label: Problemas que pagan (demanda)
+    focus: Concrete problems Australian SMEs, councils, not for profits and professional firms say they would pay to solve with AI or automation. Prefer sources with specifics (sector, cost, frequency).
+    domains_hint: []
+    queries:
+      - Australian small business biggest admin burden survey {year}
+      - Australian SMEs AI adoption barriers survey {year}
+      - not for profit Australia AI automation needs {year}
+      - tradies admin automation Australia AI

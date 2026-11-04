@@ -1,0 +1,47 @@
+# venture-scout-agent configuration. Change thresholds and models here, not in code.
+
+models:
+  collector: claude-haiku-5-5   # one call per source group: web search, extract items, tag keywords and sentiment
+  analyst: claude-sonnet-5-5    # ranks business ideas against the founder profile, every run
+  people: claude-sonnet-5-5     # ranks people and communities worth meeting, every run
+  strategist: claude-opus-5-5   # deeper weekly review (Sundays and the 1st of the month)
+web_search_tool: web_search_20250305   # Claude API server tool type, same as job-scout-agent
+
+run:
+  timezone: Australia/Brisbane
+  lookback_days: 7               # collectors ignore items older than this
+  max_searches_per_group: 6      # web searches per source group (cost guard)
+  max_items_per_group: 15
+  trend_window_days: 14          # current window compared with the previous window of the same length
+  min_term_count: 3              # a term must appear this often in the window to count as a trend
+  weekly_review_weekday: 6       # 6 = Sunday (Brisbane)
+
+# Hard filters for ideas. An idea that breaks one is kept in history but not recommended.
+filters:
+  max_startup_capital_aud: 5000       # what it costs to reach the first paying customer
+  max_hours_per_week: 15              # part time, outside QFD hours
+  max_months_to_first_revenue: 6
+  min_founder_fit: 60                 # 0 to 100
+  min_composite: 60                   # 0 to 100
+
+# Weights of the composite idea score (they must add up to 1).
+weights:
+  market_signal: 0.25        # how strongly the collected evidence points to demand in Australia
+  founder_fit: 0.25          # how well it uses Raul's skills, network and credibility
+  low_capital: 0.15          # cheaper to start scores higher
+  part_time_feasibility: 0.15
+  speed_to_revenue: 0.10
+  sentiment: 0.10            # tone of the evidence about the theme
+
+# Prices for the cost line in the report (USD per million tokens). Check against docs.claude.com/pricing.
+pricing:
+  usd_to_aud: 1.4228
+  web_search_usd_per_1000: 10
+  models:
+    claude-haiku-5-5: {input: 0.10, output: 0.50}
+    claude-sonnet-5-5: {input: 2.0, output: 10.0}
+    claude-opus-5-5: {input: 4.0, output: 20.0}
+
+email:
+  to: raulmendezpat@gmail.com
+  subject_prefix: "[Venture Scout]"
