@@ -74,7 +74,30 @@ def analyse(store, today: str, cfg: dict) -> dict:
         "themes": themes[:30],
         "sentiment_by_group": {g: round(sum(v) / len(v), 2) for g, v in by_group.items()},
         "history": history(store, today, cfg),
+        "local_sectors": sector_stats(store, today, cfg),
     }
+
+
+LOCAL_SCOPES = ("brisbane", "queensland")
+
+
+def sector_stats(store, today: str, cfg: dict) -> list[dict]:
+    """Brisbane and Queensland items per sector: current window against the previous one, with sentiment."""
+    days = cfg["run"]["trend_window_days"]
+    (c0, c1), (p0, p1) = _windows(today, days)
+    def bucket(items):
+        out: dict[str, list[float]] = defaultdict(list)
+        for it in items:
+            if it.get("scope") in LOCAL_SCOPES and it.get("sector"):
+                out[it["sector"]].append(it["sentiment"])
+        return out
+    cur, prev = bucket(store.items_between(c0, c1)), bucket(store.items_between(p0, p1))
+    rows = []
+    for sec in set(cur) | set(prev):
+        c, p = len(cur.get(sec, [])), len(prev.get(sec, []))
+        rows.append({"sector": sec, "current": c, "previous": p, "change": c - p,
+                     "sentiment": round(sum(cur[sec]) / c, 2) if c else None})
+    return sorted(rows, key=lambda r: (-r["current"], -r["change"]))
 
 
 def _week(d: str) -> str:

@@ -9,6 +9,10 @@ from .common import LLM, ROOT, dumps
 
 log = logging.getLogger("venture-scout")
 
+SECTORS = ["hospitality_food", "retail_ecommerce", "construction_trades", "property", "health_wellness",
+           "aged_care_disability", "education_training", "tourism_events", "professional_services", "technology_ai",
+           "creative_media", "agriculture_food_production", "manufacturing", "energy_sustainability",
+           "transport_logistics", "finance", "community_social", "other"]
 ITEM = {
     "type": "object",
     "properties": {
@@ -24,10 +28,13 @@ ITEM = {
                    "description": "Business themes or niches the item is evidence for (e.g. 'ai receptionist for clinics')"},
         "sentiment": {"type": "number", "description": "-1 (negative, failing, saturated) to 1 (strong demand, growth)"},
         "ai_related": {"type": "boolean"},
+        "sector": {"type": "string", "enum": SECTORS, "description": "Main industry the item is about"},
+        "scope": {"type": "string", "enum": ["brisbane", "queensland", "australia", "global"],
+                  "description": "Narrowest place the item is about (Brisbane includes Moreton Bay, Logan, Ipswich, Redlands)"},
         "idea_signal": {"type": "string", "description": "Opportunity this suggests for a bootstrapped founder, or empty"},
     },
     "required": ["title", "url", "source_name", "source_type", "summary", "keywords", "themes", "sentiment",
-                 "ai_related"],
+                 "ai_related", "sector", "scope"],
 }
 PERSON = {
     "type": "object",

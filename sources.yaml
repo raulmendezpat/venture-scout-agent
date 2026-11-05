@@ -91,6 +91,29 @@ groups:
       - online founder workshop Australia AEST {month} {year}
       - site:eventbrite.com.au Brisbane entrepreneurs
 
+  brisbane_trends:
+    label: Tendencias de emprendimiento en Brisbane (todos los sectores)
+    lookback_days: 21
+    focus: >
+      What kinds of businesses are being started, growing or struggling in Brisbane and South East Queensland,
+      in ANY sector (food and hospitality, retail, trades and construction, property, health and wellness, aged
+      care and NDIS, education, tourism and events, professional services, creative, sustainability, logistics),
+      not only technology. Include new openings, closures, demand shifts, council and state programs, Brisbane 2032
+      Olympic and Paralympic Games opportunities, population growth corridors (Moreton Bay, Logan, Ipswich),
+      cost of living effects and side hustle trends. Mark the sector and scope of every item.
+    domains_hint: [brisbane.qld.gov.au, moretonbay.qld.gov.au, business.qld.gov.au, osbc.qld.gov.au, bcqld.org.au,
+                   businessnewsaustralia.com, brisbanetimes.com.au, couriermail.com.au, abc.net.au, qld.gov.au,
+                   brisbane2032.com.au, insidesmallbusiness.com.au, smartcompany.com.au]
+    queries:
+      - Brisbane small business trends {month} {year}
+      - Brisbane new businesses opening {month} {year}
+      - Brisbane 2032 Olympics small business opportunities {year}
+      - Moreton Bay business growth {year}
+      - Queensland small business survey {year}
+      - Brisbane side hustle trend {year}
+      - Brisbane hospitality OR retail closures openings {year}
+      - Brisbane City Council small business grants {year}
+
   groups_to_join:
     label: Grupos y comunidades para unirse
     lookback_days: 365

@@ -216,6 +216,66 @@ def match_people(llm: LLM, cfg: dict, founder: dict, people: list[dict], events:
     return out
 
 
+LOCAL_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "summary": {"type": "string", "description": "What is moving in Brisbane entrepreneurship this period, 3 to 5 sentences"},
+        "topics": {"type": "array", "description": "6 to 10 topics, strongest first", "items": {
+            "type": "object", "properties": {
+                "id": {"type": "string", "description": "Copy the id of a topic from the ledger when it is the same topic; empty for a new one"},
+                "topic": {"type": "string", "description": "Short name of the trend"},
+                "sector": {"type": "string"},
+                "what": {"type": "string", "description": "What is happening, concretely, in Brisbane or SEQ"},
+                "why_now": {"type": "string", "description": "Drivers: population, cost of living, 2032 Games, policy, technology"},
+                "momentum": {"type": "string", "enum": ["new", "rising", "stable", "falling"]},
+                "strength": SCORE,
+                "sentiment": {"type": "string", "enum": ["positivo", "mixto", "negativo"]},
+                "opportunity": {"type": "string", "description": "A business a person could start part time with little capital around this trend"},
+                "startup_capital_aud": {"type": "integer"},
+                "fit_for_founder": {"type": "string", "enum": ["alta", "media", "baja"],
+                                    "description": "How well his skills could add an edge (AI, data, architecture), not required"},
+                "evidence_urls": {"type": "array", "items": {"type": "string"}, "description": "URLs from the provided items only"}},
+            "required": ["id", "topic", "sector", "what", "why_now", "momentum", "strength", "sentiment", "opportunity",
+                         "startup_capital_aud", "fit_for_founder", "evidence_urls"]}},
+    },
+    "required": ["summary", "topics"],
+}
+LOCAL_SYSTEM = f"""You track entrepreneurship trends in Brisbane and South East Queensland across ALL sectors, not only
+technology: what kinds of businesses people are starting, which ones are growing or struggling, and why. Use the
+sector counts (computed from the stored history), the topic ledger from previous runs and the evidence items. Keep the
+id of a topic that continues from the ledger and set momentum from its history (falling when evidence fades). Each
+topic must cite at least one URL from the provided items; never invent URLs, numbers or names. For each topic propose
+one low capital, part time business opportunity and rate how much the founder's AI, data and architecture skills
+would give him an edge (it is fine if the answer is low). {STYLE}"""
+
+LOCAL_GROUPS = ("brisbane_trends", "brisbane_ecosystem", "communities", "news", "pain_points", "events", "inbox")
+
+
+def local_trends(llm: LLM, cfg: dict, items: list[dict], sectors: list[dict], ledger: list[dict]) -> dict:
+    local = [i for i in items if i.get("scope") in ("brisbane", "queensland") or i.get("source_group") == "brisbane_trends"]
+    local = sorted(local, key=lambda i: (i.get("source_group") != "brisbane_trends", i.get("source_group", "")))
+    keep = ("title", "url", "source_group", "source_name", "published", "summary", "sector", "scope", "themes",
+            "sentiment", "idea_signal")
+    evidence = [{k: it.get(k) for k in keep if it.get(k) not in (None, "", [])} for it in local[:90]]
+    user = (f"SECTOR COUNTS, Brisbane and Queensland items (current vs previous window)\n{dumps(sectors)}\n\n"
+            f"TOPIC LEDGER (previous runs)\n{dumps(ledger)}\n\nEVIDENCE ITEMS\n{dumps(evidence)}")
+    out = llm.structured(model=cfg["models"]["local_trends"], system=LOCAL_SYSTEM, user=user, schema=LOCAL_SCHEMA,
+                         name="local_trends", max_tokens=16000)
+    known = {norm_url(i.get("url", "")) for i in items if i.get("url")}
+    ledger_ids = {t["key"] for t in ledger}
+    topics = []
+    for t in out["topics"]:
+        t["evidence_urls"] = [u for u in t.get("evidence_urls", []) if norm_url(u) in known]
+        if not t["evidence_urls"]:
+            continue   # no verifiable evidence, drop it
+        if t.get("id") not in ledger_ids:
+            t["id"] = key_of(t["topic"])
+        topics.append(t)
+    log.info("local trends: kept %d of %d topics", len(topics), len(out["topics"]))
+    out["topics"] = sorted(topics, key=lambda t: -t["strength"])
+    return out
+
+
 STRATEGY_SCHEMA = {
     "type": "object",
     "properties": {

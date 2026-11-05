@@ -4,6 +4,7 @@ models:
   collector: claude-haiku-5-5   # one call per source group: web search, extract items, tag keywords and sentiment
   analyst: claude-sonnet-5-5    # ranks business ideas against the founder profile, every run
   people: claude-sonnet-5-5     # ranks people and communities worth meeting, every run
+  local_trends: claude-sonnet-5-5   # entrepreneurship topics trending in Brisbane (any sector), every run
   strategist: claude-opus-5-5   # deeper weekly review (Sundays and the 1st of the month)
 web_search_tool: web_search_20250305   # Claude API server tool type, same as job-scout-agent
 

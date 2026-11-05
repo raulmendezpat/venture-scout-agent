@@ -14,6 +14,8 @@ def _items(group: str) -> list[dict]:
     return [{"title": f"{t} ({group})", "url": f"https://example.org/{group}/{n}", "source_name": "Example",
              "source_type": "news", "published": "", "summary": f"{t}. Sample summary about AI agents for small business.",
              "keywords": [th, "ai agents", "small business"], "themes": [th], "sentiment": s, "ai_related": True,
+             "sector": ["health_wellness", "professional_services", "technology_ai", "hospitality_food"][n],
+             "scope": ["brisbane", "queensland", "australia", "brisbane"][n],
              "idea_signal": f"Opportunity in {th}"} for n, (t, th, s) in enumerate(base)]
 
 
@@ -69,6 +71,15 @@ def fake_llm(*, name: str, system: str, user: str, schema: dict) -> dict:
                             "posts_about": "Agentes", "why": "Autoridad."},
                            {"name": "Alex Example", "headline": "Founder", "linkedin_url": "https://www.linkedin.com/in/invented",
                             "posts_about": "x", "why": "x"}]}
+    if name == "local_trends":
+        url = re.search(r"https://example\.org/brisbane_trends/0", user)
+        topic = lambda title, u, strength: {
+            "id": "", "topic": title, "sector": "hospitality_food", "what": "Qué pasa.", "why_now": "Por qué.",
+            "momentum": "rising", "strength": strength, "sentiment": "positivo", "opportunity": "Oportunidad.",
+            "startup_capital_aud": 2000, "fit_for_founder": "media", "evidence_urls": u}
+        return {"summary": "Resumen local.",
+                "topics": [topic("Cafeterías de especialidad en Moreton Bay", [url.group(0)] if url else [], 70),
+                           topic("Tema sin evidencia", ["https://invented.example/z"], 95)]}
     if name == "weekly_strategy":
         return {"headline": "Probar la recepcionista IA.",
                 "top_bets": [{"idea": "Recepcionista IA para clínicas", "why": "Señal fuerte.", "kill_criteria": "0 de 10 clínicas."}],

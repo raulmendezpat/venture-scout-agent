@@ -105,6 +105,16 @@ def main(argv: list[str] | None = None) -> int:
         log.exception("People matcher failed")
         errors.append(f"people: {exc}")
         people = {"people": [], "groups": [], "events": [], "follow": []}
+    try:
+        local = analyst.local_trends(llm, cfg, store.items_between(tr["window"]["current"][0], today),
+                                     tr["local_sectors"], store.local_topics())
+        for t in local["topics"]:
+            store.save_local_topic(t, today)
+        store.commit()
+    except Exception as exc:
+        log.exception("Local trends failed")
+        errors.append(f"local_trends: {exc}")
+        local = None
     strategy = None
     if weekly:
         try:
@@ -119,7 +129,7 @@ def main(argv: list[str] | None = None) -> int:
              "cost_aud": cost["aud"], "errors": errors, "notes": found["notes"],
              "cost": cost, "pricing": cfg["pricing"], "models": cfg["models"],
              "cost_totals": store.cost_totals(today, run_id)}
-    md = report.build_markdown(today, ideas, people, tr, ledger, strategy, stats)
+    md = report.build_markdown(today, ideas, people, tr, ledger, strategy, stats, local)
     reports_dir = (out_dir if args.mock else ROOT) / "reports"
     reports_dir.mkdir(parents=True, exist_ok=True)
     (reports_dir / f"{today}.md").write_text(md, encoding="utf-8")

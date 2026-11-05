@@ -21,6 +21,8 @@ CREATE TABLE IF NOT EXISTS events (key TEXT PRIMARY KEY, name TEXT, event_date T
     why TEXT, first_seen TEXT);
 CREATE TABLE IF NOT EXISTS groups (key TEXT PRIMARY KEY, name TEXT, platform TEXT, url TEXT, focus TEXT,
     activity TEXT, access TEXT, first_seen TEXT, last_seen TEXT, mentions INTEGER DEFAULT 0);
+CREATE TABLE IF NOT EXISTS local_topics (key TEXT PRIMARY KEY, title TEXT, sector TEXT, first_seen TEXT,
+    last_seen TEXT, runs INTEGER DEFAULT 0, last_strength INTEGER, data TEXT);
 CREATE TABLE IF NOT EXISTS ideas (key TEXT PRIMARY KEY, title TEXT, domain TEXT, first_seen TEXT, last_seen TEXT);
 CREATE TABLE IF NOT EXISTS idea_scores (idea_key TEXT, run_id TEXT, run_date TEXT, composite REAL, passes INTEGER,
     data TEXT, PRIMARY KEY (idea_key, run_id));
@@ -50,7 +52,8 @@ class Store:
 
     def _migrate(self) -> None:
         """Add columns introduced after the first runs, keeping the committed history."""
-        added = {"people": {"linkedin_url": "TEXT"},
+        added = {"items": {"sector": "TEXT", "scope": "TEXT"},
+                 "people": {"linkedin_url": "TEXT"},
                  "events": {"format": "TEXT", "cost": "TEXT", "organiser": "TEXT"}}
         for table, cols in added.items():
             have = {r[1] for r in self.db.execute(f"PRAGMA table_info({table})")}
@@ -66,11 +69,12 @@ class Store:
         if self.db.execute("SELECT 1 FROM items WHERE key=?", (k,)).fetchone():
             return False
         self.db.execute(
-            "INSERT INTO items VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO items (key, url, title, source_group, source_name, source_type, published, summary, themes, "
+            "sentiment, ai_related, first_seen_run, first_seen_date, sector, scope) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             (k, item.get("url", ""), item.get("title", ""), item.get("source_group", ""),
              item.get("source_name", ""), item.get("source_type", ""), item.get("published", ""),
              item.get("summary", ""), json.dumps(item.get("themes", [])), float(item.get("sentiment", 0) or 0),
-             1 if item.get("ai_related") else 0, run_id, today))
+             1 if item.get("ai_related") else 0, run_id, today, item.get("sector", ""), item.get("scope", "")))
         for term in item.get("keywords", []):
             self.db.execute("INSERT INTO item_terms VALUES (?,?,?,?)", (k, norm(term), "tag", today))
         item["key"] = k
@@ -200,6 +204,24 @@ class Store:
             out.append({"id": r["key"], "title": r["title"], "domain": r["domain"], "first_seen": r["first_seen"],
                         "history": [(h["run_date"], h["composite"]) for h in hist], "last": last})
         return out
+
+    # local entrepreneurship topics (any sector) ------------------------------------------------------
+    def save_local_topic(self, t: dict, today: str) -> None:
+        k = t.get("id") or key_of(t.get("topic", ""))
+        t["id"] = k
+        if self.db.execute("SELECT 1 FROM local_topics WHERE key=?", (k,)).fetchone():
+            self.db.execute("UPDATE local_topics SET title=?, sector=?, last_seen=?, runs=runs+1, last_strength=?, "
+                            "data=? WHERE key=?", (t.get("topic", ""), t.get("sector", ""), today,
+                                                   t.get("strength", 0), json.dumps(t, ensure_ascii=False), k))
+        else:
+            self.db.execute("INSERT INTO local_topics VALUES (?,?,?,?,?,1,?,?)",
+                            (k, t.get("topic", ""), t.get("sector", ""), today, today, t.get("strength", 0),
+                             json.dumps(t, ensure_ascii=False)))
+
+    def local_topics(self, limit: int = 30) -> list[dict]:
+        rows = self.db.execute("SELECT key, title, sector, first_seen, last_seen, runs, last_strength FROM local_topics "
+                               "ORDER BY last_seen DESC, runs DESC LIMIT ?", (limit,))
+        return [dict(r) for r in rows]
 
     # runs ----------------------------------------------------------------------------------------
     def save_run(self, run_id: str, today: str, n_items: int, n_new: int, cost_aud: float, errors: list[str]):

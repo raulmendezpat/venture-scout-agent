@@ -167,8 +167,48 @@ def cost_section(cost: dict, pricing: dict, models: dict, totals: dict | None) -
     return L
 
 
+SECTOR_ES = {"hospitality_food": "Gastronomía y hospitalidad", "retail_ecommerce": "Comercio y ecommerce",
+             "construction_trades": "Construcción y oficios", "property": "Inmobiliario",
+             "health_wellness": "Salud y bienestar", "aged_care_disability": "Adultos mayores y discapacidad (NDIS)",
+             "education_training": "Educación y formación", "tourism_events": "Turismo y eventos",
+             "professional_services": "Servicios profesionales", "technology_ai": "Tecnología e IA",
+             "creative_media": "Creativo y medios", "agriculture_food_production": "Agro y producción de alimentos",
+             "manufacturing": "Manufactura", "energy_sustainability": "Energía y sostenibilidad",
+             "transport_logistics": "Transporte y logística", "finance": "Finanzas",
+             "community_social": "Comunitario y social", "other": "Otros"}
+MOMENTUM_ES = {"new": "nuevo", "rising": "subiendo", "stable": "estable", "falling": "bajando"}
+
+
+def _sector(s: str) -> str:
+    return SECTOR_ES.get(s, _cell(s))
+
+
+def local_section(local: dict | None, sectors: list[dict]) -> list[str]:
+    L = ["## Tendencias de emprendimiento en Brisbane (todos los sectores)", ""]
+    if local and local.get("summary"):
+        L += [local["summary"], ""]
+    topics = (local or {}).get("topics", [])
+    if topics:
+        L += ["| Tema | Sector | Fuerza | Momento | Sentimiento | Qué está pasando | Oportunidad a tiempo parcial | Capital inicial | Ventaja con tus skills | Evidencia |",
+              "|---|---|---|---|---|---|---|---|---|---|"]
+        for t in topics:
+            ev = ", ".join(f"[{k}]({u})" for k, u in enumerate(t["evidence_urls"][:3], 1))
+            L.append(f"| **{_cell(t['topic'])}** | {_sector(t['sector'])} | {t['strength']} | "
+                     f"{MOMENTUM_ES.get(t['momentum'], t['momentum'])} | {t['sentiment']} | {_cell(t['what'])} {_cell(t['why_now'])} | "
+                     f"{_cell(t['opportunity'])} | AUD {t['startup_capital_aud']:,} | {t['fit_for_founder']} | {ev} |")
+        L += [""]
+    else:
+        L += ["Sin temas con evidencia verificable en esta ejecución.", ""]
+    if sectors:
+        L += ["**Actividad por sector en Brisbane y Queensland** (elementos de los últimos 14 días frente a los 14 anteriores)", "",
+              "| Sector | Ahora | Antes | Cambio | Sentimiento (-1 a 1) |", "|---|---|---|---|---|"]
+        L += [f"| {_sector(r['sector'])} | {r['current']} | {r['previous']} | {r['change']:+d} | "
+              f"{'' if r['sentiment'] is None else r['sentiment']} |" for r in sectors[:12]] + [""]
+    return L
+
+
 def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: list[dict], strategy: dict | None,
-                   stats: dict) -> str:
+                   stats: dict, local: dict | None = None) -> str:
     L = [f"# Venture Scout, {today}", ""]
     L += [f"Fuentes revisadas: {stats['groups']} grupos; elementos nuevos: {stats['new']} (de {stats['seen']} "
           f"encontrados). Ventana de tendencias: {trends['window']['current'][0]} a {trends['window']['current'][1]}, "
@@ -207,6 +247,7 @@ def build_markdown(today: str, ideas: dict, people: dict, trends: dict, ledger: 
         if i["evidence_urls"]:
             L += ["**Evidencia:** " + ", ".join(f"[{k}]({u})" for k, u in enumerate(i["evidence_urls"], 1)), ""]
 
+    L += local_section(local, trends.get("local_sectors", []))
     L += network_section(people)
 
     other = [i for i in ideas["ideas"] if not i["passes"]]

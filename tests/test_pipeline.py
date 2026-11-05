@@ -3,7 +3,7 @@ from datetime import date, timedelta
 
 import run
 from agents import analyst, trends
-from agents.common import load_config
+from agents.common import load_config, load_sources
 from agents.store import Store
 
 
@@ -11,12 +11,12 @@ def test_mock_run_end_to_end(tmp_path):
     db = tmp_path / "v.db"
     assert run.main(["--mock", "--weekly", "--db", str(db), "--today", "2026-11-05"]) == 0
     s = Store(str(db))
-    assert s.db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 4 * 9
+    assert s.db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 4 * len(load_sources()["groups"])
     ledger = s.idea_ledger()
     assert {l["title"] for l in ledger} >= {"Recepcionista IA para clínicas"}
     # second run two days later: items dedupe, ideas keep one history row per run
     assert run.main(["--mock", "--db", str(db), "--today", "2026-11-07"]) == 0
-    assert s.db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 4 * 9
+    assert s.db.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 4 * len(load_sources()["groups"])
     assert s.db.execute("SELECT COUNT(*) FROM idea_scores").fetchone()[0] == 6
 
 
@@ -209,3 +209,17 @@ def test_calls_are_streamed_when_client_supports_it():
     out = LLM(client=C()).structured(model="claude-sonnet-5-5", system="s", user="u", schema=SCHEMA, name="report",
                                      max_tokens=24000)
     assert out == {"items": [1]} and seen["max_tokens"] == 24000
+
+
+def test_brisbane_trends_section(tmp_path):
+    db = tmp_path / "v.db"
+    run.main(["--mock", "--db", str(db), "--today", "2026-11-05"])
+    md = sorted(run.ROOT.glob("out/2026-11-05_*/reports/2026-11-05.md"))[-1].read_text(encoding="utf-8")
+    sec = md[md.index("## Tendencias de emprendimiento en Brisbane"):md.index("## Red de contactos")]
+    assert "Cafeterías de especialidad en Moreton Bay" in sec and "Tema sin evidencia" not in sec
+    assert "Actividad por sector en Brisbane y Queensland" in sec and "Salud y bienestar" in sec
+    assert "Tecnología e IA" not in sec.split("Actividad por sector")[1]   # australia-scoped items are excluded
+    s = Store(str(db))
+    assert s.local_topics()[0]["title"] == "Cafeterías de especialidad en Moreton Bay"
+    run.main(["--mock", "--db", str(db), "--today", "2026-11-07"])
+    assert s.local_topics()[0]["runs"] == 2

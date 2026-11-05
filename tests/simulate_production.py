@@ -100,7 +100,9 @@ def fake_output(name: str, user: str, state: dict, rng: random.Random) -> dict:
                               "summary": f"Australian businesses discuss {th}; demand and pricing details.",
                               "keywords": [th, "ai agents", rng.choice(["smes", "automation", "brisbane"])],
                               "themes": [th], "sentiment": max(-1, min(1, sent + rng.uniform(-0.2, 0.2))),
-                              "ai_related": True, "idea_signal": f"Service around {th}"})
+                              "ai_related": True, "sector": rng.choice(["hospitality_food", "technology_ai", "health_wellness", "construction_trades"]),
+                              "scope": rng.choice(["brisbane", "queensland", "australia"]),
+                              "idea_signal": f"Service around {th}"})
         if rng.random() < 0.3 and state["urls"]:   # the same article found again by another group
             items.append(dict(state["urls"][-1]))
         state["urls"].extend(items[-2:])
@@ -148,6 +150,13 @@ def fake_output(name: str, user: str, state: dict, rng: random.Random) -> dict:
                 "follow": [{"name": p[0], "headline": p[1],
                             "linkedin_url": f"https://www.linkedin.com/in/{p[0].lower().replace(' ', '-')}",
                             "posts_about": "IA", "why": "Autoridad."} for p in PEOPLE]}
+    if name == "local_trends":
+        urls = re.findall(r'"url": "(https://example\.org/[A-Za-z_]+/\d+)"', user)[:3]
+        return {"summary": "Resumen local.",
+                "topics": [{"id": "", "topic": f"Tema local {k}", "sector": "hospitality_food", "what": "Qué.",
+                            "why_now": "Por qué.", "momentum": "rising", "strength": 60 + k, "sentiment": "mixto",
+                            "opportunity": "Oportunidad.", "startup_capital_aud": 1000, "fit_for_founder": "baja",
+                            "evidence_urls": urls[k:k + 1]} for k in range(3)]}
     if name == "weekly_strategy":
         return {"headline": "Probar la idea con más señal persistente.",
                 "top_bets": [{"idea": "Ai Receptionist For Clinics", "why": "Sube cada semana.", "kill_criteria": "0 de 10."}],
