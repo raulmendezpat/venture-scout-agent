@@ -135,7 +135,7 @@ def main(argv: list[str] | None = None) -> int:
     (reports_dir / f"{today}.md").write_text(md, encoding="utf-8")
     (reports_dir / "latest.md").write_text(md, encoding="utf-8")
     report.send(report.subject_line(cfg["email"]["subject_prefix"], today, ideas, bool(strategy)), md,
-                report.recipient(cfg), outbox)
+                report.report_recipients(cfg), outbox)
     store.save_run(run_id, today, len(found["items"]), len(new_items), cost["aud"], errors)
 
     if not args.dry_run:   # processed hand-pasted posts move out of the inbox

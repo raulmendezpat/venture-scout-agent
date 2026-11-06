@@ -303,6 +303,17 @@ def recipient(cfg: dict) -> str:
             or cfg.get("email", {}).get("to") or "")
 
 
+def report_recipients(cfg: dict) -> str:
+    """Main recipient plus the extra report recipients in config (email.also_to), comma separated.
+    Only the report goes to the extra recipients; test emails and failure notices go to the main one."""
+    extra = cfg.get("email", {}).get("also_to") or []
+    out = []
+    for a in [recipient(cfg), *extra]:
+        if a and a.lower() not in {x.lower() for x in out}:
+            out.append(a)
+    return ", ".join(out)
+
+
 def send(subject: str, md: str, to: str, outbox=None) -> None:
     """Send the report through Gmail SMTP with the GMAIL_USER and GMAIL_APP_PASSWORD secrets.
     With outbox set (dry run or mock) the message is written to outbox/report.eml instead."""

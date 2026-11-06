@@ -49,3 +49,5 @@ pricing:
 email:
   # Recipient: the EMAIL_TO secret if it exists, otherwise the GMAIL_USER account. Sent with GMAIL_APP_PASSWORD.
   subject_prefix: "[Venture Scout]"
+  also_to:              # extra recipients of the report only (not of test emails or failure notices)
+    - Lumendez7@hotmail.com

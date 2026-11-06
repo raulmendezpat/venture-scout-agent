@@ -223,3 +223,26 @@ def test_brisbane_trends_section(tmp_path):
     assert s.local_topics()[0]["title"] == "Cafeterías de especialidad en Moreton Bay"
     run.main(["--mock", "--db", str(db), "--today", "2026-11-07"])
     assert s.local_topics()[0]["runs"] == 2
+
+
+def test_report_goes_to_extra_recipients(monkeypatch):
+    from agents import report
+    sent = {}
+
+    class FakeSMTP:
+        def __init__(self, host, port, timeout=None): pass
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def login(self, u, p): pass
+        def send_message(self, m): sent["to"] = m["To"]
+
+    monkeypatch.setattr(report.smtplib, "SMTP_SSL", FakeSMTP)
+    monkeypatch.setenv("GMAIL_USER", "me@gmail.com")
+    monkeypatch.setenv("GMAIL_APP_PASSWORD", "x")
+    monkeypatch.delenv("EMAIL_TO", raising=False)
+    cfg = load_config()
+    to = report.report_recipients(cfg)
+    assert to == "me@gmail.com, Lumendez7@hotmail.com"
+    report.send("s", "# hola", to)
+    assert sent["to"] == "me@gmail.com, Lumendez7@hotmail.com"
+    assert report.recipient(cfg) == "me@gmail.com"   # failure notices and test emails: main recipient only
