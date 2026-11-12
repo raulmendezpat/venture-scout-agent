@@ -1,298 +1,271 @@
-# Venture Scout, 2026-11-10
+# Venture Scout, 2026-11-12
 
-Fuentes revisadas: 10 grupos; elementos nuevos: 20 (de 67 encontrados). Ventana de tendencias: 2026-10-27 a 2026-11-10, 165 elementos, 70% sobre IA. Costo estimado: AUD 1.64.
+Fuentes revisadas: 10 grupos; elementos nuevos: 16 (de 67 encontrados). Ventana de tendencias: 2026-10-29 a 2026-11-12, 181 elementos, 70% sobre IA. Costo estimado: AUD 1.69.
 
 ## Qué cambió
 
-Esta semana el mercado confirma la dirección de las corridas anteriores. El dinero grande va a plataformas de agentes empresariales (Future Secure AI, US$80M), lo que deja los flujos estrechos de SMEs y ONGs a consultores pequeños. La demanda de confianza y verificación de agentes aparece como categoría financiada (Crux Labs), y la regulación avanza hacia estándares obligatorios con una nueva Office of AI; el aviso de divulgación de decisiones automatizadas del 10 de diciembre de 2026 viene de un blog de consultoría y conviene verificarlo en la fuente oficial. Los términos "ai agents" y "automation" ganan peso en la historia, aunque solo hay dos semanas con datos, así que ninguna tendencia es todavía persistente. Para ONGs hay una señal fuerte: la mayoría usa IA generativa y pocas tienen política, y el National AI Centre con Infoxchange prepara plantillas gratuitas, lo cual obliga a vender ejecución y personalización, no plantillas genéricas. En agentes para SMEs ya operan agencias de Brisbane (Emerge AI, Advancer), por eso conviene un nicho angosto y con gobernanza incluida.
+En esta ventana (181 items, 70% de IA) el tema más persistente y con mejor tendencia es "ai agents" (17 menciones en W45 y 7 en W46), junto con "ai adoption" y "automation", que también ganan peso. Las señales de regulación se endurecen: el gobierno federal anunció salvaguardas obligatorias y un regulador de seguridad de IA, aunque las fuentes discrepan sobre el estado y el foco está en modelos de frontera, por lo que el sentimiento del tema "gobernanza de IA para SMEs" cae (−0,05, pendiente −0,3). Aparece financiamiento público para adopción: programa de AI Adopt Uplift para manufactura en Queensland, 10 millones de AUD en el presupuesto estatal y AI Adopt Centres, lo que abre un canal de subcontratación sin ventas en frío. La competencia local en agentes empaquetados es real (Emerge AI, Advancer, AI4Tradies), así que conviene un nicho estrecho: contabilidad, seguridad y permisos de agentes, ONGs. Los términos de redes y eventos (networking, meetup, governance) se enfrían tras la semana de recolección inicial, pero los eventos de agentes en Brisbane (AI Tinkerers, Build Club, The Precinct) siguen siendo buena vía para clientes y cofundadores. Ojo: el historial tiene solo 2 semanas de datos, así que ninguna tendencia está confirmada.
 
 ## Ideas recomendadas (pasan los filtros)
 
-### 1. Paquete de política de IA y divulgación de decisiones automatizadas para ONGs (86.0/100, subiendo)
+### 1. Auditoría de permisos y seguridad de agentes de IA para SMEs (83.4/100, subiendo)
+
+Las SMEs que ya usan ChatGPT, Copilot o agentes pagan una auditoría fija de 1 semana que mapea herramientas no aprobadas, permisos de datos, fugas y acciones no intencionadas de agentes, con un plan priorizado basado en Essential Eight. Se entrega como informe corto y sesión de revisión, y luego un chequeo trimestral.
+
+| Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
+|---|---|---|---|---|---|---|---|
+| 78 | 92 | 82 | 62 | AUD 600 | 10 | 2 | bajo |
+
+**Cliente:** SMEs de 10 a 100 personas en servicios profesionales, salud privada y finanzas que ya usan IA y manejan datos personales. **Modelo de ingreso:** Auditoría fija de 2.500 a 6.000 AUD, más chequeo trimestral de 600 a 1.200 AUD
+
+**Por qué ahora:** El riesgo de agentes sin control llega a la prensa internacional, ANZ construye una capa de control para sus agentes y el gobierno anuncia reglas obligatorias; las SMEs no tienen quién les traduzca eso a una lista de acciones.
+
+**Competencia:** Consultoras de ciberseguridad grandes (caras para SMEs), agencias de IA que ofrecen gobernanza como extra, y guías gratuitas del gobierno. Pocos ofrecen una auditoría específica de agentes a precio fijo.
+
+**Prueba de validación:** Enviar 20 mensajes directos a dueños de SMEs y firmas de contabilidad en Brisbane ofreciendo la auditoría a 2.500 AUD; si 2 aceptan una llamada de 20 minutos y 1 acepta pagar, sigue; si ninguno responde, falla.
+
+**Primeros pasos (2 semanas):**
+
+1. Armar una lista de verificación de 25 controles (Essential Eight más permisos de agentes) y una plantilla de informe de 6 páginas
+2. Ofrecer 3 auditorías piloto gratuitas o a mitad de precio a contactos de su red a cambio de testimonio
+3. Presentar su declaración de empleo secundario y asistir al meetup de AI Tinkerers Brisbane para conseguir conversaciones
+
+**Nota sobre QFD:** Vender solo a SMEs privadas; no usar plantillas, hallazgos ni contactos de QFD y declarar la actividad secundaria según la política del sector público de Queensland.
+
+**Riesgos:** La ley anunciada se centra en modelos de frontera y puede no obligar a las SMEs; El sentimiento sobre gobernanza para SMEs es bajo y bajando; Las SMEs pueden ver la auditoría como un gasto sin retorno; Responsabilidad profesional por recomendaciones de seguridad
+
+**Evidencia:** [1](https://www.washingtonpost.com/technology/2026/10/02/independent-researchers-are-revealing-new-details-about-rogue-ai-agents/), [2](https://dev.to/vuhung16au/australia-daily-ai-llm-briefing-november-11-2026-9do), [3](https://www.startupdaily.net/topic/politics-news-analysis/australia-will-get-ai-safety-standards-as-law-with-a-watchdog-to-enforce-them/)
+
+### 2. Paquete de política de IA y divulgación de decisiones automatizadas para ONGs (80.3/100, estable)
 
 Las ONGs y organizaciones pequeñas que usan IA sin políticas pagan un precio fijo por una política de IA, un inventario de herramientas y texto de divulgación para su política de privacidad. Se entrega remoto con plantillas propias, una sesión de revisión y un informe corto de brechas frente a la guía de adopción de IA y el Voluntary AI Safety Standard.
 
 | Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
 |---|---|---|---|---|---|---|---|
-| 82 | 88 | 90 | 72 | AUD 300 | 10 | 2 | bajo |
+| 70 | 86 | 90 | 50 | AUD 300 | 8 | 2 | bajo |
 
-**Cliente:** ONGs y organizaciones comunitarias de Queensland con 5 a 50 empleados que ya usan ChatGPT o Copilot. **Modelo de ingreso:** Precio fijo de AUD 1.500 a 3.500 por paquete, más chequeo anual opcional
+**Cliente:** ONGs y organizaciones comunitarias de 5 a 80 personas en Queensland (servicios sociales, salud comunitaria, educación). **Modelo de ingreso:** Paquete fijo de 1.200 a 3.000 AUD, más revisión anual de 500 AUD
 
-**Por qué ahora:** La mayoría de las ONGs usa IA generativa y pocas tienen política (PwC e Infoxchange). Un blog de consultoría indica que la divulgación de decisiones automatizadas empieza el 10 de diciembre de 2026, fecha a confirmar con fuente oficial del OAIC.
+**Por qué ahora:** El National AI Centre trabaja con Infoxchange en plantillas y capacitación para ONGs, lo que confirma la necesidad y educa al mercado; las nuevas reglas de privacidad sobre decisiones automatizadas aumentan la urgencia de divulgar.
 
-**Competencia:** El National AI Centre e Infoxchange preparan plantillas gratuitas; consultoras grandes como PwC atienden al segmento alto. Su ventaja es personalización, precio fijo y criterio técnico.
+**Competencia:** Plantillas gratuitas del National AI Centre e Infoxchange (amenaza de precio cero), abogados y consultoras de gobernanza. Su ventaja es la implementación práctica y el vínculo técnico.
 
-**Prueba de validación:** Contactar 20 ONGs con una oferta de precio fijo; si 2 piden reunión y 1 paga un piloto en 4 semanas, la idea se valida.
-
-**Primeros pasos (2 semanas):**
-
-1. Verificar la fecha y el alcance de la divulgación de decisiones automatizadas en fuentes del OAIC y redactar una plantilla de política de 3 páginas
-2. Enviar la oferta a 15 ONGs de Moreton Bay y Brisbane por LinkedIn y correo, con una revisión gratuita de 20 minutos
-3. Declarar la actividad secundaria a QFD y crear una página simple con precio fijo
-
-**Nota sobre QFD:** Evitar ONGs o agencias ligadas a emergencias o al gobierno de Queensland en las primeras ventas. Declarar la actividad secundaria a QFD antes de cobrar.
-
-**Riesgos:** Las plantillas gratuitas del gobierno bajan el precio de referencia; Las ONGs tienen presupuestos pequeños y decisiones lentas; La fecha del 10 de diciembre viene de un blog y debe verificarse antes de usarla en ventas; No es asesoría legal; necesita descargo claro
-
-**Evidencia:** [1](https://www.pwc.com.au/media/2026/helping-not-for-profits-thrive-in-the-age-of-ai.html), [2](https://enterprisemonkey.com.au/ai-policy-australia-business-guide/), [3](https://www.industry.gov.au/publications/australian-government-response-senate-select-committee-adopting-artificial-intelligence-ai-report)
-
-### 2. Auditoría de permisos y seguridad de agentes de IA para SMEs (84.7/100, subiendo)
-
-Las SMEs que ya usan ChatGPT, Copilot o agentes pagan una auditoría fija de 1 semana que mapea herramientas de IA no aprobadas, permisos de datos, fuga de datos y acciones no intencionadas de agentes, con un plan priorizado basado en Essential Eight. Se entrega como informe corto y una sesión de revisión, y luego un chequeo trimestral.
-
-| Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
-|---|---|---|---|---|---|---|---|
-| 80 | 92 | 82 | 65 | AUD 300 | 12 | 2 | bajo |
-
-**Cliente:** SMEs de servicios profesionales, salud administrativa y construcción con 10 a 100 empleados. **Modelo de ingreso:** Auditoría fija de AUD 2.500 a 5.000 y chequeo trimestral de AUD 600 a 1.200
-
-**Por qué ahora:** La verificación de agentes ya es una categoría financiada (Crux Labs), hay casos de agentes que acceden sin autorización y el gobierno se mueve hacia estándares obligatorios con una Office of AI.
-
-**Competencia:** Consultoras de ciberseguridad y los MSP hacen Essential Eight, pero casi nadie combina agentes de IA con Essential Eight para SMEs. Crux Labs apunta a un segmento distinto.
-
-**Prueba de validación:** Realizar 2 auditorías piloto gratuitas o con descuento y medir si al menos 1 cliente contrata el chequeo trimestral.
+**Prueba de validación:** Publicar la oferta en LinkedIn y en 2 grupos de gerentes de ONGs; meta: 3 llamadas de descubrimiento y 1 pago en 4 semanas.
 
 **Primeros pasos (2 semanas):**
 
-1. Armar una lista de verificación de 30 puntos de agentes y permisos basada en Essential Eight y probarla con 2 SMEs de su red sin costo
-2. Ofrecer una auditoría piloto con descuento a 3 firmas contables o de servicios profesionales
-3. Publicar un artículo corto en LinkedIn sobre riesgos de agentes en SMEs para atraer consultas
+1. Revisar las plantillas de Infoxchange cuando salgan y definir qué añade su paquete (inventario, divulgación, revisión)
+2. Escribir un paquete de ejemplo con una ONG ficticia y publicarlo como lead magnet
+3. Contactar a 10 ONGs en Moreton Bay y Brisbane a través de redes y cámaras locales
 
-**Nota sobre QFD:** Usar solo marcos públicos (Essential Eight, guías del gobierno) y no material de QFD. Evitar clientes del sector emergencias.
+**Nota sobre QFD:** Evitar ONGs de emergencias o con contratos con QFD; no usar material interno de QFD.
 
-**Riesgos:** Las SMEs subestiman el riesgo hasta que hay un incidente; Responsabilidad profesional: necesita seguro y contrato claros; Vender seguridad requiere credibilidad que se construye con casos
+**Riesgos:** Las plantillas gratuitas del gobierno pueden bajar la disposición a pagar; Las ONGs tienen presupuesto escaso y ciclos de decisión por junta; Ticket bajo: se necesitan muchos clientes; Cambio de estado de la regulación (voluntaria o mandatoria)
 
-**Evidencia:** [1](https://blog.mean.ceo/tech-startup-funding-news-november-2026/), [2](https://www.washingtonpost.com/technology/2026/10/02/independent-researchers-are-revealing-new-details-about-rogue-ai-agents/), [3](https://www.whitecase.com/insight-alert/australian-ai-update-australia-changes-course)
+**Evidencia:** [1](https://www.industry.gov.au/publications/australian-government-response-senate-select-committee-adopting-artificial-intelligence-ai-report), [2](https://theconversation.com/australia-will-impose-mandatory-safety-rules-on-ai-are-we-focused-on-the-right-risks-296282)
 
-### 3. Arquitecto de IA fraccional para startups y scaleups (80.0/100, estable)
+### 3. Arquitecto de IA fraccional para startups y scaleups (77.6/100, estable)
 
 Startups de IA con financiación temprana contratan unas 8 a 16 horas al mes de arquitectura: diseño de agentes, seguridad, identidad, cumplimiento y plan de nube en AWS o Azure, para pasar de prototipo a producción confiable. Se entrega con revisiones de arquitectura, documentos de decisiones y apoyo a due diligence de clientes empresariales.
 
 | Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
 |---|---|---|---|---|---|---|---|
-| 76 | 90 | 68 | 65 | AUD 500 | 12 | 3 | bajo |
+| 68 | 90 | 68 | 60 | AUD 400 | 10 | 3 | bajo |
 
-**Cliente:** Startups de IA en etapa pre seed y seed en Brisbane y Queensland, incluidas cohortes de aceleradoras. **Modelo de ingreso:** Retainer mensual de AUD 2.000 a 4.000 por 8 a 16 horas
+**Cliente:** Startups de IA seed y pre seed en Brisbane, incluidas las de Queensland AI Hub, UQ ilab y Antler Queensland. **Modelo de ingreso:** Retainer mensual de 2.000 a 4.000 AUD por 8 a 16 horas
 
-**Por qué ahora:** Hay capital activo en IA y programas en Brisbane (Queensland AI Hub, River City Labs, UQ ilab, Antler) que generan startups que necesitan arquitectura seria sin contratar a tiempo completo.
+**Por qué ahora:** Hay aceleradores y pre aceleradores activos en Brisbane y rondas seed en Queensland (Smart AI Connect), pero pocas startups nuevas, así que el flujo es pequeño; el nicho de seguridad y cumplimiento para IA en sectores regulados es donde su perfil casi no tiene rivales.
 
-**Competencia:** Freelancers y CTOs fraccionales en Australia; pocos con experiencia regulada y de identidad. Pocas startups de IA nuevas en Brisbane limitan el tamaño del mercado local.
+**Competencia:** Freelancers de arquitectura en la nube, CTOs fraccionales y consultoras; pocos con experiencia en banca regulada, identidad y seguridad pública.
 
-**Prueba de validación:** Vender 2 revisiones de arquitectura pagadas de AUD 400 a 600 y ver si alguna pasa a retainer.
-
-**Primeros pasos (2 semanas):**
-
-1. Asistir a un evento de Build Club o AI Brisbane y hablar con 5 fundadores
-2. Publicar una oferta de revisión de arquitectura de 2 horas a precio fijo
-3. Contactar mentores de Queensland AI Hub para ofrecer sesiones de arquitectura a su cohorte
-
-**Nota sobre QFD:** No tomar startups que vendan a QFD o a emergencias en Queensland. Declarar el trabajo secundario y evitar horas laborales.
-
-**Riesgos:** Mercado local pequeño (Tracxn muestra pocas startups nuevas en Brisbane); Retainers de varios clientes chocan con un empleo de tiempo completo; Los fundadores pagan poco antes de levantar capital
-
-**Evidencia:** [1](https://qldaihub.com/launch-ai-accelerator/), [2](https://www.techpartner.news/news/queensland-startup-smart-ai-connect-secures-1-million-seed-round-625462), [3](https://www.smartcompany.com.au/startupsmart/three-australian-startups-that-raised-125-million-this-week/)
-
-### 4. Talleres prácticos de agentes de IA para dueños de SMEs y ONGs en Brisbane (79.3/100, estable)
-
-Dueños de pequeños negocios y gerentes de ONGs pagan por un taller presencial de medio día con ejemplos reales, donde construyen un asistente o agente simple para su administración y llevan una política de uso responsable. Se vende por asiento y en paquetes in house, y luego se convierte en curso online.
-
-| Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
-|---|---|---|---|---|---|---|---|
-| 74 | 82 | 78 | 62 | AUD 600 | 10 | 2 | ninguno |
-
-**Cliente:** Dueños de SMEs, gerentes de ONGs y cámaras de comercio de Moreton Bay y Brisbane Norte. **Modelo de ingreso:** AUD 150 a 300 por asiento, paquetes in house de AUD 2.000 a 4.000 y curso online posterior
-
-**Por qué ahora:** NAB indica que las SMEs quieren adoptar IA pero solo con formación adecuada. Hay eventos de agentes en Brisbane (The Precinct, 19 de noviembre) y el AI Centre prepara capacitación para NFPs.
-
-**Competencia:** Advancer combina agentes y capacitación; The Precinct, Build Club y los programas del National AI Centre ofrecen sesiones gratuitas o baratas.
-
-**Prueba de validación:** Preventa de 10 asientos pagados en 3 semanas; si se llega a 10, se hace el taller y se pide un paquete in house.
+**Prueba de validación:** Ofrecer revisiones de arquitectura de 1.500 AUD a 10 startups; si 2 compran, ofrecer retainer; si ninguna compra, bajar a mentoría gratuita para generar contactos.
 
 **Primeros pasos (2 semanas):**
 
-1. Diseñar un taller de 3 horas con un caso real de agente (consultas y agenda) y un kit de política
-2. Hablar con la cámara de comercio de Moreton Bay y The Precinct para co-organizar una sesión piloto
-3. Preventa de 10 asientos a AUD 99 en Humanitix
+1. Escribir una oferta de 'revisión de arquitectura de agentes en 5 días' como producto de entrada de 1.500 AUD
+2. Presentarse en mentoría del Queensland AI Hub y ofrecerse como mentor o asesor
+3. Conversar con 5 fundadores en AI Tinkerers o Build Club sobre su due diligence de seguridad
 
-**Nota sobre QFD:** Tema genérico, sin relación con emergencias ni con compras de gobierno.
+**Nota sobre QFD:** No asesorar a startups que vendan a QFD ni a competidores en licitaciones donde conozca información interna.
 
-**Riesgos:** Los talleres gratuitos bajan la disposición a pagar; Ingresos por hora bajos frente a servicios; Logística presencial en evenings y fines de semana
+**Riesgos:** Pocas startups con presupuesto en Brisbane; Las horas de cliente chocan con su horario de trabajo si hay urgencias; Los retainers exigen disponibilidad estable; Posible conflicto si la startup vende a servicios de emergencia
 
-**Evidencia:** [1](https://precinctqld.com.au/events/), [2](https://www.advancer.com.au/)
+**Evidencia:** [1](https://qldaihub.com/launch-ai-accelerator/), [2](https://www.techpartner.news/news/queensland-startup-smart-ai-connect-secures-1-million-seed-round-625462), [3](https://tracxn.com/d/artificial-intelligence/ai-startups-in-brisbane-in-australia/__FmLbkVpARmVF3oQWD3KONOCN6jTL1qrdrxTAi4zpbtA/companies)
 
-### 5. Pilotos de agentes de IA con alcance fijo y ahorro medido para SMEs (78.0/100, subiendo)
-
-Dueños de SMEs de servicios profesionales, construcción y administración de salud pagan un piloto de 3 a 4 semanas a precio fijo que automatiza una tarea administrativa (cotizaciones, facturas, consultas, agenda) con agentes Claude u OpenAI y mide las horas ahorradas. Si funciona pasa a una suscripción mensual de operación, monitoreo y aprobación humana.
-
-| Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
-|---|---|---|---|---|---|---|---|
-| 76 | 84 | 65 | 65 | AUD 500 | 14 | 3 | ninguno |
-
-**Cliente:** SMEs de Moreton Bay y Brisbane Norte, con foco en construcción (unas 9.400 empresas en Moreton Bay) y servicios profesionales. **Modelo de ingreso:** Piloto fijo de AUD 3.000 a 6.000 y suscripción mensual de AUD 500 a 1.500
-
-**Por qué ahora:** Sentimiento de agentes para pequeños negocios sube (0.3 a 0.6) y las plataformas financiadas dejan sin atender flujos específicos de dueños operadores.
-
-**Competencia:** Emerge AI y Advancer en Brisbane con precios fijos y entrega rápida; Relevance AI y Lorikeet a nivel plataforma. Es el segmento más disputado.
-
-**Prueba de validación:** Cerrar 1 piloto pagado de AUD 2.000 o más con métricas medibles en 6 semanas.
-
-**Primeros pasos (2 semanas):**
-
-1. Elegir un caso (cotizaciones de una empresa de construcción) y construir una demo de 1 semana
-2. Ofrecer 2 pilotos con descuento a cambio de caso de estudio y cifras de horas ahorradas
-3. Documentar la plantilla de entrega con aprobación humana para repetirla
-
-**Nota sobre QFD:** Evitar clientes de emergencias o del sector público en Queensland.
-
-**Riesgos:** Competencia local con ventas más maduras; Cada cliente exige soporte y se come las horas disponibles; Dificultad de mantener suscripciones con 10 a 15 horas semanales
-
-**Evidencia:** [1](https://emergeai.com.au/), [2](https://www.advancer.com.au/), [3](https://economy.id.com.au/moreton-bay/business-locations), [4](https://tech-insider.org/au/australian-tech-startups-2026/)
-
-### 6. Paquete de flujos de IA para firmas de contabilidad y bookkeeping (77.0/100, estable)
+### 4. Paquete de flujos de IA para firmas de contabilidad y bookkeeping (76.7/100, subiendo)
 
 Pequeñas firmas de contabilidad y bookkeeping pagan por un paquete de flujos con agentes (conciliación, recolección de documentos, preparación de BAS con revisión humana) más una política de uso de IA y controles de privacidad. Se entrega como implementación fija de 2 a 3 semanas sobre Xero o Dext, y luego una suscripción de mantenimiento.
 
 | Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
 |---|---|---|---|---|---|---|---|
-| 75 | 78 | 70 | 65 | AUD 500 | 12 | 3 | ninguno |
+| 76 | 82 | 68 | 55 | AUD 700 | 12 | 3 | ninguno |
 
-**Cliente:** Firmas de contabilidad y bookkeeping de 2 a 15 personas en Queensland. **Modelo de ingreso:** Implementación fija de AUD 3.000 a 7.000 y mantenimiento mensual de AUD 400 a 1.000
+**Cliente:** Firmas de contabilidad y bookkeeping de 2 a 15 personas en Queensland. **Modelo de ingreso:** Implementación de 3.000 a 7.000 AUD y mantenimiento mensual de 300 a 800 AUD
 
-**Por qué ahora:** Dext reporta que 6 de cada 10 contadores sufren cargas pesadas y 46% ve alivio con automatización. La escasez de personal empuja a comprar IA para trabajo que no pueden contratar.
+**Por qué ahora:** Seis de cada diez contadores reportan sobrecarga diaria y el 46% ya nota alivio con automatización; se contrata poco personal y solo cerca del 16% invierte activamente en IA (cifra por verificar), lo que deja un hueco de implementación segura.
 
-**Competencia:** Vendors como Agentive, Dext y Xero con IA integrada; consultores de bookkeeping. Su ventaja es la política de gobernanza y los controles de privacidad incluidos.
+**Competencia:** Dext, Xero y sus partners; agencias como Agentive. Su diferencial es combinar el flujo con política de IA y privacidad.
 
-**Prueba de validación:** Conseguir que 2 de 8 firmas entrevistadas acepten un piloto pagado.
+**Prueba de validación:** Publicar una oferta de diagnóstico de 500 AUD a 15 firmas; 2 compras validan, cero compras matan el nicho.
 
 **Primeros pasos (2 semanas):**
 
-1. Entrevistar 8 firmas contables sobre su tarea más lenta (recolección de documentos o conciliación)
-2. Construir un prototipo de recolección de documentos con aprobación humana sobre datos sintéticos
-3. Ofrecer 1 piloto con descuento a una firma pequeña y registrar horas ahorradas
+1. Crear un demo de conciliación y recolección de documentos sobre datos de prueba de Xero
+2. Entrevistar a 8 firmas pequeñas sobre sus 3 tareas más pesadas
+3. Ofrecer 2 implementaciones piloto con descuento
 
-**Nota sobre QFD:** Sin vínculo con QFD ni con el sector público.
+**Nota sobre QFD:** Sector privado sin relación con QFD.
 
-**Riesgos:** Xero y Dext incorporan IA nativa y reducen el espacio; Datos financieros de clientes elevan responsabilidad y privacidad; Algunas cifras vienen de un blog de proveedor y deben verificarse
+**Riesgos:** Los datos financieros de clientes elevan el riesgo de privacidad y de responsabilidad; Xero y Dext incorporan agentes propios; Los contadores son conservadores y sensibles a reputación; Ciclo de venta basado en confianza y referidos
 
 **Evidencia:** [1](https://cfotech.com.au/story/australian-accountants-face-constant-workload-pressures), [2](https://agentive.au/blog/accounting-skills-shortage-ai-is-not-the-competition/)
 
-### 7. Cumplimiento y datos del consumidor (CDR, Open Banking) como servicio para pequeñas fintech (73.2/100, estable)
+### 5. Talleres prácticos de agentes de IA para dueños de SMEs y ONGs en Brisbane (75.8/100, estable)
+
+Dueños de pequeños negocios y gerentes de ONGs pagan por un taller presencial de medio día con ejemplos reales, donde construyen un asistente o agente simple para su administración y llevan una política de uso responsable. Se vende por asiento y en paquetes in house, y luego se convierte en curso online.
+
+| Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
+|---|---|---|---|---|---|---|---|
+| 66 | 78 | 78 | 55 | AUD 500 | 8 | 2 | ninguno |
+
+**Cliente:** Dueños de pequeños negocios, gerentes de ONGs y cámaras de comercio en Moreton Bay y Brisbane. **Modelo de ingreso:** Entrada de 150 a 300 AUD por asiento, paquetes in house de 2.000 a 4.000 AUD
+
+**Por qué ahora:** Hay talleres de agentes con venta de entradas en Brisbane (The Precinct, 19 de noviembre) y las cámaras de Moreton Bay crecen; Advancer ya combina formación con despliegue, lo que confirma la demanda.
+
+**Competencia:** Talleres gratuitos del gobierno y de bancos, Advancer, AI Tinkerers y plataformas online; el precio por asiento se comprime.
+
+**Prueba de validación:** Preventa de 10 entradas a 99 AUD para un taller piloto; si se venden 6 o más, seguir; si no, usarlo como embudo gratuito para pilotos.
+
+**Primeros pasos (2 semanas):**
+
+1. Contactar a Pumicestone Chamber y cámaras de Moreton Bay para un taller piloto
+2. Diseñar un taller de 3 horas con un agente de consultas o agenda construido en vivo
+3. Asistir al taller de The Precinct del 19 de noviembre para observar formato y asistentes
+
+**Nota sobre QFD:** Evitar audiencias de emergencias o de agencias del gobierno de Queensland sin aprobación.
+
+**Riesgos:** Ingreso por asiento bajo para el esfuerzo; Contenido de IA se desactualiza rápido; Asistencia incierta en eventos pagados; Competencia gratuita del National AI Centre
+
+**Evidencia:** [1](https://precinctqld.com.au/events/), [2](https://www.advancer.com.au/), [3](https://moretondailybusiness.com.au/), [4](https://brisbane.aitinkerers.org/)
+
+### 6. Pilotos de agentes de IA con alcance fijo y ahorro medido para SMEs (74.1/100, subiendo)
+
+Dueños de SMEs de servicios profesionales, construcción y administración de salud pagan un piloto de 3 a 4 semanas a precio fijo que automatiza una tarea administrativa (cotizaciones, facturas, consultas, agenda) con agentes Claude u OpenAI y mide las horas ahorradas. Si funciona pasa a una suscripción mensual de operación, monitoreo y aprobación humana.
+
+| Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
+|---|---|---|---|---|---|---|---|
+| 72 | 78 | 60 | 55 | AUD 800 | 14 | 2 | ninguno |
+
+**Cliente:** SMEs de 5 a 50 personas en Moreton Bay y Brisbane norte (construcción, servicios profesionales, salud privada). **Modelo de ingreso:** Piloto de 3.000 a 6.000 AUD, luego suscripción de 400 a 1.000 AUD al mes
+
+**Por qué ahora:** El presupuesto de Queensland incluye 10 millones de AUD para que pequeñas empresas adopten IA y el sentimiento sobre agentes para pequeñas empresas sube (de 0,3 a 0,6), pero Emerge AI y Advancer ya venden agentes a precio fijo.
+
+**Competencia:** Emerge AI y Advancer en Brisbane, AI4Tradies para tradies y muchas agencias; la diferenciación debe ser el nicho vertical y la medición del ahorro.
+
+**Prueba de validación:** Vender un piloto a 3.000 AUD a un negocio de su red en 4 semanas; si nadie paga, el nicho es demasiado genérico.
+
+**Primeros pasos (2 semanas):**
+
+1. Elegir un vertical (por ejemplo construcción o contabilidad) y construir un agente demo de cotizaciones o facturas
+2. Preguntar a 10 negocios locales qué tarea administrativa les consume más de 5 horas a la semana
+3. Cotizar un piloto con medición de horas antes y después y cerrar uno a precio reducido a cambio de caso de estudio
+
+**Nota sobre QFD:** Clientes privados sin relación con emergencias ni con el gobierno.
+
+**Riesgos:** Mercado saturado de agencias generalistas; Soporte continuo difícil de combinar con empleo a tiempo completo; Proyectos a medida no escalan; Clientes pequeños con poca disposición a pagar suscripciones
+
+**Evidencia:** [1](https://emergeai.com.au/), [2](https://www.advancer.com.au/), [3](https://www.qsbc.qld.gov.au/news-and-media/small-business-roundup-june-2026), [4](https://www.ai4tradies.com.au/#consulting)
+
+### 7. Cumplimiento y datos del consumidor (CDR, Open Banking) como servicio para pequeñas fintech (71.2/100, estable)
 
 Pequeñas fintech y empresas de datos que quieren usar CDR o cumplir auditorías de seguridad pagan por revisiones de arquitectura, mapeo de controles y automatización de evidencias de cumplimiento. Se entrega como sprint de 2 a 4 semanas con documentación y automatización.
 
 | Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
 |---|---|---|---|---|---|---|---|
-| 62 | 88 | 60 | 55 | AUD 300 | 10 | 4 | ninguno |
+| 58 | 88 | 55 | 55 | AUD 500 | 12 | 4 | ninguno |
 
-**Cliente:** Fintech pequeñas y empresas de datos en Queensland y Australia, incluidas startups de ciberseguridad financiera. **Modelo de ingreso:** Sprint de AUD 4.000 a 10.000 o retainer mensual
+**Cliente:** Fintech seed y empresas de datos que buscan acreditación o auditoría de seguridad en Australia. **Modelo de ingreso:** Sprint de 5.000 a 12.000 AUD, luego soporte mensual
 
-**Por qué ahora:** Una startup de Queensland levantó semilla para herramientas de IA y ciberseguridad para fondos de jubilación, lo que indica interés en cumplimiento de IA en finanzas. Falta evidencia directa de demanda de CDR.
+**Por qué ahora:** El seed de Smart AI Connect y el control de agentes de ANZ muestran que la seguridad de IA en finanzas atrae dinero, pero no hay evidencia nueva directa sobre demanda de CDR.
 
-**Competencia:** Consultoras de la gran cuatro, boutiques de CDR y proveedores de plataformas de datos del consumidor. Es un nicho con pocos compradores.
+**Competencia:** Consultoras de cumplimiento y plataformas de evidencia (Vanta, Drata) con partners locales.
 
-**Prueba de validación:** Lograr 3 llamadas de descubrimiento y 1 propuesta pagada de sprint en 8 semanas.
+**Prueba de validación:** Hacer 8 llamadas con fintech; si 2 piden una propuesta pagada, seguir; si no, convertirlo en complemento del arquitecto fraccional.
 
 **Primeros pasos (2 semanas):**
 
-1. Listar 30 fintech y data holders de Brisbane y Sídney con mensajes personalizados
-2. Publicar un resumen técnico sobre automatización de evidencias para auditorías de seguridad
-3. Pedir 5 conversaciones a contactos de su etapa bancaria
+1. Contactar a 10 fundadores fintech por LinkedIn con una oferta de revisión de 90 minutos
+2. Publicar un artículo sobre controles de CDR y Essential Eight para startups
+3. Preguntar a mentores del ecosistema si conocen fintech que necesiten ayuda
 
-**Nota sobre QFD:** Sector financiero sin relación con QFD.
+**Nota sobre QFD:** Sector financiero privado; no hay conflicto con QFD.
 
-**Riesgos:** Pocos clientes y ciclos de venta largos; Evidencia directa de demanda de CDR débil en este periodo; Requiere credibilidad y referencias formales
+**Riesgos:** Mercado pequeño y ventas lentas; Pocas señales nuevas en la recolección; Responsabilidad en auditorías
 
-**Evidencia:** [1](https://www.techpartner.news/news/queensland-startup-smart-ai-connect-secures-1-million-seed-round-625462), [2](https://www.whitecase.com/insight-alert/australian-ai-update-australia-changes-course)
+**Evidencia:** [1](https://www.techpartner.news/news/queensland-startup-smart-ai-connect-secures-1-million-seed-round-625462), [2](https://dev.to/vuhung16au/australia-daily-ai-llm-briefing-november-11-2026-9do)
 
-### 8. Puente LatAm y Australia: adopción de IA para negocios hispanohablantes y exportadores (72.0/100, estable)
+### 8. Puente LatAm y Australia: adopción de IA para negocios hispanohablantes y exportadores (67.2/100, estable)
 
 Negocios de hispanohablantes en Australia y empresas latinoamericanas que quieren vender a Australia pagan por asesoría y automatización en español: cumplimiento local, atención al cliente con agentes bilingües y arquitectura. Se entrega remoto con paquetes fijos.
 
 | Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
 |---|---|---|---|---|---|---|---|
-| 55 | 85 | 72 | 50 | AUD 300 | 8 | 4 | ninguno |
+| 45 | 80 | 65 | 50 | AUD 300 | 8 | 4 | ninguno |
 
-**Cliente:** Pequeños negocios de comunidades hispanohablantes en Brisbane y exportadores latinoamericanos. **Modelo de ingreso:** Paquetes fijos de AUD 1.500 a 5.000 en español
+**Cliente:** Negocios de hispanohablantes en Brisbane y empresas latinoamericanas que exportan a Australia. **Modelo de ingreso:** Paquetes fijos de 1.500 a 5.000 AUD y soporte mensual
 
-**Por qué ahora:** Sin evidencia nueva de demanda específica este periodo. Su mayor valor es como canal de captación y diferenciador en español junto con las otras ofertas.
+**Por qué ahora:** Los vínculos comerciales de Moreton Bay con nuevos mercados indican interés exportador, pero no hay evidencia directa de demanda hispanohablante en esta ventana.
 
-**Competencia:** Pocos competidores específicos en español, aunque el mercado es pequeño y fragmentado.
+**Competencia:** Poca competencia directa en español, pero también poca demanda demostrada.
 
-**Prueba de validación:** Entrevistar a 8 dueños hispanohablantes y lograr 1 pago por una oferta en español en 8 semanas.
-
-**Primeros pasos (2 semanas):**
-
-1. Ofrecer la política de IA y la auditoría de agentes en versión en español como variante
-2. Contactar 2 cámaras de comercio latinoamericanas en Australia
-3. Mapear 20 negocios hispanohablantes en Brisbane y entrevistar a 5
-
-**Nota sobre QFD:** Sin vínculo con QFD.
-
-**Riesgos:** Mercado difuso y de bajo presupuesto; Sin señales directas en la evidencia reciente; Riesgo de dispersar el foco
-
-**Evidencia:** [1](https://www.smartcompany.com.au/startupsmart/three-australian-startups-that-raised-125-million-this-week/)
-
-### 9. Recepcionista de voz con IA para tradies y clínicas pequeñas (69.6/100, estable)
-
-Tradies y clínicas pagan una suscripción por un agente de voz que atiende llamadas fuera de horario, toma reservas y envía resúmenes. Se entrega como servicio configurado sobre proveedores de voz existentes.
-
-| Señal de mercado | Fit contigo | Tiempo parcial | Sentimiento | Capital inicial | Horas/sem | Meses a ingreso | Conflicto QFD |
-|---|---|---|---|---|---|---|---|
-| 62 | 65 | 65 | 60 | AUD 800 | 10 | 2 | ninguno |
-
-**Cliente:** Tradies de Moreton Bay (construcción es el mayor grupo) y clínicas pequeñas. **Modelo de ingreso:** Configuración de AUD 500 a 1.000 y suscripción de AUD 150 a 400 al mes
-
-**Por qué ahora:** El tema de recepcionista y cotizaciones para oficios es recurrente aunque menor, y Moreton Bay concentra unas 9.400 empresas de construcción. El caso de Heidi sugiere que las operaciones austeras se premian.
-
-**Competencia:** Emerge AI y Advancer ofrecen voz; muchos proveedores SaaS baratos hacen lo mismo. Alta competencia y márgenes bajos.
-
-**Prueba de validación:** Conseguir 3 suscriptores de pago a AUD 150 o más al mes dentro de 8 semanas.
+**Prueba de validación:** Realizar 10 conversaciones en español; si 2 aceptan un diagnóstico pagado de 300 AUD, seguir.
 
 **Primeros pasos (2 semanas):**
 
-1. Armar una demo con un proveedor de voz para un tradie conocido
-2. Probar con 3 tradies durante 2 semanas gratis a cambio de testimonio
-3. Definir un contrato de privacidad y un guion de escalamiento humano
+1. Publicar la oferta en español en grupos de hispanohablantes de Brisbane
+2. Hablar con 10 dueños de negocios hispanos sobre sus tareas administrativas
+3. Usarlo como canal de referidos para los pilotos de agentes
 
-**Nota sobre QFD:** Evitar clínicas del sistema público de Queensland.
+**Nota sobre QFD:** Sin relación con QFD.
 
-**Riesgos:** Producto commodity con márgenes bajos; Llamadas de clínicas elevan riesgos de privacidad de salud; Soporte continuo consume horas
+**Riesgos:** Mercado difuso y pequeño; Pocas señales en los datos; Dependencia de referidos
 
-**Evidencia:** [1](https://emergeai.com.au/), [2](https://itbrief.com.au/story/linkedin-ranks-australia-s-top-startups-as-ai-booms), [3](https://economy.id.com.au/moreton-bay/business-locations)
+**Evidencia:** [1](https://moretondailybusiness.com.au/)
 
 ## Tendencias de emprendimiento en Brisbane (todos los sectores)
 
-En Brisbane y SEQ el movimiento principal gira en torno a Brisbane 2032: cerca de $2.5 mil millones en compras con unas 500 oportunidades, y una encuesta de CommBank indica que pocas empresas están preparadas. También crece la oferta de agencias de agentes de IA para pymes, junto con programas de IA para manufactura (hasta $250,000 por proyecto) y aceleradoras locales. En Moreton Bay se combinan manufactura, construcción y apoyo municipal. La gastronomía se expande a calles de barrio y los hoteles nuevos suman capacidad para eventos. El lado negativo es la baja confianza empresarial y el aumento de disputas comerciales (más de 2,200 consultas, +9.6%).
+Esta semana el movimiento más fuerte en Brisbane viene de dos frentes: la cadena de proveedores de Brisbane 2032 (unos $2.5 mil millones y cerca de 500 oportunidades, abiertas a pymes) y la adopción de IA en pymes, apoyada por un programa estatal de $10 millones y por AI Adopt Uplift para manufactureros. La hostelería sigue con marcas multisede y restaurantes de barrio fuera del centro, y la apertura del Novotel en el CBD suma capacidad para conferencias. Moreton Bay aparece como corredor de manufactura liviana y oficios, con 40,867 empresas activas. El ánimo es mixto: las disputas comerciales subieron cerca de 9.6% y se habla de baja confianza empresarial. Las pymes ven la oportunidad de 2032 pero pocas están preparadas, lo que abre espacio para servicios de preparación de licitaciones.
 
 | Tema | Sector | Fuerza | Momento | Sentimiento | Qué está pasando | Oportunidad a tiempo parcial | Capital inicial | Ventaja con tus skills | Evidencia |
 |---|---|---|---|---|---|---|---|---|---|
-| **Proveedores pequeños para Brisbane 2032** | Turismo y eventos | 84 | estable | positivo | Brisbane 2032 abrió expresiones de interés para proveedores: unos $2.5 mil millones y unas 500 oportunidades (catering, vallas, señalética, uniformes, servicios médicos). El Consejo de Brisbane pide registrarse en ICN Gateway. Los Juegos de 2032 están en fase de compras y las pymes y negocios nuevos pueden postular. La encuesta de CommBank muestra que pocos están preparados, así que hay ventaja para quien se prepare temprano. | Servicio part time de registro y preparación de propuestas para microproveedores: registrar en ICN Gateway, armar fichas de capacidades y plantillas de oferta para uniformes, señalética o catering. | AUD 1,500 | media | [1](https://business.gov.au/news/unlock-brisbane-2032-olympic-and-paralympic-games-opportunities), [2](https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/business/documents/BiB%20-%20February-April%202026%20-%20Tagged%20web%20PDF%20-%204%20Feb%202026.pdf) |
-| **Agentes de IA y automatización para pymes de Brisbane** | Tecnología e IA | 80 | subiendo | positivo | Agencias locales como Emerge AI y Advancer venden agentes de IA, voz con IA y capacitación a precio fijo, con el primer agente en producción en unos 30 días. Hay talleres locales, como el del 19 de noviembre en The Precinct. Tracxn muestra pocas empresas nuevas de IA fundadas en Brisbane en 2026. Las herramientas de agentes son baratas y accesibles, y las pymes quieren productividad por el costo de vida y la escasez de personal. El mercado ya es competitivo, por lo que conviene un nicho. | Ofrecer un agente de IA en un nicho vertical (por ejemplo, reservas y consultas para restaurantes, o investigación de leads para oficios) con precio fijo y mantenimiento mensual. | AUD 1,000 | alta | [1](https://emergeai.com.au/), [2](https://www.advancer.com.au/), [3](https://precinctqld.com.au/events/) |
-| **IA para manufactureros de Queensland (AI Adopt Uplift)** | Manufactura | 72 | nuevo | positivo | El programa AI Adopt Uplift ofrece a manufactureros de Queensland proyectos de IA de hasta $250,000, entregados con ingenieros de ARM Hub. Moreton Bay valora su manufactura en más de $5 mil millones y quiere más suelo industrial. Hay financiamiento público para adoptar IA y una base manufacturera en crecimiento por población y cercanía al aeropuerto. | Consultoría de diagnóstico de datos y casos de uso de IA para pequeños fabricantes, que los ayude a postular y los conecte con socios de entrega. | AUD 1,500 | alta | [1](https://smbtech.au/news/queensland-manufacturers-offered-up-to-250000-each-in-government-backed-ai-projects/), [2](https://www.manmonthly.com.au/moreton-bay-targets-manufacturing-growth), [3](https://www.moretonbay.qld.gov.au/Services/Business-Investment) |
-| **Eventos, conferencias y paquetes turísticos** | Turismo y eventos | 66 | estable | positivo | El Novotel Brisbane City Centre (239 habitaciones, salas de reuniones) abrió el 1 de noviembre de 2026. Visit Brisbane y BEDA listan locales nuevos como Alfi en Everton Park y Dimmi en Ascot, que dan material para paquetes y tours. La capacidad hotelera y de eventos crece antes de 2032 y el turismo gastronómico de barrio gana fuerza. | Tours gastronómicos de barrio o paquetes para grupos corporativos en locales nuevos, con reservas online y comisiones. | AUD 2,500 | media | [1](https://www.thehotelconversation.com.au/properties/2026/10/20/accor-open-novotel-brisbane-city-centre/1792470573), [2](https://www.cimbusinessevents.com.au/accor-to-open-new-novotel-in-brisbane-cbd/), [3](https://www.travelmonitor.com.au/whats-new-in-brisbane-summer-2026/) |
-| **Capital y aceleradoras locales para startups** | Finanzas | 62 | estable | positivo | Hay varias vías de apoyo: Female Founders Co-Investment Fund (subsidios de $50,000 a $200,000, hasta junio de 2027), aceleradoras del QVCDF (Momentum, 77 Venture Challenge), RCL Accelerator con oferta de $100K, Launch AI de Queensland AI Hub y una posible cohorte de Antler (dato sin verificar). Smart AI Connect cerró una ronda semilla de $1M. El fondo de fondos estatal y QIC están haciendo que las startups de Queensland estén listas para invertir. | Servicio de preparación para aceleradoras: pitch deck, métricas y modelo financiero para fundadores en etapa temprana, o una comunidad de validación de ideas de IA. | AUD 500 | alta | [1](https://advance.qld.gov.au/grants-and-programs), [2](https://www.qic.com/Investment-Capabilities/Private-Equity/Queensland-Venture-Capital-Development-Fund/Accelerator-Program-Providers), [3](http://www.rivercitylabs.net) |
-| **IA y privacidad para gobiernos locales y sectores regulados** | Transporte y logística | 58 | estable | positivo | El Consejo de Brisbane planea un piloto de semáforos con IA en 37 intersecciones, con datos difuminados y almacenados en centros de datos del consejo. Smart AI Connect trabaja con herramientas de ciberseguridad para fondos de jubilación. El sector público y las industrias reguladas exigen alojamiento local y cumplimiento de privacidad al adoptar IA. | Consultoría part time en evaluación de privacidad y alojamiento local para proveedores de IA que quieran vender a consejos y entidades reguladas. | AUD 1,500 | alta | [1](https://insidelocalgovernment.com.au/australian-first-ai-traffic-lights-signal-new-era-for-brisbane-drivers/), [2](https://www.techpartner.news/news/queensland-startup-smart-ai-connect-secures-1-million-seed-round-625462) |
-| **Gastronomía de barrio y marcas que salen del centro** | Gastronomía y hospitalidad | 55 | subiendo | positivo | Haigh's abre en Chermside y Carindale, Gelato Messina y Shadow Baking llegan a Racecourse Road, y Broadsheet destaca restaurantes pequeños en Red Hill, West End y South Brisbane. Las calles de barrio atraen a clientes y a restauranteros de alto perfil, mientras crece la población de los suburbios. | Servicio de marketing local, reservas y análisis de reseñas para cafés y restaurantes de barrio, o un pequeño negocio de pastelería por pedido. | AUD 2,000 | media | [1](https://www.indailyqld.com.au/theweekendedition-brisbane/food-drink/2026/11/03/pavement-whispers-november-3-2026), [2](https://www.broadsheet.com.au/featured/brisbane-best-new-restaurants-2026) |
-| **Oficios y construcción en Moreton Bay** | Construcción y oficios | 50 | estable | mixto | Moreton Bay tiene unos 40,867 negocios activos registrados en GST (junio de 2026) y la construcción es el mayor grupo, con unos 9,400 negocios. El corredor norte crece en población y vivienda, lo que sostiene la demanda de servicios de oficios. | Servicio de presupuestos, agenda y seguimiento a clientes para pequeños contratistas, con plantillas y automatización simple. | AUD 1,000 | media | [1](https://economy.id.com.au/moreton-bay/business-locations) |
-| **Disputas comerciales y baja confianza de pymes** | Otros | 50 | subiendo | negativo | El Comisionado de Pequeños Negocios de Queensland atendió más de 2,200 consultas y disputas en 2025-26 (cerca de +9.6%). En julio de 2026 se habló de baja confianza empresarial. El programa Small Business Friendly ya incluye 50 consejos. Las presiones de costos y arriendos elevan los conflictos, y el consejo y el gobierno amplían el apoyo. | Guías y plantillas de preparación para disputas de arriendo y contratos, para pequeños comerciantes, con derivación al comisionado. | AUD 500 | media | [1](https://www.parliament.qld.gov.au/Work-of-the-Assembly/Tabled-Papers/docs/5826T1789/5826t1789.pdf), [2](https://documents.parliament.qld.gov.au/events/han/2026/2026_07_31_EstimatesLGC.pdf) |
-| **Promoción inmobiliaria pequeña: townhouses y boutique** | Inmobiliario | 42 | estable | mixto | Un pronóstico dice que la oferta de vivienda nueva es débil, mantiene la presión sobre los arriendos y favorece a townhouses de anillo interno y medio y a bloques boutique en 2026 y 2027. Falta de oferta y arriendos altos, aunque requiere más capital. | Con poco capital: estudios de factibilidad con datos para pequeños inversionistas, o gestión de proyecto a comisión. | AUD 2,000 | media | [1](https://propertyupdate.com.au/whats-ahead-brisbanes-property-market/) |
+| **Proveedores pequeños para Brisbane 2032** | Turismo y eventos | 85 | estable | positivo | Brisbane 2032 abrió expresiones de interés para proveedores: unos $2.5 mil millones y cerca de 500 oportunidades (catering, vallas, señalización, uniformes, servicios médicos), con más de 50 paquetes. El comité dice que la mayor parte del gasto ya va a empresas locales, con buena parte a pymes. El Consejo de Brisbane insta a registrarse vía ICN Gateway. Los Juegos de 2032 están en fase de contratación temprana, hay política explícita de legado local y la ventana para posicionarse como proveedor está abierta. | Servicio part time para microempresas de oficios, catering o uniformes: registrarlas en ICN Gateway, preparar sus perfiles de capacidad y monitorear los paquetes de EOI que les calcen, cobrando tarifa fija por postulación. | AUD 1,500 | media | [1](https://business.gov.au/news/unlock-brisbane-2032-olympic-and-paralympic-games-opportunities), [2](https://www.olympics.com/ioc/news/brisbane-2032-unveils-strategy-to-boost-local-business-and-create-a-long-term-games-legacy), [3](https://www.brisbane.qld.gov.au/content/dam/brisbanecitycouncil/corpwebsite/business/documents/BiB%20-%20February-April%202026%20-%20Tagged%20web%20PDF%20-%204%20Feb%202026.pdf) |
+| **Agentes de IA y automatización para pymes de Brisbane** | Tecnología e IA | 82 | subiendo | positivo | Consultoras locales como Emerge AI y Advancer venden agentes de IA, voz con IA y automatizaciones a precio fijo, con un primer agente en 30 días. Hay talleres (The Precinct, 19 de noviembre sobre agentes para investigar leads) y comunidades como AI Tinkerers y Build Club. El presupuesto estatal incluye $10 millones para que pymes adopten IA. Subsidio estatal para adopción de IA, herramientas de agentes más baratas y pocas startups nuevas de IA en Brisbane en 2026, lo que deja nichos libres, aunque ya hay competencia. | Oferta estrecha de agentes de IA para un solo rubro (por ejemplo, clínicas, inmobiliarias o electricistas): recepción por voz o calificación de leads, con implementación a precio fijo y mantenimiento mensual. | AUD 2,000 | alta | [1](https://emergeai.com.au/), [2](https://www.advancer.com.au/), [3](https://www.qsbc.qld.gov.au/news-and-media/small-business-roundup-june-2026) |
+| **IA para manufactureros de Queensland (AI Adopt Uplift)** | Manufactura | 70 | estable | positivo | AI Adopt Uplift ofrece proyectos de IA totalmente entregados (hasta $250,000 por empresa) con ingenieros de ARM Hub integrados en cada negocio. Exige al menos la mitad del personal en Queensland y dos años de operación en el estado. Financiamiento estatal activo y manufactura de Moreton Bay valorada en más de $5 mil millones, con presión por productividad. | Ayudar a fabricantes pequeños a postular y a preparar sus datos (inventario, calidad, mantenimiento) antes del proyecto, como consultor independiente por horas. | AUD 1,000 | alta | [1](https://smbtech.au/news/queensland-manufacturers-offered-up-to-250000-each-in-government-backed-ai-projects/), [2](https://www.manmonthly.com.au/moreton-bay-targets-manufacturing-growth) |
+| **Preparación de licitaciones para pymes ante 2032** | Finanzas | 68 | nuevo | mixto | Una encuesta YouGov de CommBank (1,010 dueños, septiembre de 2026) halló que muchos ven 2032 como oportunidad pero pocos se han preparado. Las firmas de $2 millones o más piden más apoyo en licitaciones y capacidades. Las EOI de 2032 ya están abiertas y hay una brecha entre interés y preparación. | Coaching de licitaciones: plantillas de respuesta, matriz de capacidades y apoyo de redacción con IA para pymes de $2M o más. | AUD 1,000 | alta | [1](https://smbtech.au/news/most-australian-businesses-see-brisbane-2032-as-an-opportunity-but-few-are-prepared-to-act/), [2](https://business.gov.au/news/unlock-brisbane-2032-olympic-and-paralympic-games-opportunities) |
+| **Eventos, conferencias y paquetes turísticos** | Turismo y eventos | 64 | estable | positivo | El Novotel de 239 habitaciones abrió en el CBD el 1 de noviembre de 2026 con salas de reuniones. Visit Brisbane y BEDA listan nuevos locales (Everton Park, Ascot, Cordelia Street) que sirven de material para tours y paquetes. La preparación para 2032 aumenta la capacidad hotelera y de reuniones, y los nuevos locales crean demanda de experiencias curadas. | Pequeño operador de tours gastronómicos o paquetes de reunión más experiencia local para equipos corporativos, usando locales nuevos y reservas online. | AUD 3,000 | media | [1](https://www.thehotelconversation.com.au/properties/2026/10/20/accor-open-novotel-brisbane-city-centre/1792470573), [2](https://www.cimbusinessevents.com.au/accor-to-open-new-novotel-in-brisbane-cbd/), [3](https://www.travelmonitor.com.au/whats-new-in-brisbane-summer-2026/) |
+| **Capital y aceleradoras locales para startups** | Finanzas | 60 | estable | positivo | Hay un ecosistema de apoyo: RCL Accelerator ($100K), aceleradoras del QVCDF (Momentum, 77 Venture Challenge), Launch AI de Queensland AI Hub y el fondo para mujeres fundadoras ($50,000 a $200,000, hasta 30 de junio de 2027). Una guía menciona una primera cohorte de Antler en Queensland (sin verificar). Smart AI Connect levantó $1M de semilla. Fondos respaldados por QIC y el estado buscan startups listas para invertir; los fundadores solos de IA tienen programas dirigidos. | Servicio de preparación para postular a aceleradoras y subvenciones (pitch, modelo financiero, data room), a precio fijo para fundadores técnicos. | AUD 500 | alta | [1](https://www.qic.com/Investment-Capabilities/Private-Equity/Queensland-Venture-Capital-Development-Fund/Accelerator-Program-Providers), [2](http://www.rivercitylabs.net), [3](https://advance.qld.gov.au/grants-and-programs) |
+| **Gastronomía de barrio y marcas multisede** | Gastronomía y hospitalidad | 58 | subiendo | positivo | Haigh's, Gelato Messina, Shadow Baking y Happy Pops (franquicia) se expanden en suburbios y Margaret Street. Broadsheet destaca restaurantes pequeños en Red Hill, West End y Nobby Beach, y hay conceptos de bar y bodega con noches con productores. Las marcas consolidadas llegan a las calles de barrio, lo que sube el nivel y los arriendos, pero también la demanda de experiencias. | Evento mensual de degustación con productores en un local asociado, o un servicio de reservas y fidelización para pequeños locales. | AUD 3,000 | baja | [1](https://www.indailyqld.com.au/theweekendedition-brisbane/food-drink/2026/11/03/pavement-whispers-november-3-2026), [2](https://www.broadsheet.com.au/featured/brisbane-best-new-restaurants-2026), [3](https://www.indailyqld.com.au/theweekendedition-brisbane/food-drink/2026/11/10/pavement-whispers-november-10-2026) |
+| **Oficios y construcción en Moreton Bay** | Construcción y oficios | 55 | estable | positivo | Moreton Bay tiene unas 40,867 empresas activas con GST y la construcción es el mayor grupo (unos 9,400). ProcurePro, de Queensland, usa IA para estimar costos de construcción y supera US$10 millones de ingresos recurrentes. El crecimiento poblacional del corredor norte sostiene la demanda de oficios, y el software vertical muestra que hay valor en digitalizarlos. | Herramienta o servicio de presupuestos y cotizaciones asistido por IA para pequeños contratistas, cobrado por suscripción. | AUD 2,000 | alta | [1](https://economy.id.com.au/moreton-bay/business-locations), [2](https://www.startupdaily.net/topic/events/queensland-construction-tech-startup-procurepro-makes-startup-world-cup-top-10-in-san-francisco/) |
+| **Manufactura liviana en el corredor norte** | Manufactura | 55 | subiendo | positivo | El consejo de Moreton Bay dice que la manufactura vale más de $5 mil millones, cita el aeropuerto cercano y pide más suelo industrial en cuatro precintos. También hay un desafío de innovación abierto con Tokio. Crecimiento poblacional, proximidad al aeropuerto y política local de activar suelo industrial. | Taller de fabricación a pedido (impresión 3D, corte, prototipos) para pymes locales, empezando desde un espacio compartido. | AUD 8,000 | media | [1](https://www.moretonbay.qld.gov.au/Services/Business-Investment), [2](https://www.manmonthly.com.au/moreton-bay-targets-manufacturing-growth) |
+| **IA y privacidad para gobiernos locales y sectores regulados** | Transporte y logística | 55 | estable | positivo | El Consejo de Brisbane planea un piloto de semáforos con IA en 37 intersecciones a inicios del próximo año, con datos desenfocados y almacenados en centros de datos del consejo. Smart AI Connect, de Queensland, vende herramientas de ciberseguridad con IA a fondos de jubilación. El sector público y los regulados exigen IA con residencia de datos local y cumplimiento. | Evaluaciones de privacidad y arquitectura de IA con datos locales para pymes que venden a gobiernos o sectores regulados. | AUD 1,000 | alta | [1](https://insidelocalgovernment.com.au/australian-first-ai-traffic-lights-signal-new-era-for-brisbane-drivers/), [2](https://www.techpartner.news/news/queensland-startup-smart-ai-connect-secures-1-million-seed-round-625462) |
+| **Disputas comerciales y baja confianza de pymes** | Otros | 50 | estable | negativo | El Comisionado de Pequeños Negocios de Queensland atendió más de 2,200 consultas y disputas en 2025-26, cerca de 9.6% más, y el programa Small Business Friendly ya incluye 50 consejos. En julio se habló de baja confianza empresarial. En contraste, la cámara de Pumicestone crece y hay nuevos vínculos comerciales con Nueva Zelanda. Costos altos y arriendos tensos generan conflictos con arrendadores y clientes, mientras los consejos amplían su apoyo. | Guías y plantillas de bajo costo para pymes sobre contratos, arriendos y cobranza, más un directorio de mediación; no es asesoría legal. | AUD 800 | media | [1](https://www.parliament.qld.gov.au/Work-of-the-Assembly/Tabled-Papers/docs/5826T1789/5826t1789.pdf), [2](https://documents.parliament.qld.gov.au/events/han/2026/2026_07_31_EstimatesLGC.pdf), [3](https://moretondailybusiness.com.au/) |
 
 **Actividad por sector en Brisbane y Queensland** (elementos de los últimos 14 días frente a los 14 anteriores)
 
 | Sector | Ahora | Antes | Cambio | Sentimiento (-1 a 1) |
 |---|---|---|---|---|
+| Turismo y eventos | 5 | 0 | +5 | 0.57 |
+| Otros | 5 | 0 | +5 | 0.32 |
+| Tecnología e IA | 5 | 0 | +5 | 0.48 |
 | Finanzas | 4 | 0 | +4 | 0.45 |
 | Servicios profesionales | 4 | 0 | +4 | 0.38 |
-| Turismo y eventos | 4 | 0 | +4 | 0.54 |
-| Otros | 3 | 0 | +3 | 0.23 |
+| Gastronomía y hospitalidad | 3 | 0 | +3 | 0.57 |
 | Manufactura | 3 | 0 | +3 | 0.57 |
-| Gastronomía y hospitalidad | 2 | 0 | +2 | 0.6 |
-| Tecnología e IA | 2 | 0 | +2 | 0.4 |
-| Adultos mayores y discapacidad (NDIS) | 1 | 0 | +1 | -0.3 |
-| Construcción y oficios | 1 | 0 | +1 | 0.2 |
-| Transporte y logística | 1 | 0 | +1 | 0.4 |
+| Construcción y oficios | 2 | 0 | +2 | 0.45 |
+| Educación y formación | 2 | 0 | +2 | 0.45 |
+| Creativo y medios | 1 | 0 | +1 | 0.3 |
 | Inmobiliario | 1 | 0 | +1 | 0.3 |
-| Educación y formación | 1 | 0 | +1 | 0.6 |
+| Adultos mayores y discapacidad (NDIS) | 1 | 0 | +1 | -0.3 |
 
 ## Red de contactos
 
@@ -300,15 +273,14 @@ En Brisbane y SEQ el movimiento principal gira en torno a Brisbane 2032: cerca d
 
 | Prioridad | Grupo | Plataforma | Qué ganas | Cómo participar |
 |---|---|---|---|---|
-| alta | [AI Builders Brisbane](https://www.meetup.com/ai-builders-brisbane-ai-experts-engineers-ai-agents/) | Meetup | Encuentro mensual (tercer miércoles, en la noche) de ingenieros y desarrolladores de agentes. Allí puedes conocer cofundadores técnicos, pares y al organizador Michael Ridland, que dirige una consultora de agentes. Es el grupo más alineado con tu perfil de ingeniería de agentes. | Únete en Meetup, asiste al siguiente evento y ofrece una demo corta de tu sistema agéntico con la API de Claude o el Agents SDK (sin datos de QFD). Pide feedback sobre cómo empaquetarlo como servicio. |
-| alta | [Claude Code Meetups Australia (Brisbane)](https://claudecommunity.com.au/events) | Comunidad web | Comunidad de gente que construye con Claude, con un meetup en Brisbane enfocado en pequeñas y medianas empresas. Es el sitio más directo para encontrar dueños de pymes y consultores que ya usan tus herramientas. | Revisa la lista de eventos y asiste al próximo meetup de pymes. Lleva un ejemplo concreto de automatización para un oficio (por ejemplo, administración de tradies) y pregunta qué flujos de trabajo les duelen más. |
-| alta | [Brisbane Startup Founder 101 (Meetup)](https://www.meetup.com/brisbane-startup-founder-101/) | Meetup | Comunidad de fundadores con el Founder Institute. Tuvo una sesión titulada How to Start an AI Startup Without Quitting Your Job, que coincide con tu situación. Sirve para mentores y para validar el proceso paso a paso. | Únete y busca las sesiones en línea o de noche. Presenta tu situación (tiempo parcial, nicho de gobernanza y agentes) en una pregunta breve y pide que te recomienden a un asesor. Algunos eventos son de pago, revisa antes. |
-| alta | [Build Club Brisbane](https://luma.com/hg1zp2y6) | Luma / Slack (con solicitud) | Capítulo de Brisbane de una comunidad global de constructores de IA, con sesiones de coworking y demos. Los miembros son fundadores e ingenieros, ideal para encontrar cofundadores y colaboradores de prototipos. | Solicita el acceso al Slack de AI Builders y asiste a una sesión de coworking en el Queensland AI Hub. Lleva una tarea pequeña por construir, y comparte un aprendizaje al final. |
-| alta | [Brisbane Tradies & AI: Automating the Back Office](https://www.meetup.com/find/au--brisbane/networking/) | Meetup | Grupo pequeño (unos 10 miembros) de tradies y operadores que quieren automatizar la administración. Es una vía directa a primeros clientes con un problema claro, para validar una oferta de bajo costo sin tocar el sector público. | Únete y asiste a la sesión práctica del 18 de noviembre. Escucha tareas administrativas que consumen horas y ofrece hacer gratis un pequeño piloto para un miembro a cambio de un testimonio. |
-| media | [Queensland AI Hub](https://qldaihub.com/) | Asociación (apoyada por el Gobierno de Queensland) | Conecta fundadores, expertos, pymes e investigadores, y gestiona LaunchAI. Los eventos del hub y su boletín son una buena fuente de contactos con presupuesto cero. La membresía formal es de pago y no se muestra la tarifa, así que empieza gratis. | Suscríbete al boletín y sigue su página de LinkedIn (https://au.linkedin.com/company/qldaihub). Asiste a un evento abierto antes de pagar membresía. Pregunta por la próxima convocatoria de LaunchAI. Si algún contacto es de una agencia pública de Queensland, declara el posible conflicto antes de avanzar. |
-| media | [Brisbane Startup Founders and Tech Professionals (Meetup)](https://www.meetup.com/brisbane-startup-founders-and-tech-professionals/) | Meetup / Discord | Ofrece sesiones en línea de emparejamiento de cofundadores (Startup Oasis) y mastermind, compatibles con tu agenda. Es una de las mejores vías para encontrar un cofundador sin gastar. | Únete al grupo y al Discord. Antes de la sesión del 27 de noviembre, publica un perfil breve: lo que aportas (arquitectura, agentes, regulación) y el perfil complementario que buscas (ventas o producto). |
-| media | [AI & Society (Meetup)](https://www.meetup.com/ai-and-society-australia/) | Meetup | Comunidad nacional nacida en Brisbane que mezcla gente técnica y no técnica. Tiene un festival el 18 de noviembre y cafés recurrentes. Es útil para conocer posibles clientes de gobernanza y capacitación en IA. | Únete y asiste al festival o a un café en Fortitude Valley. Contribuye con una perspectiva práctica sobre guardrails y privacidad para organizaciones medianas. |
-| baja | [AI Tinkerers Brisbane](https://brisbane.aitinkerers.org/) | Sitio propio (con solicitud) | Encuentro práctico de constructores de agentes con demos en vivo y sin presentaciones de venta. Buena calidad técnica, pero la cadencia actual no está clara en los datos. | Solicita acceso y envía una propuesta de charla breve sobre tu prototipo multiagente (sin datos de QFD). Confirma antes si hay eventos programados. |
+| alta | [Claude Code Meetups Australia (capítulo Brisbane)](https://claudecommunity.com.au/events) | Comunidad web (claudecommunity.com.au) | Reúne a personas que construyen con Claude, tu stack principal, y tiene una sesión en Brisbane enfocada en pymes. Es el lugar con más probabilidad de encontrar a los primeros clientes y a colegas técnicos con tu mismo enfoque. | Es abierto. Apúntate al meetup de pymes en South Brisbane y lleva una demo de 3 minutos de un agente de administración (por ejemplo, triage de correos o presupuestos) construido sin datos de QFD. Pregunta a los asistentes qué tarea de oficina les consume más tiempo. |
+| alta | [Build Club Brisbane](https://luma.com/hg1zp2y6) | Luma y AI Builder Slack | Comunidad curada de fundadores e ingenieros de IA con coworking en el Queensland AI Hub y cenas de roundtable. Es útil para encontrar cofundadores técnicos y mentores entre builders serios. | Solicita acceso al AI Builder Slack. Primera contribución: presenta tu perfil (arquitecto con experiencia en dominios regulados) y comparte un breve resumen de lo que aprendiste con el Agents SDK sobre guardrails y pruebas de agentes. |
+| alta | [AI Tinkerers Brisbane](https://brisbane.aitinkerers.org/) | Sitio de la comunidad (por solicitud) | Meetup práctico de builders de agentes, con demos en vivo y networking sin pitch. Es ideal para ganar credibilidad técnica y encontrar cofundadores. Su actividad reciente no está confirmada, así que verifica primero el calendario. | Solicita la membresía en el sitio. Cuando haya una convocatoria de demos, propón una demo corta de un flujo multiagente con evaluación y control de permisos. |
+| alta | [Brisbane Tradies & AI: Automating the Back Office](https://www.meetup.com/find/au--brisbane/networking/) | Meetup | Grupo nuevo (unos 10 miembros) de tradies y operadores pequeños que quieren automatizar la administración. Encaja directamente con el nicho de agentes para pymes y puede darte clientes piloto de bajo costo. La URL es la de un listado general de Meetup, así que busca el grupo por nombre. | Únete y asiste a la sesión de administración para tradies del 18 de noviembre en Windsor. Escucha, anota los tres problemas más repetidos y ofrece resolver uno con un piloto gratuito y acotado para validar el servicio. |
+| media | [AI Builders Brisbane](https://www.meetup.com/ai-builders-brisbane-ai-experts-engineers-ai-agents/) | Meetup | Encuentro mensual, el tercer miércoles, de ingenieros y desarrolladores de agentes con charlas y networking. Es una fuente de cofundadores técnicos y de socios de entrega. | Únete (es abierto) y asiste a la sesión del tercer miércoles si tu horario lo permite. Aporta una pregunta técnica sobre evaluación de agentes y conecta después con dos asistentes por LinkedIn. |
+| media | [Queensland AI Hub (programa Launch AI y membresía)](https://qldaihub.com/programs/) | Asociación respaldada por el gobierno de Queensland | Ofrece el pre-acelerador Launch AI para startups de IA y agentes (cinco talleres, mentoría uno a uno y demo night ante inversores) y un boletín. Sirve para validar la idea con mentores locales sin inversión externa. La membresía es de pago y la convocatoria hay que verificarla. | Suscríbete al boletín, revisa si hay una nueva convocatoria de Launch AI y consulta el costo de la membresía antes de pagar. Primero asiste a una sesión de coworking vía Build Club. |
+| media | [Brisbane Startup Founders and Tech Professionals](https://www.meetup.com/brisbane-startup-founders-and-tech-professionals/) | Meetup (con comunidad en Discord) | Tiene sesiones en línea regulares de pitch, feedback y emparejamiento de cofundadores (Startup Oasis). Es la vía más compatible con tu agenda para conocer posibles cofundadores. | Únete y apúntate a Startup Oasis del 27 de noviembre a las 10:00 AEST (horario laboral, evalúa pedir un par de horas). Prepara un párrafo claro sobre el perfil de cofundador que buscas, por ejemplo ventas a pymes. |
+| baja | [Ocean Network](https://socialocean.com.au/contact/ocean-network) | Red de negocios (Redcliffe, Moreton Bay) | Red gratuita de dueños de negocios de Redcliffe, Moreton Bay y el norte de Brisbane, cerca de tu casa. Puede darte los primeros clientes pequeños sin desplazarte a la ciudad. Se reúne dos veces al mes hasta noviembre, así que la próxima oportunidad sería en febrero. | Preséntate en febrero como arquitecto que ayuda a pymes locales a ahorrar horas de administración con IA. Pregunta cuál es la tarea repetitiva que más les molesta en lugar de vender de entrada. |
 
 ### Actividades próximas
 
@@ -316,61 +288,65 @@ En Brisbane y SEQ el movimiento principal gira en torno a Brisbane 2032: cerca d
 
 | Fecha | Actividad | Formato | Lugar | Costo | Prioridad | Por qué ir |
 |---|---|---|---|---|---|---|
-| 2026-11-12 (jueves, noche) | [2026 AI Mega Meetup](https://events.humanitix.com/2026-ai-mega-meetup) | Presencial | The Precinct, Stair Stadium, Fortitude Valley, Brisbane | Gratis | alta | Reúne varias comunidades de IA de Brisbane en una noche, con panel de IA y networking. Es el mejor evento de esta semana para conocer constructores, posibles cofundadores y a Mila Guerra. Conviene llegar con una pregunta concreta y una presentación de 30 segundos. |
-| 2026-11-13 (viernes) | [AI + Mobile Brisbane Tech Talks and Networking](https://gdg.community.dev/events/details/google-gdg-brisbane-presents-ai-mobile-brisbane-tech-talks-amp-networking-in-collab-with-brisbane-mobile-app-development-meetup/) | Presencial | Brisbane (lugar no indicado en el listado) | No indicado en el listado | media | Charlas y demos de IA con networking entre desarrolladores locales, útil para encontrar un cofundador técnico. Confirma lugar y hora antes de ir, porque el listado no los muestra. |
-| 2026-11-17 (martes, mañana) | [Desayuno mensual de noviembre, Business Chamber North Lakes](https://www.eventbrite.com.au/d/australia--caboolture-south/networking/) | Presencial | North Lakes (lugar exacto por confirmar) | No indicado en el listado | baja | Está cerca de tu casa y reúne a dueños de pymes de Moreton Bay, posibles clientes locales. Es de mañana, así que solo sirve si puedes ausentarte de tu trabajo; no lo priorices. |
-| 2026-11-18 (miércoles) | [Less Paperwork, More Weekends: Hands-on AI for Tradie Admin](https://www.meetup.com/find/au--brisbane/small-business-networking/) | Presencial | Windsor Bowls Club, Windsor, Brisbane | No indicado en el listado | alta | Sesión práctica para tradies sobre automatizar la administración, un problema concreto donde puedes validar una oferta de agentes con dueños reales. Es del mismo día que el festival de AI & Society, elige uno según el horario. |
-| 2026-11-18 (miércoles) | [AI & Society Festival, noviembre 2026](https://www.meetup.com/ai-and-society-australia/) | Presencial | The Precinct, Fortitude Valley, Brisbane | No indicado en el listado | media | Festival comunitario sobre cómo la IA cambia el trabajo y los negocios, con público técnico y no técnico. Bueno para conocer posibles clientes de gobernanza o capacitación y para probar tu mensaje. |
-| 2026-11-19 (jueves) | [How to Build an AI Agent to Research 400 Leads Per Day](https://precinctqld.com.au/events/) | Presencial | Launch Event Space, The Precinct, Fortitude Valley, Brisbane | De pago (precio no indicado) | alta | Taller práctico sobre un agente de investigación de prospectos. Te muestra qué compran las pymes en servicios de agentes y es un lugar para conocer a otros constructores. Compara tu enfoque con el que enseñan. |
-| 2026-11-24 | [The future of trusted AI forum](https://www.ai.gov.au/news-and-insights/events) | Híbrido | No indicado en el listado (verifica si es en línea) | No indicado en el listado | media | Foro de gobernanza en el calendario del National AI Centre. Sirve para posicionar tu oferta de gobernanza y confianza en IA y ver qué mensajes usa el sector. Confirma formato y horario, que no aparecen. |
-| 2026-11-26 (jueves, noche) | [Curated Conversation Dinner: Transformative Robotics, AI and Big Data](https://www.eventbrite.com.au/d/australia--brisbane-city/technology-conferences/) | Presencial | Tattersall's Club, Chandelier Room, 215 Queen Street, Brisbane | No indicado en el listado | baja | Cena pequeña con líderes en IA y robótica; posible sala de primeros clientes. El precio no se ve y podría superar tu presupuesto, revisa antes de inscribirte. |
-| 2026-12-02 (miércoles) | [QUT Entrepreneurship Open Pitch Night](https://events.humanitix.com/qut-entrepreneurship-open-pitch-night-2026) | Presencial | B230, B Block, Level 2, Gardens Point campus, Brisbane | No indicado en el listado | media | Noche abierta a la comunidad startup, con un formato de bajo riesgo para presentar una idea de IA y recibir comentarios de mentores y fundadores. |
-| 2026-12-07 al 09 | [YOW! Brisbane 2026 (conferencia de IA y software)](https://dev.events/OC/AU/Brisbane/ai) | Presencial | Brisbane | No indicado en el listado | baja | Conferencia de varios días para conocer a constructores técnicos. Ocurre en días laborales y el precio no se muestra, por lo que probablemente exceda tu presupuesto y tiempo; considera solo si tu empleador te lo permite. |
+| 2026-11-12 (hoy, tarde) | [2026 AI Mega Meetup](https://events.humanitix.com/2026-ai-mega-meetup) | Presencial | The Precinct, Stair Stadium, Fortitude Valley, Brisbane | Gratis | alta | Reúne a varias comunidades de IA de Brisbane en una noche con panel y networking. Es la mejor ocasión inmediata para conocer organizadores de meetups y builders. Confirma hora y si el viaje desde Morayfield te permite llegar. |
+| 2026-11-13 (viernes, desde las 6:00 pm) | [AI + Mobile Brisbane, Tech Talks & Networking (GDG Brisbane)](https://gdg.community.dev/events/details/google-gdg-brisbane-presents-ai-mobile-brisbane-tech-talks-amp-networking-in-collab-with-brisbane-mobile-app-development-meetup/) | Presencial | The Precinct, Fortitude Valley | No indicado | media | Charlas y demos de IA seguidas de networking con desarrolladores, útil para encontrar a un cofundador técnico o a alguien que te ayude con prototipos. Es viernes por la tarde, compatible con tu empleo. |
+| 2026-11-14 (sábado, 5:30 pm; verificar la fecha) | [Claude Brisbane SMB community meetup](https://claudecommunity.com.au/events) | Presencial | South Brisbane, QLD | No indicado | alta | Meetup sobre uso de Claude en pequeñas y medianas empresas, justo tu stack y tu mercado objetivo. Es un fin de semana, y puedes descubrir clientes piloto. La fecha aparece de forma ambigua, así que revisa el listado antes de ir. |
+| 2026-11-18 | [Less Paperwork, More Weekends: Hands-on AI for Tradie Admin](https://www.meetup.com/find/au--brisbane/small-business-networking/) | Presencial | Windsor Bowls Club, Windsor, Brisbane | No indicado | alta | Sesión práctica con tradies y pequeños equipos sobre cómo reducir la administración con asistentes de IA. Es la forma más directa de oír el problema de los clientes y de hacer una validación sin gastar. Confirma la hora, ya que no aparece en el listado. |
+| 2026-11-18 | [AI & Society Festival, noviembre 2026](https://www.meetup.com/ai-and-society-australia/) | Presencial | The Precinct, Fortitude Valley, Brisbane | No indicado | media | Festival comunitario sobre cómo la IA cambia el trabajo y los negocios, con público técnico y no técnico. Buen lugar para conocer a posibles clientes y a personas interesadas en gobernanza de IA. Verifica el horario y el costo. |
+| 2026-11-19 | [How to Build an AI Agent to Research 400 Leads Per Day](https://precinctqld.com.au/events/) | Presencial | The Precinct Launch Event Space, Fortitude Valley, Brisbane | De pago (precio no indicado) | media | Taller práctico sobre agentes de investigación de prospectos. Sirve para ver qué venden los competidores y para conocer a builders de agentes. Evalúa el precio y el horario antes de pagar, dado tu presupuesto. |
+| 2026-11-21 (sábado por la mañana; verificar hora) | [AI & Society Run Walk Coffee Club (BNE)](https://www.meetup.com/ai-and-society-australia/) | Presencial | Felons Brewing Co, Brisbane | No indicado | media | Encuentro informal de fin de semana, sin presión, para conocer a profesionales de IA locales y practicar tu presentación en conversaciones breves. |
+| 2026-12-02 | [QUT Entrepreneurship Open Pitch Night](https://events.humanitix.com/qut-entrepreneurship-open-pitch-night-2026) | Presencial | B230, B Block, Level 2, Gardens Point campus, Brisbane | No indicado | baja | Abierta a la comunidad de startups; sirve para presentar tu idea de IA ante feedback sin riesgo. Es una serie mensual y el viaje desde Morayfield es largo, así que úsala cuando ya tengas una oferta definida. |
+| 2026-12-07 (varios días, hasta el 9 de diciembre) | [YOW! Brisbane 2026 (conferencia de IA y software)](https://dev.events/OC/AU/Brisbane/ai) | Presencial | Brisbane | No indicado | baja | Conferencia técnica donde conocer a builders de IA. Es entre semana y probablemente tenga costo, por lo que solo vale la pena si el presupuesto y los permisos lo permiten. |
 
 **En línea**
 
 | Fecha | Actividad | Formato | Lugar | Costo | Prioridad | Por qué ir |
 |---|---|---|---|---|---|---|
-| 2026-11-27 (viernes, 10:00 AEST) | [Startup Oasis: Find a Cofounder, Help or Join a Tech Startup](https://www.meetup.com/en-au/brisbane-startup-founders-and-tech-professionals/) | En línea | En línea (hora de Brisbane) | Gratis | media | Sesión gratuita de emparejamiento de cofundadores. Cae en horario laboral, así que solo es viable si puedes tomarte una pausa o usar un permiso. La fecha se dedujo del listado, confírmala en Meetup. |
-| 2026-11-30 | [Run your startup with Claude Code (sesiones en vivo de FI Australia)](https://fi.co/insight/build-a-great-startup-in-2025-with-the-fi-australia-startup-accelerator-sydney) | En línea | En línea (confirma la hora en zona de Brisbane) | No indicado en el listado | media | Sesiones en vivo sobre cómo construir una startup con una herramienta de código con IA, de bajo costo y compatibles con tu tiempo parcial. Es una forma de conocer a pares del Founder Institute. |
+| 2026-11-25 | [AISA Webinar: When Attackers use AI, how defenders can respond](https://aisa.org.au/public/Public/Branches/Brisbane/Upcoming_Events.aspx) | En línea | En línea | No indicado | media | Trata amenazas con IA y controles en tiempo de ejecución, relevante para tu oferta de gobernanza y seguridad de agentes (Essential Eight, guardrails). Confirma la hora en tu zona horaria. |
+| 2026-11-27 (viernes, 10:00 AEST; verificar fecha) | [Startup Oasis: Find a Cofounder, Help or Join a Tech Startup](https://www.meetup.com/en-au/brisbane-startup-founders-and-tech-professionals/) | En línea | En línea | Gratis | media | Sesión de emparejamiento de cofundadores con salas pequeñas, gratuita. Cae en horario laboral, así que necesitas un permiso corto que no entre en conflicto con tus funciones en QFD. |
+| 2026-11-30 | [Run your startup with Claude Code (sesiones en vivo de Founder Institute Australia)](https://fi.co/insight/build-a-great-startup-in-2025-with-the-fi-australia-startup-accelerator-sydney) | En línea | En línea | No indicado | media | Sesiones en línea sobre cómo montar una startup con una herramienta de codificación con IA. Es una forma barata de aprender y conocer pares desde casa. Confirma el horario en hora de Brisbane. |
 
 ### A quién seguir en LinkedIn
 
 | Persona | Perfil | Publica sobre | Por qué seguirla |
 |---|---|---|---|
-| [Michael Ridland](https://linkedin.com/in/michaelridland) | Fundador y CTO de Team 400; Microsoft MVP; organizador de AI Builders Brisbane | Agentes de IA para empresas, consultoría de IA, comunidad de constructores en Brisbane | Es el referente local de consultoría de agentes (equipo de 85 personas). Sus publicaciones te muestran qué proyectos se venden y cómo se empaquetan, y seguirlo prepara el contacto antes del meetup. |
-| [David Hyman](https://au.linkedin.com/in/dhyman) | Fundador y CEO de monō ai; cofundador y asesor de la junta de Lendi Group | Agentes de IA especializados, IA soberana, construir una empresa de IA desde Australia | Fundador australiano con trayectoria en fintech que escribe sobre agentes especializados, un ángulo cercano a tu perfil de dominio regulado. Las publicaciones vistas son de julio de 2026, verifica su actividad actual. |
+| [Michael Ridland](https://linkedin.com/in/michaelridland) | Fundador y CTO de Team 400, consultora de IA con agentes para clientes en Brisbane, Sydney y Melbourne; Microsoft MVP | Agentes de IA, consultoría de IA, desarrollo en el ecosistema Microsoft y herramientas de código abierto. | Es un referente local de cómo se escala un servicio de agentes y te muestra qué compran los clientes medianos. |
+| [Georgie Healy](https://www.linkedin.com/in/georginahealy/) | Líder del ecosistema de IA y anfitriona del podcast In The Blink of AI | Aceleradoras de IA, trayectorias de fundadores y el ecosistema australiano de IA. | Te mantiene al día de programas, tendencias y fundadores de IA en Australia, y puede abrirte puertas a mentores. |
+| [Khoa Le](https://au.linkedin.com/in/khoa-le-eyesofai) | Fundador y CEO de Eyes of AI (IA aplicada a la salud) | Inversión en deep tech, soberanía digital e IA aplicada a la salud. | Aporta contexto sobre inversión en tecnología profunda y salud con IA. Aparece ubicado en Sydney, así que su vínculo con Brisbane no está confirmado; síguelo solo como fuente de información. |
 
 ### Personas para contactar
 
-- **[Michael Ridland](https://team400.ai/)**, Fundador y CTO; organizador de AI Builders Brisbane (Team 400 / AI Builders Brisbane), afinidad 88. Escaló una consultora de agentes de IA a 85 personas con clientes en Brisbane y organiza el meetup mensual de ingenieros de agentes. Es la persona local con más experiencia en tu nicho: te puede mostrar qué se vende, qué precio tiene y qué espacios deja libres. También es un posible socio de subcontratación o derivación de proyectos pequeños. *Cómo acercarte:* Asiste al próximo AI Builders Brisbane (tercer miércoles del mes) y haz una pregunta técnica concreta en la sesión de preguntas. Después envía una nota breve por LinkedIn mencionando algo que dijo, sin pedir nada. Más adelante propón un café de 20 minutos sobre agentes en dominios regulados, donde tu perfil es complementario al suyo.
-- **[Llew Jury](https://www.advancer.com.au/about)**, Director General, IA y Crecimiento; mentor en Launch AI y River City Labs (Advancer (Brisbane)), afinidad 82. Dirige una agencia de IA en Brisbane que combina agentes, voz y capacitación, y mentoriza startups. Conoce el mercado de adopción de IA en pymes y puede orientar cómo diferenciarte con gobernanza y arquitectura. Es un competidor potencial, pero también una fuente de mentoría. *Cómo acercarte:* Escucha su podcast o una charla suya y comenta un punto específico. Luego pídele 15 minutos de consejo sobre cómo posicionar una oferta estrecha (gobernanza de agentes para pymes reguladas) frente a las agencias generalistas. Deja claro que buscas orientación, no clientes.
-- **[Dren Xërxa](https://qldaihub.com/category/news/)**, Director del programa LaunchAI (pre aceleradora) (Queensland AI Hub), afinidad 80. Dirige un programa pensado para fundadores de IA y agentes en etapa temprana, con talleres, mentoría uno a uno y demo night ante inversionistas. Encaja con tus restricciones de bajo capital y tiempo parcial. *Cómo acercarte:* Revisa la página de LaunchAI y confirma si hay una nueva convocatoria abierta. Escríbele un mensaje corto con tu hipótesis de nicho y una pregunta específica sobre el compromiso semanal de horas, para ver si es compatible con tu trabajo de tiempo completo.
-- **[Razib Miah](https://www.meetup.com/brisbane-ai-developers/)**, Anfitrión de Brisbane AI Developers y fundador de SoftHash (Brisbane AI Developers (Meetup)), afinidad 74. Organiza noches de networking para fundadores y dirige una empresa de software empresarial en etapa temprana. Es una vía directa para conocer posibles cofundadores técnicos o socios de entrega en un grupo pequeño (11 a 27 asistentes por noche). *Cómo acercarte:* Únete al grupo y asiste a la próxima noche de fundadores. Comparte brevemente tu prototipo multiagente de permisos como ejemplo técnico (sin datos ni contactos de QFD) y pregunta qué problemas de clientes empresariales ve él en agentes.
-- **[Mila Guerra](https://events.humanitix.com/2026-ai-mega-meetup)**, Anfitriona y organizadora del 2026 AI Mega Meetup (AI Paper Reading Club / Brisbane AI), afinidad 72. Reúne a varias comunidades de IA de Brisbane en una sola noche gratuita (12 de noviembre). Conocerla abre la puerta a varios grupos a la vez, útil para encontrar constructores y posibles cofundadores. *Cómo acercarte:* Regístrate en el evento y preséntate en persona al inicio, ofreciendo ayuda concreta (por ejemplo, presentar tu experiencia en agentes con la API de Claude en una sesión futura de lectura de papers). Después de la noche, sigue con un mensaje breve.
-- **[Jason Tan](https://luma.com/x8vkdkmu)**, Fundador de Engage AI; anfitrión de Build Club Brisbane (Build Club / Engage AI), afinidad 70. Organiza mesas redondas y sesiones de coworking de IA en Brisbane y es una voz activa en LinkedIn sobre IA y ventas. Es una puerta a la comunidad de constructores, donde se conoce a fundadores con producto. *Cómo acercarte:* Solicita el acceso al Slack de AI Builders de Build Club y asiste a una sesión de coworking. Preséntate construyendo algo pequeño en vivo y pide opinión sobre tu idea; evita lanzar ofertas de servicio en la primera conversación.
-- **[Shan Vahora](https://www.smartcompany.com.au/startupsmart/australian-startup-raises-july-2026-bluenexus-hyades-esgagent/)**, Fundador de ESGAgent.ai (Klean Technologies (ESGAgent.ai), Brisbane), afinidad 68. Fundador en Brisbane de una startup de IA para automatizar cumplimiento en industria pesada, con ronda semilla reciente. Es un ejemplo cercano de cómo combinar IA, cumplimiento y dominio, y un posible mentor entre pares o socio de arquitectura. *Cómo acercarte:* Lee la cobertura de su ronda y envía una pregunta específica sobre cómo validó el primer cliente con poco capital. Propón un café breve si responde. Mantén separado cualquier tema relacionado con tu trabajo en QFD.
-- **[Quinton Anderson](https://app.dealroom.co/news/feed/australian-ai-agent-governance-platform-aigentsphere-raises-4m-seed-round)**, CEO de Aigentsphere (Aigentsphere), afinidad 66. Lidera una plataforma australiana de gobernanza de agentes de IA con ronda semilla de 4M. Valida que existe demanda por gobernanza de agentes y te permite entender dónde queda espacio para servicios de asesoría y arquitectura de menor escala. *Cómo acercarte:* Comenta con una observación técnica en alguna de sus publicaciones sobre gobernanza de agentes. Si hay interacción, pregunta si trabajan con implementadores o consultores independientes para clientes medianos. No pidas reuniones en el primer contacto.
-- **[Andrew Lai](https://www.meetup.com/brisbane-artificial-intelligence-meetup-roi-from-ai/)**, Organizador del Brisbane Artificial Intelligence Meetup (ROI from AI); director de SMEC AI (Brisbane AI Meetup / SMEC AI), afinidad 64. Está vinculado a un grupo enfocado en el retorno de la IA para negocios y a la AI Information Line, un ejemplo real de agentes de voz entregados a pequeñas empresas dentro de AI Adopt. Puede orientarte sobre el canal de pymes y programas federales. Los registros parecen corresponder al mismo nombre, confirma que es la misma persona antes de escribir. *Cómo acercarte:* Revisa si el meetup tiene un evento próximo (el último listado es de agosto de 2025, la actividad parece baja). Escríbele por Meetup con una pregunta concreta: qué objeciones de ROI plantean las pymes ante los agentes. Ofrece compartir un caso breve.
-- **[Lee Hickin](https://www.mpamag.com/au/specialty/sme/australian-smes-ready-to-adopt-ai-but-only-with-right-training-nab/586990)**, Director Ejecutivo (National AI Centre (Department of Industry, Science and Resources)), afinidad 55. Lidera el programa nacional de adopción de IA para pymes, con iniciativas de capacitación y la AI Information Line. Seguir su trabajo te da señales de demanda y de posibles alianzas de capacitación. Es un contacto de largo plazo, no un primer paso. *Cómo acercarte:* Participa en un evento público del NAIC (por ejemplo AI for Business o el foro de IA confiable) y haz una pregunta informada en el chat o la sesión. No hay LinkedIn en los datos, así que no lo contactes de forma directa por ahora.
+- **[Jason Tan](https://luma.com/x8vkdkmu)**, Fundador de Engage AI y líder de Build Club Brisbane (Build Club / Engage AI), afinidad 88. Organiza las cenas de roundtable y el coworking de IA de Build Club en Brisbane, que es la comunidad de builders de agentes más cercana a tu perfil. Es una puerta a cofundadores técnicos y a los primeros clientes entre fundadores. Hay que confirmar si es la misma persona del listado de LinkedIn Top Voice, porque esa fuente es secundaria. *Cómo acercarte:* Solicita acceso al AI Builder Slack de Build Club y preséntate allí con dos líneas y una demo corta de tu prototipo multiagente de permisos (sin datos ni contactos de QFD). Después pide ir a una sesión de coworking un fin de semana o una tarde.
+- **[Michael Ridland](https://linkedin.com/in/michaelridland)**, Fundador y CTO (Team 400), afinidad 82. Construyó una consultora de IA de unas 85 personas que desarrolla agentes para clientes de Brisbane, Sydney y Melbourne. Puede ser mentor, socio de subcontratación o competidor, y verlo de cerca te enseña cómo se empaqueta y se vende un servicio de agentes. *Cómo acercarte:* Comenta con algo concreto una publicación suya sobre agentes o arquitectura. Luego envía un mensaje breve pidiendo 20 minutos para preguntar cómo se vende la gobernanza de agentes a clientes medianos, sin pedir trabajo ni ofrecer servicios en el primer contacto.
+- **[Andrew Lai](https://www.meetup.com/brisbane-artificial-intelligence-meetup-roi-from-ai/)**, Organizador del meetup Brisbane Artificial Intelligence, ROI from AI, y Managing Director de SMEC AI (Brisbane AI Meetup ROI from AI / SMEC AI), afinidad 80. Aparece en dos fuentes: organiza un meetup sobre retorno de la inversión en IA para líderes de negocio y dirige la empresa de la línea gratuita de información de IA para pequeñas empresas. Es un contacto directo para el modelo de triage y agentes de voz, y para validar qué compran las pymes. *Cómo acercarte:* Asiste a un evento de su meetup y, en la sesión de preguntas, aporta un ejemplo breve de medición de ROI en un caso de automatización. Después pídele su opinión sobre qué preguntas repiten las pymes en su línea de ayuda.
+- **[Razib Miah](https://www.meetup.com/brisbane-ai-developers/)**, Organizador de Brisbane AI Developers y fundador de SoftHash (Brisbane AI Developers), afinidad 76. Conecta a desarrolladores de IA con fundadores mediante noches de networking en Fortitude Valley y dirige una empresa de software empresarial en etapa temprana. Es un buen candidato para encontrar un cofundador técnico o un socio de entrega. *Cómo acercarte:* Únete al meetup y asiste a la próxima noche de fundadores. Ofrece una charla relámpago de 5 minutos sobre arquitectura de agentes con Claude API y pregúntale qué perfil le falta a su comunidad.
+- **[Quinton Anderson](https://app.dealroom.co/news/feed/australian-ai-agent-governance-platform-aigentsphere-raises-4m-seed-round)**, CEO (Aigentsphere), afinidad 74. Lidera una plataforma australiana de gobernanza de agentes de IA que levantó una ronda semilla. Valida que tu cruce de estrategia de IA, cumplimiento y agentes es un mercado real, y puede ser referente, socio de canal o competidor. *Cómo acercarte:* Sigue su actividad y comenta con una observación técnica sobre permisos y auditoría de agentes. Más adelante propón una conversación corta sobre qué necesitan las organizaciones medianas que su plataforma no cubre, sin presentar tu servicio.
+- **[Toni Peggrem](https://qldaihub.com/launchai-24/)**, CEO (según un comunicado de 2024, verificar si sigue en el cargo) (Queensland AI Hub), afinidad 72. El Queensland AI Hub dirige el pre-acelerador Launch AI y alberga las sesiones de coworking de Build Club, con mentores fundadores de Brisbane. Es un punto de entrada para mentoría y validación de ideas de agentes con muy poco capital. *Cómo acercarte:* Revisa en la página de Launch AI si hay una nueva convocatoria y suscríbete al boletín. Escribe una consulta breve sobre si el programa admite fundadores con empleo de tiempo completo y horarios de tarde.
+- **[Georgie Healy](https://www.linkedin.com/in/georginahealy/)**, Líder del ecosistema de IA y anfitriona del podcast In The Blink of AI (No indicada (lidera uno de los mayores programas de aceleración de IA de Australia)), afinidad 68. Conoce a muchos fundadores de IA y los programas de aceleración del país, así que puede orientarte sobre qué nichos se saturan y cuáles quedan abiertos. Su podcast es una fuente de contactos y de casos. *Cómo acercarte:* Escucha un episodio relevante y comenta en LinkedIn qué te sirvió. Después pregunta qué tipo de fundador con empleo de tiempo completo ha tenido buenos resultados en estos programas.
+- **[Lee Hickin](https://www.mpamag.com/au/specialty/sme/australian-smes-ready-to-adopt-ai-but-only-with-right-training-nab/586990)**, Director Ejecutivo (National AI Centre (Department of Industry, Science and Resources)), afinidad 66. Es una voz clave del gobierno federal sobre adopción de IA en pymes y sobre la alianza con NAB para capacitación. Sus mensajes marcan qué marcos de IA responsable y qué formación se financiarán o se pedirán. *Cómo acercarte:* No lo contactes en frío. Asiste a los eventos del NAIC (por ejemplo AI for Business) y toma nota de los marcos que menciona para alinear tu oferta. Si participas, haz una pregunta concreta sobre guardrails para pymes.
+- **[Tyson Jennings](https://ventures.uq.edu.au/article/2026/03/uq-backs-next-wave-founders-inside-ilab-accelerator-2026)**, ilab Manager (UQ Ventures, University of Queensland), afinidad 64. Gestiona ilab, el acelerador de UQ, y su red de Entrepreneurs-in-Residence (Brett Geoghegan, Vanessa Garrad, Michael Cotton y Abbey Cameron). Eres egresado de UQ (Master of Data Science), lo que facilita el acceso a mentores sin capital. *Cómo acercarte:* Escribe un correo breve como egresado de UQ preguntando si ilab tiene sesiones abiertas o mentoría para alumni que trabajan a tiempo completo, e incluye una descripción de dos líneas de tu idea.
+- **[Dr Priya Jaganathan](https://www.eventbrite.com.au/e/start-an-ai-side-business-using-your-work-experience-brisbane-tickets-2001722993358?aff=ebdssbdestsearch)**, Anfitriona de taller de negocio paralelo con IA y fundadora de una agencia de IA y automatización (Pivot 2 Thrive AI & Automation Agency), afinidad 58. Enseña a convertir experiencia profesional en un servicio con IA, justo tu objetivo de arrancar a tiempo parcial. Puede ser par de intercambio, referencia de precios o posible competidora en un nicho de formación. *Cómo acercarte:* Revisa su próximo taller y pregunta por los precios y formatos que mejor funcionan con profesionales ocupados. Ofrece intercambiar notas sobre lo que has aprendido construyendo agentes.
+- **[Mila Guerra](https://events.humanitix.com/2026-ai-mega-meetup)**, Anfitriona del AI Mega Meetup (2026 AI Mega Meetup, Brisbane), afinidad 55. Reúne a varias comunidades de IA de Brisbane en un solo evento, por lo que es una conectora que puede presentarte a organizadores de meetups y a fundadores. *Cómo acercarte:* Si asistes hoy, salúdala y agradece la organización. Después envía un mensaje breve preguntando qué comunidades recomienda para builders de agentes y ofrece ayuda en una próxima edición.
 
 ## Ideas que no pasan los filtros
 
 | Idea | Puntaje | Motivo |
 |---|---|---|
-| Preparación de evidencias y subvenciones de IA para pequeñas empresas (Industry Growth Program y programa de Queensland) | 55.0 | puntaje 55.0 |
+| Recepcionista de voz con IA para tradies y clínicas pequeñas | 64.5 | fit 55 |
+| Socio de entrega para programas subsidiados de adopción de IA (Queensland y AI Adopt) | 59.5 | puntaje 59.5 |
+| Preparación de evidencias y subvenciones de IA para pequeñas empresas (Industry Growth Program y programa de Queensland) | 59.5 | fit 55, puntaje 59.5 |
 
 ## Dominios evaluados
 
 | Dominio | Puntaje | Razón |
 |---|---|---|
-| Gobernanza, riesgo y cumplimiento de IA | 84 | Mejor encaje: regulación en movimiento, aviso de divulgación de decisiones automatizadas en diciembre, pocas ONGs con política y mezcla rara de arquitectura, Essential Eight y agentes. Compradores sin licitaciones largas. |
-| Arquitectura como servicio | 79 | Las rondas grandes en IA y la necesidad de pasar de prototipo a producción favorecen su perfil. Cabe en 10 a 15 horas, aunque encontrar clientes toma más tiempo. |
-| Educación y formación | 74 | Hay eventos y talleres de agentes en Brisbane (The Precinct) y formación de NFPs financiada. Genera ingresos rápidos y contactos, con techo de escala bajo. |
-| AI agents y automatización para SMEs | 72 | Demanda clara y sentimiento en alza (0.3 a 0.6), pero ya hay agencias locales con precio fijo. Funciona con nicho angosto (contabilidad, tradies) y gobernanza incluida. |
-| Fintech y datos regulados | 62 | Su experiencia en CDR y auditorías es real y hay capital en herramientas de cumplimiento (Smart AI Connect), pero los clientes son pocos y los ciclos de venta más largos. |
-| Puente Latinoamérica y Australia | 60 | Diferenciador personal genuino, pero la evidencia de mercado de este periodo es casi nula. Sirve como canal de captación, no como negocio principal. |
-| Emergencia y resiliencia comunitaria fuera de QFD | 35 | Sin evidencia nueva de demanda y con riesgo de conflicto alto por cercanía a su empleador. No se propone ninguna idea. |
+| Gobernanza, riesgo y cumplimiento de IA | 78 | Regulación obligatoria anunciada y riesgo de agentes en prensa; sin embargo el sentimiento de gobernanza para SMEs es bajo y el alcance de la ley se centra en modelos de frontera. |
+| Arquitectura como servicio | 76 | Perfil muy alineado; el flujo de startups de IA en Brisbane es modesto, pero hay aceleradores y pre aceleradores que alimentan clientes. |
+| Agentes de IA y automatización para SMEs | 74 | Demanda clara y subsidios nuevos (10 M AUD de Queensland, AI Adopt), pero hay agencias locales ya posicionadas; gana quien se especializa (contabilidad, seguridad de agentes). |
+| Educación y formación | 72 | Hay talleres de agentes con asistencia en Brisbane (The Precinct) y NFPs con programas de adopción; ingresos por asiento son pequeños y la capacitación gratuita del National AI Centre compite. |
+| Fintech y datos regulados | 62 | Su experiencia en CDR y Essential Eight es rara y hay señales de cumplimiento en finanzas (Smart AI Connect), pero el mercado de pequeñas fintech es angosto y las ventas son más lentas. |
+| Puente Latinoamérica y Australia | 55 | Nicho propio y poca competencia, pero sin evidencia nueva de demanda en esta ventana; sirve como complemento en español. |
+| Gestión de emergencias y resiliencia comunitaria fuera de QFD | 35 | No hay evidencia nueva en esta ventana y el riesgo de conflicto con QFD es alto; no se recomienda por ahora. |
 
 ## Tendencias
 
@@ -378,20 +354,20 @@ En Brisbane y SEQ el movimiento principal gira en torno a Brisbane 2032: cerca d
 
 | Término | Menciones | Antes | Lift |
 |---|---|---|---|
-| automated decisions | 3 | 0 | 0.01 |
-| brisbane 2032 | 3 | 0 | 0.01 |
-| community | 3 | 0 | 0.01 |
-| council | 3 | 0 | 0.01 |
-| disclosure | 3 | 0 | 0.01 |
-| events | 3 | 0 | 0.01 |
-| fortitude valley | 3 | 0 | 0.01 |
-| free | 3 | 0 | 0.01 |
-| funding | 3 | 0 | 0.01 |
-| grant | 3 | 0 | 0.01 |
-| mentoring | 3 | 0 | 0.01 |
-| nab | 3 | 0 | 0.01 |
+| ai regulation | 3 | 0 | 0.0 |
+| ai startups | 3 | 0 | 0.0 |
+| automated decisions | 3 | 0 | 0.0 |
+| brisbane 2032 | 3 | 0 | 0.0 |
+| community | 3 | 0 | 0.0 |
+| council | 3 | 0 | 0.0 |
+| disclosure | 3 | 0 | 0.0 |
+| events | 3 | 0 | 0.0 |
+| fortitude valley | 3 | 0 | 0.0 |
+| free | 3 | 0 | 0.0 |
+| funding | 3 | 0 | 0.0 |
+| grant | 3 | 0 | 0.0 |
 
-**Palabras y frases más repetidas:** ai agents (15), small business (12), national ai (11), ai centre (9), ai (109), business (35), small (32), businesses (31), november (25), startup (22), startups (22), founders (21), lists (19), agents (18), government (17), centre (17), founder (16), program (16), agent (15)
+**Palabras y frases más repetidas:** ai agents (17), small business (13), national ai (11), ai centre (9), ai (119), business (38), small (34), businesses (32), november (26), startups (25), startup (24), founders (23), agents (20), lists (20), government (19), program (18), founder (17), centre (17), agent (17)
 
 **Temas con más evidencia y su sentimiento promedio** (de -1 a 1)
 
@@ -412,31 +388,37 @@ En Brisbane y SEQ el movimiento principal gira en torno a Brisbane 2032: cerca d
 
 ## Análisis histórico
 
-Datos desde 2026-11-04, 4 ejecuciones anteriores. Series semanales de 2026-W39 a 2026-W46 (una barra por semana; · = sin datos). Elementos por semana: ▁▁▁▁▁▁█▁ (0, 0, 0, 0, 0, 0, 145, 20).
+Datos desde 2026-11-04, 5 ejecuciones anteriores. Series semanales de 2026-W39 a 2026-W46 (una barra por semana; · = sin datos). Elementos por semana: ▁▁▁▁▁▁█▂ (0, 0, 0, 0, 0, 0, 145, 36).
 
 **Ganando y perdiendo participación** (pendiente de su peso semanal)
 
 | Término | Evolución | Total | Dirección |
 |---|---|---|---|
-| ai agents | ▁▁▁▁▁▁█▃ | 22 | sube |
+| ai agents | ▁▁▁▁▁▁█▃ | 24 | sube |
+| ai adoption | ▁▁▁▁▁▁██ | 6 | sube |
 | automation | ▁▁▁▁▁▁██ | 6 | sube |
-| brisbane | ▁▁▁▁▁▁█▂ | 26 | sube |
+| ai startups | ▁▁▁▁▁▁▄█ | 3 | sube |
+| ai regulation | ▁▁▁▁▁▁▄█ | 3 | sube |
 | brisbane 2032 | ▁▁▁▁▁▁▄█ | 3 | sube |
-| manufacturing | ▁▁▁▁▁▁██ | 4 | sube |
-| ai adoption | ▁▁▁▁▁▁█▅ | 5 | sube |
 | australia | ▁▁▁▁▁▁█▁ | 14 | baja |
+| networking | ▁▁▁▁▁▁█▁ | 9 | baja |
+| governance | ▁▁▁▁▁▁█▂ | 8 | baja |
+| meetup | ▁▁▁▁▁▁█▂ | 8 | baja |
+| startups | ▁▁▁▁▁▁█▂ | 7 | baja |
+| brisbane | ▁▁▁▁▁▁█▂ | 26 | baja |
 
 **Ocurrencias acumuladas (todo el historial)**
 
-Etiquetas: brisbane (26), ai agents (22), queensland (15), australia (14), accelerator (9), ai (9), networking (8), small business (8), governance (7), meetup (7), startups (7), automation (6), security (6), ai adoption (5), compliance (5), founders (5), privacy act (5), trust (5), uq (5), commercialisation (4)
+Etiquetas: brisbane (26), ai agents (24), queensland (15), australia (14), accelerator (11), ai (9), networking (9), governance (8), meetup (8), small business (8), compliance (7), startups (7), ai adoption (6), automation (6), founders (6), security (6), moreton bay (5), privacy act (5), tradies (5), trust (5)
 
-Frases: ai agents (15), small business (12), national ai (11), ai centre (9), ai adoption (8), ai agent (8)
+Frases: ai agents (17), small business (13), national ai (11), ai centre (9), ai adoption (8), ai agent (8)
 
 **Sentimiento por tema en el tiempo** (de -1 a 1)
 
 | Tema | Menciones | Semanas | Promedio | Evolución | Tendencia |
 |---|---|---|---|---|---|
 | ai agents for small business | 3 | 2 | 0.4 | ······▆▇ | sube |
+| ai governance advisory for smes | 2 | 2 | -0.05 | ······▅▄ | baja |
 | ai governance consulting for small firms | 4 | 1 | 0.28 | ······▆· | estable |
 | ai adoption advisory for smes | 3 | 1 | 0.53 | ······▇· | estable |
 | university accelerator programs | 3 | 1 | 0.57 | ······▇· | estable |
@@ -447,27 +429,26 @@ Frases: ai agents (15), small business (12), national ai (11), ai centre (9), ai
 | ai product commercialisation grants | 2 | 1 | 0.45 | ······▆· | estable |
 | ai research collaboration grants | 2 | 1 | 0.35 | ······▆· | estable |
 | rd tax incentive for ai software | 2 | 1 | 0.0 | ······▅· | estable |
-| ai policy watch | 2 | 1 | 0.25 | ······▆· | estable |
 
 **Personas que aparecen de forma recurrente**
 
 | Persona | Rol | Organización | Apariciones | Primera vez | Última vez |
 |---|---|---|---|---|---|
-| [Lee Hickin](https://www.mpamag.com/au/specialty/sme/australian-smes-ready-to-adopt-ai-but-only-with-right-training-nab/586990) | Executive Director | National AI Centre (Department of Industry, Science and Resources) | 6 | 2026-11-04 | 2026-11-10 |
-| [Andrew Lai](https://itwire.com/business-it-news/data/smec-ai-launches-the-ai-information-line-free-national-ai-help-for-small-business-in-one-phone-call) | Managing Director | SMEC AI | 5 | 2026-11-04 | 2026-11-10 |
-| [Tyson Jennings](https://ventures.uq.edu.au/article/2026/08/ventures-ilab-accelerator-chapter-2-2026-cohort-announced) | ilab Manager | UQ Ventures, University of Queensland | 5 | 2026-11-04 | 2026-11-10 |
+| [Lee Hickin](https://www.mpamag.com/au/specialty/sme/australian-smes-ready-to-adopt-ai-but-only-with-right-training-nab/586990) | Executive Director | National AI Centre (Department of Industry, Science and Resources) | 7 | 2026-11-04 | 2026-11-12 |
+| [Andrew Lai](https://itwire.com/business-it-news/data/smec-ai-launches-the-ai-information-line-free-national-ai-help-for-small-business-in-one-phone-call) | Managing Director | SMEC AI | 6 | 2026-11-04 | 2026-11-12 |
+| [Tyson Jennings](https://ventures.uq.edu.au/article/2026/03/uq-backs-next-wave-founders-inside-ilab-accelerator-2026) | ilab Manager | UQ Ventures, University of Queensland | 6 | 2026-11-04 | 2026-11-12 |
+| [Brett Geoghegan](https://ventures.uq.edu.au/article/2026/08/ventures-ilab-accelerator-chapter-2-2026-cohort-announced) | Entrepreneur-in-Residence | UQ Ventures ilab | 5 | 2026-11-04 | 2026-11-12 |
+| [Vanessa Garrad](https://ventures.uq.edu.au/article/2026/08/ventures-ilab-accelerator-chapter-2-2026-cohort-announced) | Entrepreneur-in-Residence | UQ Ventures ilab | 5 | 2026-11-04 | 2026-11-12 |
+| [Shetal Balaji](https://unswfounders.com/newsletter/mistral-ai) | AI Program Manager | UNSW Founders | 5 | 2026-11-04 | 2026-11-12 |
+| [Nissan Dookeran](https://luma.com/j07janh7) | Anfitrión de Build Club Brisbane | Build Club | 5 | 2026-11-04 | 2026-11-12 |
+| [Aninda Saha](https://luma.com/j07janh7) | Anfitrión de Build Club Brisbane | Build Club | 5 | 2026-11-04 | 2026-11-12 |
+| [Annie Liao](https://luma.com/x8vkdkmu) | Fundadora de Build Club | Build Club | 5 | 2026-11-04 | 2026-11-12 |
+| [Jasmine Vreugdenburg](https://au.linkedin.com/company/innovation-centre-sunshine-coast-pty-ltd) | Director, UniSC Innovation | University of the Sunshine Coast | 5 | 2026-11-04 | 2026-11-12 |
+| [Andrew Lai](https://www.meetup.com/brisbane-artificial-intelligence-meetup-roi-from-ai/) | Organiser | Brisbane Artificial Intelligence Meetup - ROI from AI | 5 | 2026-11-04 | 2026-11-12 |
 | [Mila Guerra](https://events.humanitix.com/2026-ai-mega-meetup) | Host of the 2026 AI Mega Meetup on Humanitix | AI Mega Meetup (Brisbane AI communities) | 5 | 2026-11-04 | 2026-11-05 |
-| [Nissan Dookeran](https://luma.com/j07janh7) | Host of Brisbane Build Club events | Build Club | 4 | 2026-11-04 | 2026-11-10 |
-| [Aninda Saha](https://luma.com/j07janh7) | Host of Brisbane Build Club events | Build Club | 4 | 2026-11-04 | 2026-11-10 |
-| [Annie Liao](https://luma.com/beiwem8i) | Founder of Build Club | Build Club | 4 | 2026-11-04 | 2026-11-10 |
+| [David Burt](https://www.unsw.edu.au/newsroom/news/2026/02/unsw-accelerates-startup-growth-with-global-launch-summit) | Director of Entrepreneurship | UNSW | 4 | 2026-11-04 | 2026-11-12 |
+| [Heidi Cooper](https://insidesmallbusiness.com.au/latest-news/ai-brings-queensland-smes-to-a-digital-crossroads) | Chief Executive Officer | Business Chamber Queensland | 4 | 2026-11-04 | 2026-11-12 |
 | [Dawid Naude](https://www.australianshareholders.com.au/queensland-investor-summit-2026/program/) | Chief AI Officer at Affinda; CEO and Founder of Pathfindr | Affinda / Pathfindr | 4 | 2026-11-04 | 2026-11-10 |
-| [Carly Kind](https://www.twobirds.com/en/capabilities/artificial-intelligence/ai-legal-services/ai-regulatory-horizon-tracker/australia) | Privacy Commissioner | Office of the Australian Information Commissioner (OAIC) | 4 | 2026-11-04 | 2026-11-08 |
-| [Shetal Balaji](https://unswfounders.com/newsletter/mistral-ai) | AI Program Manager | UNSW Founders | 4 | 2026-11-04 | 2026-11-08 |
-| [Jasmine Vreugdenburg](https://au.linkedin.com/company/innovation-centre-sunshine-coast-pty-ltd) | Director, UniSC Innovation | University of the Sunshine Coast | 4 | 2026-11-04 | 2026-11-08 |
-| [Mehdi Khalili](https://www.meetup.com/en-AU/ai-brisbane/) | Organiser | AI Brisbane (Meetup) | 4 | 2026-11-04 | 2026-11-08 |
-| [Brett Geoghegan](https://ventures.uq.edu.au/article/2026/08/ventures-ilab-accelerator-chapter-2-2026-cohort-announced) | Entrepreneur-in-Residence (Chapter 2 2026) | UQ Ventures ilab | 4 | 2026-11-04 | 2026-11-05 |
-| [Vanessa Garrad](https://ventures.uq.edu.au/article/2026/08/ventures-ilab-accelerator-chapter-2-2026-cohort-announced) | Entrepreneur-in-Residence (Chapter 2 2026) | UQ Ventures ilab | 4 | 2026-11-04 | 2026-11-05 |
-| [Steve Baxter](https://startupintros.com/orgs/river-city-labs-accelerator) | Founder of River City Labs | River City Labs (Brisbane) | 3 | 2026-11-04 | 2026-11-10 |
 
 
 ## Historial de ideas
@@ -476,39 +457,40 @@ Puntaje compuesto por ejecución (últimas 8).
 
 | Idea | Vista desde | Evolución | Último |
 |---|---|---|---|
-| Paquete de política de IA y divulgación de decisiones automatizadas para ONGs | 2026-11-04 | ▁▄▄▆█ (78.5 a 86.0) | 86.0 |
-| Auditoría de permisos y seguridad de agentes de IA para SMEs | 2026-11-04 | ▁▃▅▆█ (75.5 a 84.7) | 84.7 |
-| Arquitecto de IA fraccional para startups y scaleups | 2026-11-04 | ▄▁▁▇█ (77.3 a 80.0) | 80.0 |
-| Talleres prácticos de agentes de IA para dueños de SMEs y ONGs en Brisbane | 2026-11-04 | ▁▃▃▆█ (72.3 a 79.3) | 79.3 |
-| Pilotos de agentes de IA con alcance fijo y ahorro medido para SMEs | 2026-11-04 | ▄▁▁▅█ (75.8 a 78.0) | 78.0 |
-| Paquete de flujos de IA para firmas de contabilidad y bookkeeping | 2026-11-04 | ▁▄▄█ (72.8 a 77.0) | 77.0 |
-| Cumplimiento y datos del consumidor (CDR, Open Banking) como servicio para pequeñas fintech | 2026-11-04 | ▁▅▃▆█ (59.1 a 73.2) | 73.2 |
-| Puente LatAm y Australia: adopción de IA para negocios hispanohablantes y exportadores | 2026-11-04 | ▁▄▃▆█ (59.4 a 72.0) | 72.0 |
-| Recepcionista de voz con IA para tradies y clínicas pequeñas | 2026-11-04 | ▁▂▂▆█ (57.2 a 69.6) | 69.6 |
-| Preparación de evidencias y subvenciones de IA para pequeñas empresas (Industry Growth Program y programa de Queensland) | 2026-11-04 | ▁▁█▅▂ (53.5 a 55.0) | 55.0 |
+| Auditoría de permisos y seguridad de agentes de IA para SMEs | 2026-11-04 | ▁▃▅▆█▇ (75.5 a 83.4) | 83.4 |
+| Paquete de política de IA y divulgación de decisiones automatizadas para ONGs | 2026-11-04 | ▁▄▄▆█▂ (78.5 a 80.3) | 80.3 |
+| Arquitecto de IA fraccional para startups y scaleups | 2026-11-04 | ▄▁▁▇█▅ (77.3 a 77.6) | 77.6 |
+| Paquete de flujos de IA para firmas de contabilidad y bookkeeping | 2026-11-04 | ▁▄▄█▇ (72.8 a 76.7) | 76.7 |
+| Talleres prácticos de agentes de IA para dueños de SMEs y ONGs en Brisbane | 2026-11-04 | ▁▃▃▆█▄ (72.3 a 75.8) | 75.8 |
+| Pilotos de agentes de IA con alcance fijo y ahorro medido para SMEs | 2026-11-04 | ▄▁▁▅█▂ (75.8 a 74.1) | 74.1 |
+| Cumplimiento y datos del consumidor (CDR, Open Banking) como servicio para pequeñas fintech | 2026-11-04 | ▁▅▃▆█▇ (59.1 a 71.2) | 71.2 |
+| Puente LatAm y Australia: adopción de IA para negocios hispanohablantes y exportadores | 2026-11-04 | ▁▄▃▆█▅ (59.4 a 67.2) | 67.2 |
+| Recepcionista de voz con IA para tradies y clínicas pequeñas | 2026-11-04 | ▁▂▂▆█▅ (57.2 a 64.5) | 64.5 |
+| Preparación de evidencias y subvenciones de IA para pequeñas empresas (Industry Growth Program y programa de Queensland) | 2026-11-04 | ▁▁█▅▂▇ (53.5 a 59.5) | 59.5 |
+| Socio de entrega para programas subsidiados de adopción de IA (Queensland y AI Adopt) | 2026-11-12 | ▄ | 59.5 |
 
 ## Notas de la ejecución
 
-- news: Muy pocas noticias caen en la ventana de 7 días (3 al 7 de noviembre de 2026), así que incluí solo esas y algunos programas activos. El informe de la Tech Council sobre IA en pymes (22 de octubre) queda fuera de la ventana aunque es clave como contexto, y no usé blogs agregadores para cifras de startups. Un briefing de dev.to fechado el 12 de noviembre fue descartado por ser posterior a hoy, y algunas fechas de eventos del listado de Eventbrite no mostraban formato ni precio.
-- brisbane_ecosystem: Los resultados confirman varios programas activos en Brisbane y eventos de IA con fecha desde el 11 de noviembre de 2026, pero casi todas las fuentes son de 2026 y no hubo una fecha verificable de publicación para varias páginas de programa. No se pudo confirmar quién ocupa hoy el cargo de Chief Entrepreneur de Queensland, y el precio y la sede de algunos eventos no aparecen en los resultados.
-- national_programs: Los resultados sobre el R&D Tax Incentive australiano fueron casi todos de Estados Unidos, así que no se incluyó un ítem propio; tampoco aparecieron páginas primarias de business.gov.au ni de industry.gov.au sobre el Industry Growth Program, y varias fuentes (blogs y agregadores) contradicen fechas o estados de los programas. Casi no hubo novedades nacionales de los últimos 30 días, por lo que se priorizaron programas activos y eventos próximos, y no se encontraron grupos con enlace verificable.
-- universities: La mayoría de los resultados universitarios son anteriores a la ventana de 30 días o no tienen fecha, así que solo incluí programas activos y eventos futuros. No encontré eventos futuros con fecha en UNSW, Griffith o QUT, y tampoco confirmé precios en varios eventos. La fecha del Pitch Night de UQ aparece como 10 o 12 de noviembre según la página.
-- communities: No hay elementos publicados dentro de la ventana de 45 días ni eventos con fecha futura confirmada en los resultados; la mayoría de hilos de Reddit, Whirlpool e IndieHackers encontrados son anteriores. Las búsquedas de Reddit e IndieHackers devolvieron sobre todo blogs y agregadores, y no se pudieron confirmar hilos recientes en esos dominios.
-- linkedin_authorities: La búsqueda no devolvió publicaciones de LinkedIn ni de Substack de los últimos 14 días, así que casi todos los elementos son anteriores a la ventana y se incluyen solo por su valor como tendencia, programa o evento vigente. Las fechas de publicación de varios artículos no se muestran en los resultados, por lo que se han dejado vacías y no se han inventado; los perfiles de LinkedIn se han tomado solo cuando aparecen en los resultados.
-- events: Se encontraron varios eventos con fecha y lugar en Brisbane para los próximos 30 días, pero ninguno concreto en Moreton Bay ni con precio visible en la mayoría. No aparecieron noticias recientes de la última semana sobre IA o startups, por lo que la lista de noticias queda vacía. Algunos eventos sólo muestran la página de listados de Eventbrite o de The Precinct, no la página individual.
-- brisbane_trends: La búsqueda agotó el límite de consultas antes de cubrir cuidados de adultos mayores y NDIS, subsidios del Ayuntamiento de Brisbane, costos de vida y tendencias de negocios secundarios dentro de la ventana de 21 días; casi todos los resultados de esas áreas tenían más de 21 días y se excluyeron. No se encontraron eventos con fecha confirmada en Brisbane ni enlaces directos a grupos de la comunidad, por lo que las listas de eventos y grupos quedan vacías.
-- groups_to_join: Búsqueda limitada: no se encontraron eventos futuros de AI Tinkerers ni de Brisbane AI Developers con fecha visible, y varias páginas de Meetup muestran fechas de 2025 que ya pasaron. Tampoco aparecieron grupos de LinkedIn ni de Slack o Discord específicos de Brisbane con enlace verificable, por lo que quedan fuera. La página del grupo de Facebook Business in Brisbane aparece solo como enlace del Ayuntamiento y no se confirmó su URL directa.
-- pain_points: Casi todas las encuestas sobre carga administrativa, adopción de IA y barreras de pymes, consejos municipales y tradies salieron de la ventana de 60 días o no tienen fecha verificable, así que quedaron fuera salvo programas activos o fechas regulatorias. Los resultados dentro de la ventana se concentran en contabilidad; no hubo fuentes recientes sobre consejos municipales ni eventos o grupos con enlace.
+- news: Búsqueda limitada por el número de consultas disponibles; varias fuentes son agregadores y no primarias, y las cifras de adopción de IA en pymes encontradas son anteriores a la ventana de 7 días, por lo que no se incluyeron. Los eventos y grupos están sin verificar precio ni fecha exacta en algunos casos.
+- brisbane_ecosystem: La mayoría de resultados son anteriores a la ventana de 21 días, así que solo incluí programas activos o eventos futuros; no hay fuentes oficiales recientes sobre quién ocupa hoy el cargo de Chief Entrepreneur de Queensland. Quedaron fuera la ubicación y el precio de algunos eventos, la sesión de Physical AI del 12 de noviembre y varios eventos de Meetup con fechas que no coinciden con 2026.
+- national_programs: Varias fuentes son agregadores (Granted AI, Flowworks, SafeAI-Aus) y no hay páginas primarias de business.gov.au para el Industry Growth Program ni para el programa de Queensland. Hay conflicto sobre el estado del AI Adopt Program y sobre si las guardrails obligatorias ya se anunciaron, porque una fuente de octubre dice que VAISS sigue siendo voluntario. La búsqueda de eventos solo halló dos citas vigentes en Brisbane y no se encontraron grupos de Meetup, LinkedIn o Facebook con enlace verificado.
+- universities: Búsqueda limitada: hubo pocos resultados de los últimos 30 días en UQ, QUT, Griffith y UniSC, y muchos registros eran anteriores a la ventana. Se descartaron los eventos de UNSW en Sídney (AI After Hours y Impact X Showcase) por no ser accesibles desde Brisbane, y el UQ ilab Pitch Night del 10 de noviembre por ser anterior a hoy, aunque una página del programa indica 12 de noviembre, dato contradictorio que conviene verificar. No se encontraron grupos de Facebook, Meetup o Slack de estas universidades con enlace en los resultados.
+- communities: La búsqueda no devolvió hilos reales de Reddit, Whirlpool, Indie Hackers o Hacker News sobre Australia en la ventana de 45 días, así que no hay elementos de discusión que cumplan el plazo. Los comentarios sobre dolores repetidos (cansancio de herramientas, "impuesto de supervisión", coste de suscripciones, confianza en resultados) aparecen solo en artículos de The Useful Daily fechados entre 86 y 146 días atrás, por lo que se excluyeron. No se encontraron eventos en Brisbane con fecha confirmada: el taller de AI para tradies no muestra fecha y el evento de ACU Co-Lab es en North Sydney. Los resultados sobre Whirlpool y automovilismo no son relevantes.
+- linkedin_authorities: La búsqueda no devolvió publicaciones recientes de LinkedIn o Substack de fundadores australianos dentro de la ventana de 14 días, así que muchos resultados son noticias o perfiles antiguos y algunos ítems de fuentes de terceros o con fechas no confirmadas se han marcado para verificación. Los perfiles de LinkedIn solo aparecen en dos casos, y varias personas aparecen a través de listados secundarios sin URL de perfil. No se pudieron comprobar precios ni estado actual de varios programas y grupos.
+- events: Se buscó con las seis consultas sugeridas y se usaron fuentes de Meetup, Eventbrite, Luma, Humanitix y The Precinct, con fechas entre el 12 y el 27 de noviembre de 2026. Se descartaron eventos sin fecha o lugar confirmado (por ejemplo, AWS OpenClaw en Luma y Build Club co-working), así como el Open Summit AI del 11 de noviembre, que ya pasó. No se encontraron eventos de IA o startups en Moreton Bay dentro de la ventana, y varios precios no aparecieron en los resultados.
+- brisbane_trends: Se agotó el límite de búsquedas antes de cubrir cierres recientes en Brisbane, subvenciones del Ayuntamiento de Brisbane y tendencias de side hustles con fecha reciente, así que esos temas quedan sin evidencia vigente. No se encontraron grupos con enlace verificable ni eventos de negocio posteriores a hoy con precio publicado, y varias fechas de publicación son aproximadas, por lo que se dejaron vacías.
+- groups_to_join: Búsqueda limitada por el número de consultas: solo se confirmó un evento futuro en Brisbane (27 nov 2026, online) y muchos grupos de Meetup muestran actividad pasada. Se descartaron grupos sin enlace propio en los resultados (ACS Queensland, Women in Technology, Slack de Brisbane) y comunidades antiguas o sin fecha reciente. No se pudo confirmar el precio de los eventos ni el acceso a varias comunidades.
+- pain_points: La mayoría de fuentes de mayor calidad (NAIC, NAB, ACCI, Infoxchange, HIA) quedan fuera de la ventana de 60 días y no se incluyeron, así que conviene ampliar la ventana si se quiere más evidencia. Varias fechas de publicación no aparecen en los resultados, y solo se confirmó un evento futuro en Brisbane.
 
 ## Costo de la ejecución
 
 | Modelo | Etapas | Llamadas | Tokens entrada | Tokens salida | Búsquedas web | USD | AUD |
 |---|---|---|---|---|---|---|---|
-| claude-haiku-5-5 | collector | 12 | 850,994 | 109,608 | 59 | 0.73 | 1.04 |
-| claude-sonnet-5-5 | analyst, people, local_trends | 3 | 81,095 | 26,300 | 0 | 0.43 | 0.60 |
-| **Total ejecución** | | **15** | | | **59** | **1.16** | **1.64** |
-| Acumulado del mes (5 ejecuciones) | | | | | | 5.71 | 8.12 |
-| Acumulado desde 2026-11-04 (5 ejecuciones) | | | | | | 5.71 | 8.12 |
+| claude-haiku-5-5 | collector | 11 | 842,817 | 108,284 | 60 | 0.74 | 1.05 |
+| claude-sonnet-5-5 | analyst, people, local_trends | 3 | 81,659 | 28,766 | 0 | 0.45 | 0.64 |
+| **Total ejecución** | | **14** | | | **60** | **1.19** | **1.69** |
+| Acumulado del mes (6 ejecuciones) | | | | | | 6.90 | 9.81 |
+| Acumulado desde 2026-11-04 (6 ejecuciones) | | | | | | 6.90 | 9.81 |
 
 Estimación con los precios de `config.yaml` (USD por millón de tokens, búsqueda web USD 10 por 1,000) y cambio USD 1 = AUD 1.4228. El cobro exacto está en la Console de Anthropic.
 
